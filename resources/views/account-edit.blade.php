@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
-    <title>Daily Bazaar | @yield('title')</title>
+    <title>Daily Bazaar | Update Account</title>
     
     <!-- Font awesome -->
     <link href="css/font-awesome.css" rel="stylesheet">
@@ -321,25 +321,74 @@
     </div>
   </section>
   <!-- / menu -->
-  @yield('content')
-<!-- Subscribe section -->
-<section id="aa-subscribe">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="aa-subscribe-area">
-          <h3>Subscribe our newsletter </h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, velit!</p>
-          <form action="" class="aa-subscribe-form">
-            <input type="email" name="" id="" placeholder="Enter your Email">
-            <input type="submit" value="Subscribe">
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- / Subscribe section -->
+ 
+      <!-- catg header banner section -->
+      <section id="aa-catg-head-banner">
+        <img src="img/fashion/fashion-header-bg-8.jpg" alt="fashion img">
+        <div class="aa-catg-head-banner-area">
+         <div class="container">
+          <div class="aa-catg-head-banner-content">
+            <h2>Update Account</h2>
+            <ol class="breadcrumb">
+              <li><a href="/">Home</a></li>                   
+              <li class="active">Account</li>
+            </ol>
+          </div>
+         </div>
+       </div>
+      </section>
+      <!-- / catg header banner section -->
+    
+     <!-- Cart view section -->
+     <section id="aa-myaccount">
+       <div class="container">
+         <div class="row">
+           <div class="col-md-12">
+            <div class="aa-myaccount-area">         
+                <div class="row">
+                  
+                  <div class="col-md-6">
+                    <div class="aa-myaccount-register">                 
+                     <h4>Update Account</h4>
+                     <form action="/" method="POST" class="aa-login-form">
+                         @csrf
+                        <label for="">Name<span>*</span></label>
+                        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;
+                        <label for="">Email Address<span>*</span></label>
+                        <br>
+    <input value="{{Auth::user()->name}}" type="text" name="name" required style="width:48%">
+    @error('name')
+				<div class="error f-16 d-block f-bold text-danger">{{ $message }}</div>
+	@enderror                        
+    <input value="{{Auth::user()->email}}" type="text" name="email" placeholder="Email address" required style="width:48%;float:right">
+    @error('email')
+                <div class="error f-16 d-block f-bold text-danger">{{ $message }}</div>
+	  @enderror                    
+                        <label for="">New Password<span>*</span></label>
+                        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                        &emsp;&emsp;&emsp;
+                        <label for="">Confirm Password<span>*</span></label>
+                        <br>
+    <input type="password" name="password" placeholder="Password" required style="width:48%">                        
+    <input type="password"name="password_confirmation" placeholder="Confirm password" required style="width:48%;float:right">
+    @error('password')
+				<div class="error f-16 d-block f-bold text-danger">{{ $message }}</div>
+	@enderror        
+  <label for="">Old Password<span>*</span></label><br>
+  <input type="text" name="opassword" placeholder="Old Password" required>
+
+                        <button type="submit" class="aa-browse-btn">Register</button>                    
+                      </form>
+                    </div>
+                  </div>
+                </div>          
+             </div>
+           </div>
+         </div>
+       </div>
+     </section>
+     <!-- / Cart view section -->
 
 <!-- footer -->  
 <footer id="aa-footer">
@@ -442,15 +491,11 @@
       <div class="modal-body">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4>Login or Register</h4>
-        <form class="aa-login-form" action="/login" method="POST">
-          @csrf
+        <form class="aa-login-form" action="">
           <label for="">Email address<span>*</span></label>
-          <input type="text" name="email" required placeholder="Email address">
-  @error('email')
-                <div class="error f-16 d-block f-bold text-danger">{{ $message }}</div>
-	@enderror
+          <input type="text" placeholder="Email address">
           <label for="">Password<span>*</span></label>
-          <input type="password" name="password" placeholder="Password" required>
+          <input type="password" placeholder="Password">
           <button class="aa-browse-btn" type="submit">Login</button>
           <label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme"> Remember me </label>
           <p class="aa-lost-password"><a href="#">Lost your password?</a></p>
@@ -486,4 +531,3 @@
 
 </body>
 </html>
-  

@@ -102,11 +102,14 @@
               <!-- / header top left -->
               <div class="aa-header-top-right">
                 <ul class="aa-head-top-nav-right">
-                  <li><a href="/account">My Account</a></li>
-                  <li class="hidden-xs"><a href="wishlist.html">Wishlist</a></li>
+                  @if (!Auth::check())<li><a href="/account">My Account</a></li>
+                  @else<li><a href="/account-info">My Account</a></li>@endif
+                  @auth<li class="hidden-xs"><a href="wishlist.html">Wishlist</a></li>@endauth
                   <li class="hidden-xs"><a href="cart.html">My Cart</a></li>
                   <li class="hidden-xs"><a href="checkout.html">Checkout</a></li>
-                  <li><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
+          @if (Auth::check())<li style="display: inline-block;color: #333333;border-right: 1px solid #ddd;font-size: 14px;padding: 5px 8px;">Welcome, {{Auth::user()->name}}</li>
+                  @else<li><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>@endif
+                  @auth<li class="hidden-xs"><a href="/logout">Logout</a></li>@endauth
                 </ul>
               </div>
             </div>
@@ -325,9 +328,9 @@
         <div class="aa-catg-head-banner-area">
          <div class="container">
           <div class="aa-catg-head-banner-content">
-            <h2>Account Page</h2>
+            <h2>Account</h2>
             <ol class="breadcrumb">
-              <li><a href="index.html">Home</a></li>                   
+              <li><a href="/">Home</a></li>                   
               <li class="active">Account</li>
             </ol>
           </div>
@@ -346,13 +349,17 @@
                   <div class="col-md-6">
                     <div class="aa-myaccount-login">
                     <h4>Login</h4>
-                     <form action="" class="aa-login-form">
-                      <label for="">Username or Email address<span>*</span></label>
-                       <input type="text" placeholder="Username or email">
+                     <form action="/login" method="POST" class="aa-login-form">
+                        @csrf
+                        <label for="">Email address<span>*</span></label>
+                        <input type="text" name="email" required placeholder="Email address">
+    @error('email')
+                <div class="error f-16 d-block f-bold text-danger">{{ $message }}</div>
+	@enderror
                        <label for="">Password<span>*</span></label>
-                        <input type="password" placeholder="Password">
+                       <input type="password" name="password" placeholder="Password" required>
                         <button type="submit" class="aa-browse-btn">Login</button>
-                        <label class="rememberme" for="rememberme"><input type="checkbox" id="rememberme"> Remember me </label>
+                        <label class="rememberme" for="rememberme"><input name="remember" type="checkbox" id="rememberme"> Remember me </label>
                         <p class="aa-lost-password"><a href="#">Lost your password?</a></p>
                       </form>
                     </div>
@@ -360,18 +367,31 @@
                   <div class="col-md-6">
                     <div class="aa-myaccount-register">                 
                      <h4>Register</h4>
-                     <form action="" class="aa-login-form">
-                        <label for="">Email address<span>*</span></label>
-                        <input type="text" placeholder="Email">
-                        
+                     <form action="/register" method="POST" class="aa-login-form">
+                         @csrf
+                        <label for="">Name<span>*</span></label>
+                        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;
+                        <label for="">Email Address<span>*</span></label>
+                        <br>
+    <input type="text" name="name" placeholder="Name" required style="width:48%">
+    @error('name')
+				<div class="error f-16 d-block f-bold text-danger">{{ $message }}</div>
+	@enderror                        
+    <input type="text" name="email" placeholder="Email address" required style="width:48%;float:right">
+    @error('email')
+                <div class="error f-16 d-block f-bold text-danger">{{ $message }}</div>
+	@enderror                    
                         <label for="">Password<span>*</span></label>
                         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                         &emsp;&emsp;&emsp;&emsp;&emsp;
                         <label for="">Confirm Password<span>*</span></label>
                         <br>
-                        <input type="password" placeholder="Password" style="width:48%">                        <input type="password" placeholder="Password" style="width:48%;float:right">
-                        
-
+    <input type="password" name="password" placeholder="Password" required style="width:48%">                        
+    <input type="password"name="password_confirmation" placeholder="Confirm password" required style="width:48%;float:right">
+    @error('password')
+				<div class="error f-16 d-block f-bold text-danger">{{ $message }}</div>
+	@enderror                    
                         <button type="submit" class="aa-browse-btn">Register</button>                    
                       </form>
                     </div>
@@ -486,8 +506,8 @@
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4>Login or Register</h4>
         <form class="aa-login-form" action="">
-          <label for="">Username or Email address<span>*</span></label>
-          <input type="text" placeholder="Username or email">
+          <label for="">Email address<span>*</span></label>
+          <input type="text" placeholder="Email address">
           <label for="">Password<span>*</span></label>
           <input type="password" placeholder="Password">
           <button class="aa-browse-btn" type="submit">Login</button>

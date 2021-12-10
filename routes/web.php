@@ -19,4 +19,13 @@ Route::get('/', function () {
 
 Route::get('/account', function () {
     return view('account');
+})->middleware('guest');
+
+Route::get('/account-info', function () {
+    return view('account-edit');
+})->middleware('auth');
+
+Route::get('/logout', function () {
+    Auth::logout();
+    return Redirect::to('/');
 });
