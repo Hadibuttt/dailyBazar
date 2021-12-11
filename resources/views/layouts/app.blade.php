@@ -105,7 +105,7 @@
                   @if (!Auth::check())<li><a href="/account">My Account</a></li>
                   @else<li><a href="/account-info">My Account</a></li>@endif
                   @auth<li class="hidden-xs"><a href="wishlist.html">Wishlist</a></li>@endauth
-                  <li class="hidden-xs"><a href="cart.html">My Cart</a></li>
+                  <li class="hidden-xs"><a href="/cart">My Cart</a></li>
                   <li class="hidden-xs"><a href="checkout.html">Checkout</a></li>
           @if (Auth::check())<li style="display: inline-block;color: #333333;border-right: 1px solid #ddd;font-size: 14px;padding: 5px 8px;">Welcome, {{Auth::user()->name}}</li>
                   @else<li><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>@endif
@@ -483,6 +483,8 @@
 <script type="text/javascript" src="js/nouislider.js"></script>
 <!-- Custom js -->
 <script src="js/custom.js"></script> 
+
+@yield('scripts')
 
 </body>
 </html>

@@ -168,10 +168,10 @@
                         <!-- start single product item -->
                         <li>
                           <figure>
-                            <a class="aa-product-img" href="#"><img src="img/man/polo-shirt-2.png" alt="polo shirt img"></a>
+                            <a class="aa-product-img" href="#"><img src="img/test.png" alt="polo shirt img"></a>
                             <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                               <figcaption>
-                              <h4 class="aa-product-title"><a href="#">Polo T-Shirt</a></h4>
+                              <h4 class="aa-product-title"><a href="#">Diva Cream</a></h4>
                               <span class="aa-product-price">$45.50</span><span class="aa-product-price"><del>$65.50</del></span>
                             </figcaption>
                           </figure>                        
@@ -311,13 +311,14 @@
                     <div class="tab-pane fade" id="women">
                       <ul class="aa-product-catg">
                         <!-- start single product item -->
+                        @foreach ($products as $product)
                         <li>
                           <figure>
-                            <a class="aa-product-img" href="#"><img src="img/women/girl-1.png" alt="polo shirt img"></a>
-                            <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                            <a class="aa-product-img" href="#"><img src="{{ $product->photo }}" width="250" height="300" alt="polo shirt img"></a>
+                          <a class="aa-add-card-btn" href="{{ url('add-to-cart/'.$product->id) }}" data-id="{{ $product->id }}"><span class="fa fa-shopping-cart add-to-cart"></span>Add To Cart</a>
                             <figcaption>
-                              <h4 class="aa-product-title"><a href="#">This is Title</a></h4>
-                              <span class="aa-product-price">$45.50</span><span class="aa-product-price"><del>$65.50</del></span>
+                              <h4 class="aa-product-title"><a href="#">{{ $product->name }}</a></h4>
+                              <span class="aa-product-price">${{ $product->price }}</span><span class="aa-product-price"><del>$65.50</del></span>
                             </figcaption>
                           </figure>                         
                           <div class="aa-product-hvr-content">
@@ -328,6 +329,7 @@
                           <!-- product badge -->
                           <span class="aa-badge aa-sale" href="#">SALE!</span>
                         </li>
+                        @endforeach
                         <!-- start single product item -->
                         <li>
                           <figure>
@@ -1402,3 +1404,31 @@
   </section>
   <!-- / Testimonial -->
 @endsection
+
+@section('scripts')
+
+    <script type="text/javascript">
+        $(".add-to-cart").click(function (e) {
+            e.preventDefault();
+
+            var ele = $(this);
+
+            ele.siblings('.btn-loading').show();
+
+            $.ajax({
+                url: '{{ url('add-to-cart') }}' + '/' + ele.attr("data-id"),
+                method: "get",
+                data: {_token: '{{ csrf_token() }}'},
+                dataType: "json",
+                success: function (response) {
+
+                    ele.siblings('.btn-loading').hide();
+
+                    $("span#status").html('<div class="alert alert-success">'+response.msg+'</div>');
+                    $("#header-bar").html(response.data);
+                }
+            });
+        });
+    </script>
+
+@stop

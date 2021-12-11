@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
 
 Route::view('/account-info', 'account-edit')->middleware('auth');
 Route::put('/account-info/updated', [App\Http\Controllers\AccountController::class, 'Update'] )->middleware('auth');
@@ -26,3 +26,7 @@ Route::get('/logout', function () {
     Auth::logout();
     return Redirect::to('/');
 });
+
+Route::get('/', [App\Http\Controllers\ProductsController::class, 'index']);
+Route::get('/cart', [App\Http\Controllers\ProductsController::class, 'cart']);
+Route::get('add-to-cart/{id}', [App\Http\Controllers\ProductsController::class, 'index']);
