@@ -17,13 +17,10 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/account', function () {
-    return view('account');
-})->middleware('guest');
+Route::view('/account-info', 'account-edit')->middleware('auth');
+Route::put('/account-info/updated', [App\Http\Controllers\AccountController::class, 'Update'] )->middleware('auth');
+Route::view('/account', 'account')->middleware('guest');
 
-Route::get('/account-info', function () {
-    return view('account-edit');
-})->middleware('auth');
 
 Route::get('/logout', function () {
     Auth::logout();

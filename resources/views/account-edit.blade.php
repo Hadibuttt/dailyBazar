@@ -338,7 +338,7 @@
        </div>
       </section>
       <!-- / catg header banner section -->
-    
+   
      <!-- Cart view section -->
      <section id="aa-myaccount">
        <div class="container">
@@ -348,23 +348,25 @@
                 <div class="row">
                   
                   <div class="col-md-6">
-                    <div class="aa-myaccount-register">                 
+                    <div class="aa-myaccount-register">
+                    @if (Session::has('success'))
+                      <div class="alert alert-dismissable alert-success">    
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                              {{ Session::get('success') }}
+                      </div>
+                    @endif
+                    
                      <h4>Update Account</h4>
-                     <form action="/" method="POST" class="aa-login-form">
+                     <form action="/account-info/updated" method="POST" class="aa-login-form">
+                      @method('PUT')
                          @csrf
-                        <label for="">Name<span>*</span></label>
-                        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;
-                        <label for="">Email Address<span>*</span></label>
-                        <br>
-    <input value="{{Auth::user()->name}}" type="text" name="name" required style="width:48%">
+                         <label for="">Name<span>*</span></label><br>
+                         <input type="text" value="{{Auth::user()->name}}" name="name" required>
     @error('name')
 				<div class="error f-16 d-block f-bold text-danger">{{ $message }}</div>
-	@enderror                        
-    <input value="{{Auth::user()->email}}" type="text" name="email" placeholder="Email address" required style="width:48%;float:right">
-    @error('email')
-                <div class="error f-16 d-block f-bold text-danger">{{ $message }}</div>
-	  @enderror                    
+	  @enderror                         
                         <label for="">New Password<span>*</span></label>
                         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                         &emsp;&emsp;&emsp;
@@ -374,11 +376,16 @@
     <input type="password"name="password_confirmation" placeholder="Confirm password" required style="width:48%;float:right">
     @error('password')
 				<div class="error f-16 d-block f-bold text-danger">{{ $message }}</div>
-	@enderror        
+	  @enderror
+      @if (Session::has('new-old'))
+        <div class="error f-16 d-block f-bold text-danger">{{ Session::get('new-old') }}</div>
+      @endif        
   <label for="">Old Password<span>*</span></label><br>
-  <input type="text" name="opassword" placeholder="Old Password" required>
-
-                        <button type="submit" class="aa-browse-btn">Register</button>                    
+  <input type="password" name="opassword" placeholder="Old Password" required>
+      @if (Session::has('fail'))
+        <div class="error f-16 d-block f-bold text-danger">{{ Session::get('fail') }}</div>
+      @endif
+                        <button type="submit" class="aa-browse-btn">Update</button>                    
                       </form>
                     </div>
                   </div>
