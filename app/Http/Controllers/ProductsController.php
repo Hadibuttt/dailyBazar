@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\category;
 use App\Models\subcategory;
+use Session;
 
 class ProductsController extends Controller
 {
@@ -32,7 +33,7 @@ class ProductsController extends Controller
 
         }
 
-        $cart = session()->get('cart');
+        $cart = Session::get('cart');
 
         // if cart is empty then this the first product
         if(!$cart) {
@@ -46,7 +47,7 @@ class ProductsController extends Controller
                     ]
             ];
 
-            session()->put('cart', $cart);
+            Session::put('cart', $cart);
 
             return redirect('/cart');
             // return redirect()->back()->with('success', 'Product added to cart successfully!');
@@ -57,7 +58,7 @@ class ProductsController extends Controller
 
             $cart[$id]['quantity']++;
 
-            session()->put('cart', $cart);
+            Session::put('cart', $cart);
             
             return redirect('/cart');
             // return redirect()->back()->with('success', 'Product added to cart successfully!');
@@ -72,10 +73,34 @@ class ProductsController extends Controller
             "photo" => $product->photo
         ];
 
-        session()->put('cart', $cart);
+        Session::put('cart', $cart);
 
         return redirect('/cart');
         // return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
 
+    public function remove(Request $request)
+    {
+        if($request->id) {
+            $cart = session()->get('cart');
+            if(isset($cart[$request->id])) {
+                unset($cart[$request->id]);
+                session()->put('cart', $cart);
+            }
+            session()->flash('success', 'Product removed successfully');
+            return redirect('/cart');
+        }
+    }
+
+    public function update(Request $request)
+    {
+        if($request->id and $request->quantity)
+        {
+            $cart = session()->get('cart');
+            $cart[$request->id]["quantity"] = $request->quantity;
+            session()->put('cart', $cart);
+            session()->flash('success', 'Cart updated successfully');
+            return redirect('/cart');
+        }
+    }
 }

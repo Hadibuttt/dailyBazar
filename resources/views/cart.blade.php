@@ -26,7 +26,9 @@
         <div class="col-md-12">
           <div class="cart-view-area">
             <div class="cart-view-table">
-              <form action="">
+              <form action="/update-cart" method="POST">
+                @method('PATCH')
+                @csrf
                 <div class="table-responsive">
                    <table class="table">
                      <thead>
@@ -45,13 +47,14 @@
                 @foreach(session('cart') as $id => $details)
                             <?php $total += $details['price'] * $details['quantity'] ?>
                        <tr>
-                    <td><a class="remove" href="#"><fa class="fa fa-close"></fa></a></td>
+                    <td><a class="remove" href="/remove-from-cart/{{ $id }}"><fa class="fa fa-close"></fa></a></td>
                     <td><a href="#"><img src="{{ $details['photo'] }}" width="100" height="100" alt="img"></a></td>
                          <td><a class="aa-cart-title" href="#">{{ $details['name'] }}</a></td>
                          <td>{{ $details['price'] }}</td>
-                         <td><input class="aa-cart-quantity" type="number" value="{{ $details['quantity'] }}"></td>
+                         <td><input class="aa-cart-quantity" name="quantity" type="number" value="{{ $details['quantity'] }}"></td>
                          <td>${{ $details['price'] * $details['quantity'] }}</td>
                        </tr>
+                       <input type="hidden" name="id" value="{{$id}}">
                 @endforeach
         @endif
                        <tr>
@@ -72,10 +75,11 @@
                        </tr>
                        <tr>
                          <td colspan="6" class="aa-cart-view-bottom">
-                           <div class="aa-cart-coupon">
+                           {{-- <div class="aa-cart-coupon">
                              <input class="aa-coupon-code" type="text" placeholder="Coupon">
                              <input class="aa-cart-view-btn" type="submit" value="Apply Coupon">
-                           </div>
+                           </div> --}}
+                           
                            <input class="aa-cart-view-btn" type="submit" value="Update Cart">
                          </td>
                        </tr>

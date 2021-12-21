@@ -315,7 +315,7 @@
                         <li>
                           <figure>
                             <a class="aa-product-img" href="#"><img src="{{ $product->photo }}" width="250" height="300" alt="polo shirt img"></a>
-                          <a class="aa-add-card-btn" href="{{ url('add-to-cart/'.$product->id) }}" data-id="{{ $product->id }}"><span class="fa fa-shopping-cart add-to-cart"></span>Add To Cart</a>
+                  <a class="aa-add-card-btn" href="/add-to-cart/{{$product->id}}"><span class="fa fa-shopping-cart add-to-cart"></span>Add To Cart</a>
                             <figcaption>
                               <h4 class="aa-product-title"><a href="#">{{ $product->name }}</a></h4>
                               <span class="aa-product-price">${{ $product->price }}</span><span class="aa-product-price"><del>$65.50</del></span>
@@ -1404,31 +1404,3 @@
   </section>
   <!-- / Testimonial -->
 @endsection
-
-@section('scripts')
-
-    <script type="text/javascript">
-        $(".add-to-cart").click(function (e) {
-            e.preventDefault();
-
-            var ele = $(this);
-
-            ele.siblings('.btn-loading').show();
-
-            $.ajax({
-                url: '{{ url('add-to-cart') }}' + '/' + ele.attr("data-id"),
-                method: "get",
-                data: {_token: '{{ csrf_token() }}'},
-                dataType: "json",
-                success: function (response) {
-
-                    ele.siblings('.btn-loading').hide();
-
-                    $("span#status").html('<div class="alert alert-success">'+response.msg+'</div>');
-                    $("#header-bar").html(response.data);
-                }
-            });
-        });
-    </script>
-
-@stop
