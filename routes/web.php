@@ -28,6 +28,7 @@ Route::get('/logout', function () {
 });
 
 Route::get('/', [App\Http\Controllers\ProductsController::class, 'index']);
+
 Route::get('/cart', [App\Http\Controllers\ProductsController::class, 'cart']);
 Route::get('/add-to-cart/{id}', [App\Http\Controllers\ProductsController::class, 'addToCart']);
 Route::get('/remove-from-cart/{id}', [App\Http\Controllers\ProductsController::class, 'remove']);

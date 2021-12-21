@@ -20,13 +20,23 @@
    <!-- / catg header banner section -->
  
   <!-- Cart view section -->
+  <?php $count = count(Session::get('cart')); ?>
   <section id="cart-view">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
+          @if ($count != 0)
           <div class="cart-view-area">
             <div class="cart-view-table">
               <form action="/update-cart" method="POST">
+@if (Session::has('success'))
+                <div class="alert alert-dismissable alert-success">    
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                      {{ Session::get('success') }}
+              </div>
+@endif
                 @method('PATCH')
                 @csrf
                 <div class="table-responsive">
@@ -56,23 +66,7 @@
                        </tr>
                        <input type="hidden" name="id" value="{{$id}}">
                 @endforeach
-        @endif
-                       <tr>
-                         <td><a class="remove" href="#"><fa class="fa fa-close"></fa></a></td>
-                         <td><a href="#"><img src="img/man/polo-shirt-2.png" alt="img"></a></td>
-                         <td><a class="aa-cart-title" href="#">Polo T-Shirt</a></td>
-                         <td>$150</td>
-                         <td><input class="aa-cart-quantity" type="number" value="1"></td>
-                         <td>$150</td>
-                       </tr>
-                       <tr>
-                         <td><a class="remove" href="#"><fa class="fa fa-close"></fa></a></td>
-                         <td><a href="#"><img src="img/man/polo-shirt-3.png" alt="img"></a></td>
-                         <td><a class="aa-cart-title" href="#">Polo T-Shirt</a></td>
-                         <td>$50</td>
-                         <td><input class="aa-cart-quantity" type="number" value="1"></td>
-                         <td>$50</td>
-                       </tr>
+        @endif  
                        <tr>
                          <td colspan="6" class="aa-cart-view-bottom">
                            {{-- <div class="aa-cart-coupon">
@@ -94,11 +88,11 @@
                   <tbody>
                     <tr>
                       <th>Subtotal</th>
-                      <td>$450</td>
+                      <td>${{$total}}</td>
                     </tr>
                     <tr>
                       <th>Total</th>
-                      <td>$450</td>
+                      <td>${{$total}}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -106,6 +100,18 @@
               </div>
             </div>
           </div>
+@else
+<div class="cart-view-area">
+  <div class="cart-view-table">
+      <div class="table-responsive">
+        <h3 style="text-align: center;"><a href="#">Your Cart is Empty!</a></h3>
+        <br>
+         <center><img width="400" height="400" src="/img/emptycart.png" alt="" srcset=""></center>
+       </div>
+  </div>
+</div>
+@endif
+
         </div>
       </div>
     </div>

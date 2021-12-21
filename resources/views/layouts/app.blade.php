@@ -137,41 +137,55 @@
               </div>
               <!-- / logo  -->
                <!-- cart box -->
+               <?php $count = count(Session::get('cart')); ?>
               <div class="aa-cartbox">
                 <a class="aa-cart-link" href="#">
                   <span class="fa fa-shopping-basket"></span>
                   <span class="aa-cart-title">SHOPPING CART</span>
-                  <span class="aa-cart-notify">2</span>
+                  <span class="aa-cart-notify">{{$count}}</span>
                 </a>
-                <div class="aa-cartbox-summary">
-                  <ul>
-                    <li>
-                      <a class="aa-cartbox-img" href="#"><img src="img/woman-small-2.jpg" alt="img"></a>
-                      <div class="aa-cartbox-info">
-                        <h4><a href="#">Product Name</a></h4>
-                        <p>1 x $250</p>
-                      </div>
-                      <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a>
-                    </li>
-                    <li>
-                      <a class="aa-cartbox-img" href="#"><img src="img/woman-small-1.jpg" alt="img"></a>
-                      <div class="aa-cartbox-info">
-                        <h4><a href="#">Product Name</a></h4>
-                        <p>1 x $250</p>
-                      </div>
-                      <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a>
-                    </li>                    
-                    <li>
-                      <span class="aa-cartbox-total-title">
-                        Total
-                      </span>
-                      <span class="aa-cartbox-total-price">
-                        $500
-                      </span>
-                    </li>
-                  </ul>
-                  <a class="aa-cartbox-checkout aa-primary-btn" href="checkout.html">Checkout</a>
-                </div>
+
+                
+@if ($count != 0)
+<?php $total = 0 ?>
+@if(session('cart'))
+        @foreach(session('cart') as $id => $details)
+                    <?php $total += $details['price'] * $details['quantity'] ?>
+<div class="aa-cartbox-summary">
+  <ul>
+    <li>
+      <a class="aa-cartbox-img" href="#"><img src="{{ $details['photo'] }}" width="100" height="100" alt="img"></a>
+      <div class="aa-cartbox-info">
+        <h4><a href="#">{{ $details['name'] }}</a></h4>
+        <p>{{ $details['quantity'] }} x ${{ $details['price'] }}</p>
+      </div>
+  <a class="aa-remove-product" href="/remove-from-cart/{{$id}}"><span class="fa fa-times"></span></a>
+    </li>
+    @endforeach
+    @endif
+                        
+    <li>
+      <span class="aa-cartbox-total-title">
+        Total
+      </span>
+      <span class="aa-cartbox-total-price">
+        ${{$total}}
+      </span>
+    </li>
+  </ul>
+  <a class="aa-cartbox-checkout aa-primary-btn" href="checkout.html">Checkout</a>
+</div>
+
+@else
+<div class="aa-cartbox-summary">
+  <ul>
+    <li>
+        <h4><a>Cart is Empty!</a></h4>
+    </li>
+  </ul>
+</div>
+@endif
+                
               </div>
               <!-- / cart box -->
               <!-- search box -->
@@ -219,7 +233,8 @@
                     @endforeach
                     </ul>
                 </li>
-              @endforeach                  
+              @endforeach
+              <li><a href="/">Contact</a></li>
               
           </div><!--/.nav-collapse -->
         </div>

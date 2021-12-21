@@ -13,9 +13,7 @@ class ProductsController extends Controller
     public function index()
     {
         $products = Product::all();
-        $categories = category::all();
-        $subcategories = subcategory::all();
-        return view('index', compact('products','categories','subcategories'));
+        return view('index', compact('products'));
     }
 
     public function cart()
@@ -48,9 +46,7 @@ class ProductsController extends Controller
             ];
 
             Session::put('cart', $cart);
-
-            return redirect('/cart');
-            // return redirect()->back()->with('success', 'Product added to cart successfully!');
+            return redirect('/cart')->with('success', 'Product added to cart successfully!');
         }
 
         // if cart not empty then check if this product exist then increment quantity
@@ -60,8 +56,7 @@ class ProductsController extends Controller
 
             Session::put('cart', $cart);
             
-            return redirect('/cart');
-            // return redirect()->back()->with('success', 'Product added to cart successfully!');
+            return redirect('/cart')->with('success', 'Product added to cart successfully!');
 
         }
 
@@ -74,13 +69,11 @@ class ProductsController extends Controller
         ];
 
         Session::put('cart', $cart);
-
-        return redirect('/cart');
-        // return redirect()->back()->with('success', 'Product added to cart successfully!');
+        return redirect('/cart')->with('success', 'Product added to cart successfully!');
     }
 
     public function remove(Request $request)
-    {
+    {   
         if($request->id) {
             $cart = session()->get('cart');
             if(isset($cart[$request->id])) {
@@ -94,7 +87,7 @@ class ProductsController extends Controller
 
     public function update(Request $request)
     {
-        if($request->id and $request->quantity)
+        if($request->id && $request->quantity)
         {
             $cart = session()->get('cart');
             $cart[$request->id]["quantity"] = $request->quantity;
