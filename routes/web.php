@@ -33,5 +33,6 @@ Route::get('/cart', [App\Http\Controllers\ProductsController::class, 'cart']);
 Route::get('/add-to-cart/{id}', [App\Http\Controllers\ProductsController::class, 'addToCart']);
 Route::get('/remove-from-cart/{id}', [App\Http\Controllers\ProductsController::class, 'remove']);
 Route::patch('/update-cart', [App\Http\Controllers\ProductsController::class, 'update']);
+Route::get('/checkout', [App\Http\Controllers\ProductsController::class, 'checkout'])->middleware('auth');
 
 

@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
+use Session;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -37,7 +38,8 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
 
         Fortify::loginView(function () {
-            return view('index');
+            Session::flash('danger', "You need to be logged in before checkout!");
+            return view('account');
         });
 
         Fortify::registerView(function () {

@@ -96,4 +96,15 @@ class ProductsController extends Controller
             return redirect('/cart');
         }
     }
+
+    public function checkout()
+    {
+        if(session('cart')){
+            return view('checkout');
+        }
+        else{
+            return redirect('/cart');
+        }  
+    }
+
 }

@@ -106,7 +106,9 @@
                   @else<li><a href="/account-info">My Account</a></li>@endif
                   @auth<li class="hidden-xs"><a href="wishlist.html">Wishlist</a></li>@endauth
                   <li class="hidden-xs"><a href="/cart">My Cart</a></li>
-                  <li class="hidden-xs"><a href="checkout.html">Checkout</a></li>
+                  @if(session('cart'))
+                    <li class="hidden-xs"><a href="/checkout">Checkout</a></li>
+                  @endif
           @if (Auth::check())<li style="display: inline-block;color: #333333;border-right: 1px solid #ddd;font-size: 14px;padding: 5px 8px;">Welcome, {{Auth::user()->name}}</li>
                   @else<li><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>@endif
                   @auth<li class="hidden-xs"><a href="/logout">Logout</a></li>@endauth
@@ -137,6 +139,7 @@
               </div>
               <!-- / logo  -->
                <!-- cart box -->
+               @if(session('cart'))
                <?php $count = count(Session::get('cart')); ?>
               <div class="aa-cartbox">
                 <a class="aa-cart-link" href="#">
@@ -145,10 +148,7 @@
                   <span class="aa-cart-notify">{{$count}}</span>
                 </a>
 
-                
-@if ($count != 0)
 <?php $total = 0 ?>
-@if(session('cart'))
         @foreach(session('cart') as $id => $details)
                     <?php $total += $details['price'] * $details['quantity'] ?>
 <div class="aa-cartbox-summary">
@@ -162,7 +162,6 @@
   <a class="aa-remove-product" href="/remove-from-cart/{{$id}}"><span class="fa fa-times"></span></a>
     </li>
     @endforeach
-    @endif
                         
     <li>
       <span class="aa-cartbox-total-title">
@@ -173,20 +172,30 @@
       </span>
     </li>
   </ul>
-  <a class="aa-cartbox-checkout aa-primary-btn" href="checkout.html">Checkout</a>
+  <a class="aa-cartbox-checkout aa-primary-btn" href="/checkout">Checkout</a>
+</div>            
 </div>
-
 @else
-<div class="aa-cartbox-summary">
-  <ul>
-    <li>
-        <h4><a>Cart is Empty!</a></h4>
-    </li>
-  </ul>
+<div class="aa-cartbox">
+  <a class="aa-cart-link" href="#">
+    <span class="fa fa-shopping-basket"></span>
+    <span class="aa-cart-title">SHOPPING CART</span>
+    <span class="aa-cart-notify">0</span>
+  </a>
+      <div class="aa-cartbox-summary">
+        <ul>
+          <li>
+              <h4><a>Cart is Empty!</a></h4>
+          </li>
+        </ul>
+      </div>            
 </div>
 @endif
-                
-              </div>
+
+
+
+
+
               <!-- / cart box -->
               <!-- search box -->
               <div class="aa-search-box">

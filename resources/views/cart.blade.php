@@ -20,12 +20,13 @@
    <!-- / catg header banner section -->
  
   <!-- Cart view section -->
-  <?php $count = count(Session::get('cart')); ?>
+ 
   <section id="cart-view">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          @if ($count != 0)
+          @if(session('cart'))
+          <?php $count = count(Session::get('cart')); ?>
           <div class="cart-view-area">
             <div class="cart-view-table">
               <form action="/update-cart" method="POST">
@@ -53,7 +54,7 @@
                      </thead>
                      <tbody>
                         <?php $total = 0 ?>
-        @if(session('cart'))
+        
                 @foreach(session('cart') as $id => $details)
                             <?php $total += $details['price'] * $details['quantity'] ?>
                        <tr>
@@ -66,7 +67,7 @@
                        </tr>
                        <input type="hidden" name="id" value="{{$id}}">
                 @endforeach
-        @endif  
+          
                        <tr>
                          <td colspan="6" class="aa-cart-view-bottom">
                            {{-- <div class="aa-cart-coupon">
@@ -96,7 +97,7 @@
                     </tr>
                   </tbody>
                 </table>
-                <a href="#" class="aa-cart-view-btn">Proced to Checkout</a>
+                <a href="/checkout" class="aa-cart-view-btn">Proced to Checkout</a>
               </div>
             </div>
           </div>
