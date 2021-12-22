@@ -46,7 +46,7 @@
                          <div class="row">
                             <div class="col-md-12">
                               <div class="aa-checkout-single-bill">
-                                <input name="name" required="" value="{{Auth::user()->name}}" type="text" placeholder="Full Name*">
+                                <input name="name" required="" value="" type="text" placeholder="Full Name*">
                               </div>                             
                             </div>
                           </div> 
@@ -54,12 +54,12 @@
                           <div class="row">
                             <div class="col-md-6">
                               <div class="aa-checkout-single-bill">
-                                <input name="email" required="" value="{{Auth::user()->email}}" type="email" placeholder="Email Address*">
+                                <input name="email" required="" value="" type="email" placeholder="Email Address*">
                               </div>                             
                             </div>
                             <div class="col-md-6">
                               <div class="aa-checkout-single-bill">
-                                <input name="phone" required="" type="tel" placeholder="Phone*">
+                            <input @if ($check == 1) value="{{$address->phone}}" @endif  name="phone" required="" type="tel" placeholder="Phone*">
                               </div>
                             </div>
                           </div> 

@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\category;
 use App\Models\subcategory;
+use App\Models\Address;
 use Session;
+use Auth;
 
 class ProductsController extends Controller
 {
@@ -100,11 +102,21 @@ class ProductsController extends Controller
     public function checkout()
     {
         if(session('cart')){
-            return view('checkout');
+            $address = Address::find(Auth::user()->id);
+            if($address){
+                $check = 1;
+                return view('checkout', compact('address','check'));    
+            }
+            else{
+                $check = 0;
+                return view('checkout', compact('address','check'));
+            }
         }
         else{
             return redirect('/cart');
         }  
     }
+
+
 
 }
