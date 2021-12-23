@@ -117,6 +117,26 @@ class ProductsController extends Controller
         }  
     }
 
+    public function checkout_success(Request $request)
+    {
+        if(session('cart')){
+            $address = Address::find(Auth::user()->id);
+            if(!$address){
+                Address::create($request->all());
+                $check = 1;
+                return view('checkout', compact('address','check'));
+            }
+            else{
+                $check = 0;
+                return view('checkout', compact('address','check'));
+            }
+    }
+    else{
+        return redirect('/cart');
+    }
+}
+    
+
 
 
 }

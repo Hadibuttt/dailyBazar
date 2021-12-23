@@ -34,5 +34,8 @@ Route::get('/add-to-cart/{id}', [App\Http\Controllers\ProductsController::class,
 Route::get('/remove-from-cart/{id}', [App\Http\Controllers\ProductsController::class, 'remove']);
 Route::patch('/update-cart', [App\Http\Controllers\ProductsController::class, 'update']);
 Route::get('/checkout', [App\Http\Controllers\ProductsController::class, 'checkout'])->middleware('auth');
+Route::post('/checkout/success', [App\Http\Controllers\ProductsController::class, 'checkout_success'])->middleware('auth');
+
+
 
 

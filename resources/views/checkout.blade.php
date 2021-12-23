@@ -25,7 +25,7 @@
      <div class="row">
        <div class="col-md-12">
         <div class="checkout-area">
-          <form action="" method="POST">
+          <form action="/checkout/success" method="POST">
               @csrf
             <div class="row">
               <div class="col-md-8">
@@ -46,7 +46,7 @@
                          <div class="row">
                             <div class="col-md-12">
                               <div class="aa-checkout-single-bill">
-                                <input name="name" required="" value="" type="text" placeholder="Full Name*">
+                                <input name="name" @if ($check == 1) value="{{$address->name}}" @endif required="" value="" type="text" placeholder="Full Name*">
                               </div>                             
                             </div>
                           </div> 
@@ -54,7 +54,7 @@
                           <div class="row">
                             <div class="col-md-6">
                               <div class="aa-checkout-single-bill">
-                                <input name="email" required="" value="" type="email" placeholder="Email Address*">
+                                <input name="email" @if ($check == 1) value="{{$address->email}}" @endif required="" value="" type="email" placeholder="Email Address*">
                               </div>                             
                             </div>
                             <div class="col-md-6">
@@ -66,7 +66,7 @@
                           <div class="row">
                             <div class="col-md-12">
                               <div class="aa-checkout-single-bill">
-                                <textarea name="address" required="" cols="8" rows="3">Address*</textarea>
+                                <textarea name="address" required="" cols="8" rows="3">@if ($check == 1) {{$address->address}} @else Address* @endif</textarea>
                               </div>                             
                             </div>                            
                           </div>   
@@ -74,7 +74,7 @@
                             <div class="col-md-12">
                               <div class="aa-checkout-single-bill">
                                 <select name="country" required="">
-                                  <option value="0">Select Your Country</option>
+                                  <option @if ($check == 1) value="{{$address->country}}" @endif>@if ($check == 1) {{$address->country}} @else Select Your Country @endif</option>
                                   <option value="1">Australia</option>
                                   <option value="2">Afganistan</option>
                                   <option value="3">Bangladesh</option>
@@ -99,19 +99,19 @@
                           <div class="row">
                             <div class="col-md-12">
                               <div class="aa-checkout-single-bill">
-                                <input name="city" required="" type="text" placeholder="City / Town*">
+                                <input @if ($check == 1) value="{{$address->city}}" @endif name="city" required="" type="text" placeholder="City / Town*">
                               </div>
                             </div>
                           </div>   
                           <div class="row">
                             <div class="col-md-6">
                               <div class="aa-checkout-single-bill">
-                                <input name="district" required="" type="text" placeholder="District*">
+                                <input name="district" @if ($check == 1) value="{{$address->district}}" @endif required="" type="text" placeholder="District*">
                               </div>                             
                             </div>
                             <div class="col-md-6">
                               <div class="aa-checkout-single-bill">
-                                <input name="zip" required="" type="text" placeholder="Postcode / ZIP*">
+                                <input name="zip" @if ($check == 1) value="{{$address->zip}}" @endif required="" type="text" placeholder="Postcode / ZIP*">
                               </div>
                             </div>
                           </div> 
@@ -174,6 +174,7 @@
                     <label for="paypal"><input type="radio" id="paypal" name="paypal" required="" name="optionsRadios" checked> Via Paypal </label>
                     <img src="https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg" border="0" alt="PayPal Acceptance Mark">    
                     <input type="submit" value="Place Order" class="aa-browse-btn">                
+                    <input type="hidden" name="user_id" value="{{Auth::user()->id}}">                
                   </div>
                 </div>
               </div>
