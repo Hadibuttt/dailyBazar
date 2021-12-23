@@ -24,7 +24,6 @@ class CreateAddressesTable extends Migration
             $table->string('city');
             $table->string('district');
             $table->string('zip');
-            $table->string('notes')->nullable();
             $table->timestamps();
         });
     }

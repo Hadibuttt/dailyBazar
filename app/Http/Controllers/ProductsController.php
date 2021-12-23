@@ -123,12 +123,10 @@ class ProductsController extends Controller
             $address = Address::find(Auth::user()->id);
             if(!$address){
                 Address::create($request->all());
-                $check = 1;
-                return view('checkout', compact('address','check'));
+                return redirect('/checkout');
             }
             else{
-                $check = 0;
-                return view('checkout', compact('address','check'));
+                return redirect('/checkout');
             }
     }
     else{

@@ -46,7 +46,7 @@
                          <div class="row">
                             <div class="col-md-12">
                               <div class="aa-checkout-single-bill">
-                                <input name="name" @if ($check == 1) value="{{$address->name}}" @endif required="" value="" type="text" placeholder="Full Name*">
+                                <input name="name" @if ($check == 1) value="{{$address->name}}" @endif required="" type="text" placeholder="Full Name*">
                               </div>                             
                             </div>
                           </div> 
@@ -54,12 +54,12 @@
                           <div class="row">
                             <div class="col-md-6">
                               <div class="aa-checkout-single-bill">
-                                <input name="email" @if ($check == 1) value="{{$address->email}}" @endif required="" value="" type="email" placeholder="Email Address*">
+                                <input name="email" @if ($check == 1) value="{{$address->email}}" @endif required="" type="email" placeholder="Email Address*">
                               </div>                             
                             </div>
                             <div class="col-md-6">
                               <div class="aa-checkout-single-bill">
-                            <input @if ($check == 1) value="{{$address->phone}}" @endif  name="phone" required="" type="tel" placeholder="Phone*">
+                            <input @if ($check == 1) value="{{$address->phone}}" @endif name="phone" required="" type="tel" placeholder="Phone*">
                               </div>
                             </div>
                           </div> 
@@ -91,7 +91,7 @@
                                   <option value="14">UAE</option>
                                   <option value="15">UK</option>
                                   <option value="16">USA</option>
-                                  <option value="16">Pakistan</option>
+                                  <option value="Pakistan">Pakistan</option>
                                 </select>
                               </div>                             
                             </div>                            
