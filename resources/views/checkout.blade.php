@@ -47,6 +47,11 @@
                             <div class="col-md-12">
                               <div class="aa-checkout-single-bill">
                                 <input name="name" @if ($check == 1) value="{{$address->name}}" @endif required="" type="text" placeholder="Full Name*">
+                    @error('name')
+                    <span class="text-danger">
+                        {{ $message }}
+                    </span>	
+                    @enderror
                               </div>                             
                             </div>
                           </div> 
@@ -60,6 +65,11 @@
                             <div class="col-md-6">
                               <div class="aa-checkout-single-bill">
                             <input @if ($check == 1) value="{{$address->phone}}" @endif name="phone" required="" type="tel" placeholder="Phone*">
+                            @error('phone')
+                            <span class="text-danger">
+                                {{ $message }}
+                            </span>	
+                            @enderror
                               </div>
                             </div>
                           </div> 
@@ -67,6 +77,11 @@
                             <div class="col-md-12">
                               <div class="aa-checkout-single-bill">
                                 <textarea name="address" required="" cols="8" rows="3">@if ($check == 1) {{$address->address}} @else Address* @endif</textarea>
+                    @error('address')
+                    <span class="text-danger">
+                        {{ $message }}
+                    </span>	
+                    @enderror
                               </div>                             
                             </div>                            
                           </div>   
@@ -100,6 +115,11 @@
                             <div class="col-md-12">
                               <div class="aa-checkout-single-bill">
                                 <input @if ($check == 1) value="{{$address->city}}" @endif name="city" required="" type="text" placeholder="City / Town*">
+                                @error('city')
+                                <span class="text-danger">
+                                    {{ $message }}
+                                </span>	
+                                @enderror
                               </div>
                             </div>
                           </div>   
@@ -107,11 +127,21 @@
                             <div class="col-md-6">
                               <div class="aa-checkout-single-bill">
                                 <input name="district" @if ($check == 1) value="{{$address->district}}" @endif required="" type="text" placeholder="District*">
+                    @error('district')
+                    <span class="text-danger">
+                        {{ $message }}
+                    </span>	
+                    @enderror
                               </div>                             
                             </div>
                             <div class="col-md-6">
                               <div class="aa-checkout-single-bill">
                                 <input name="zip" @if ($check == 1) value="{{$address->zip}}" @endif required="" type="text" placeholder="Postcode / ZIP*">
+                                @error('zip')
+                                <span class="text-danger">
+                                    {{ $message }}
+                                </span>	
+                                @enderror
                               </div>
                             </div>
                           </div> 
