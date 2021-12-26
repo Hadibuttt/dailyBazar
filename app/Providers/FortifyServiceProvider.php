@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
 use Session;
+use Illuminate\Support\Facades\Route;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -37,6 +38,7 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
 
+        
         Fortify::loginView(function () {
             Session::flash('danger', "You need to be logged in before checkout!");
             return view('account');
@@ -44,6 +46,14 @@ class FortifyServiceProvider extends ServiceProvider
 
         Fortify::registerView(function () {
             return view('account');
+        });
+
+        Fortify::verifyEmailView(function () {
+            return redirect('/verify-email');
+        });
+
+        Fortify::requestPasswordResetLinkView(function () {
+            return view('forgot-password');
         });
 
         RateLimiter::for('login', function (Request $request) {

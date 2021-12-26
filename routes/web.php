@@ -29,9 +29,15 @@ Route::get('/logout', function () {
 
 Route::get('/', [App\Http\Controllers\ProductsController::class, 'index']);
 
+Route::view('/verify-email', 'verify-email')->middleware('auth');
+
 Route::get('/cart', [App\Http\Controllers\ProductsController::class, 'cart']);
 Route::get('/add-to-cart/{id}', [App\Http\Controllers\ProductsController::class, 'addToCart']);
 Route::get('/remove-from-cart/{id}', [App\Http\Controllers\ProductsController::class, 'remove']);
 Route::patch('/update-cart', [App\Http\Controllers\ProductsController::class, 'update']);
-Route::get('/checkout', [App\Http\Controllers\ProductsController::class, 'checkout'])->middleware('auth');
-Route::post('/checkout/success', [App\Http\Controllers\ProductsController::class, 'checkout_success'])->middleware('auth');
+
+
+Route::group(['middleware' => 'verified','auth'], function () {
+    Route::get('/checkout', [App\Http\Controllers\ProductsController::class, 'checkout']);
+    Route::post('/checkout/success', [App\Http\Controllers\ProductsController::class, 'checkout_success']);    
+    });

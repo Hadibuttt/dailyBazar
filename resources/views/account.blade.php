@@ -47,7 +47,7 @@
                        <input type="password" name="password" placeholder="Password" required>
                         <button type="submit" class="aa-browse-btn">Login</button>
                         <label class="rememberme" for="rememberme"><input name="remember" type="checkbox" id="rememberme"> Remember me </label>
-                        <p class="aa-lost-password"><a href="#">Lost your password?</a></p>
+                        <p class="aa-lost-password"><a href="/forgot-password">Lost your password?</a></p>
                       </form>
                     </div>
                   </div>
