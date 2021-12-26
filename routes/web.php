@@ -24,11 +24,11 @@ Route::view('/account', 'account')->middleware('guest');
 
 Route::get('/logout', function () {
     Auth::logout();
+    Session::flush();
     return Redirect::to('/');
 });
 
 Route::get('/', [App\Http\Controllers\ProductsController::class, 'index']);
-
 Route::view('/verify-email', 'verify-email')->middleware('auth');
 
 Route::get('/cart', [App\Http\Controllers\ProductsController::class, 'cart']);

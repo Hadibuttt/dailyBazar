@@ -27,6 +27,15 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="aa-myaccount-login">
+@if (session('status'))
+<div class="alert alert-dismissable alert-success">    
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+  </button>
+      {{ session('status') }}
+</div>
+@endif
+                      
                       @if (Session::has('danger'))
                       <div class="alert alert-dismissable alert-danger">    
                           <button type="button" class="close" data-dismiss="alert" aria-label="Close">

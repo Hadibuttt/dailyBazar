@@ -40,7 +40,7 @@ class FortifyServiceProvider extends ServiceProvider
 
         
         Fortify::loginView(function () {
-            Session::flash('danger', "You need to be logged in before checkout!");
+            // Session::flash('danger', "You need to be logged in!");
             return view('account');
         });
 
@@ -54,6 +54,10 @@ class FortifyServiceProvider extends ServiceProvider
 
         Fortify::requestPasswordResetLinkView(function () {
             return view('forgot-password');
+        });
+
+        Fortify::resetPasswordView(function ($request) {
+            return view('reset-password', ['request' => $request]);
         });
 
         RateLimiter::for('login', function (Request $request) {

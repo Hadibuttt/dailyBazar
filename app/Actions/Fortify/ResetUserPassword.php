@@ -20,7 +20,12 @@ class ResetUserPassword implements ResetsUserPasswords
     public function reset($user, array $input)
     {
         Validator::make($input, [
-            'password' => $this->passwordRules(),
+            'password' => ['required','confirmed','string','min:8','regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/'],
+        ],
+        
+        [
+            'password.regex' => 'Your password must be more than 8 characters long, should contain at-least 1 Uppercase, 1 Lowercase, 1 Numeric and 1 Special character!',
+
         ])->validate();
 
         $user->forceFill([
