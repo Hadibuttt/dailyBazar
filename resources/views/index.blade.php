@@ -314,7 +314,7 @@
                         @foreach ($products as $product)
                         <li>
                           <figure>
-                            <a class="aa-product-img" href="#"><img src="{{ $product->photo }}" width="250" height="300" alt="polo shirt img"></a>
+                            <a class="aa-product-img" href="/product/{{$product->id}}"><img src="{{ $product->photo }}" width="250" height="300" alt="polo shirt img"></a>
                   <a class="aa-add-card-btn" href="/add-to-cart/{{$product->id}}"><span class="fa fa-shopping-cart add-to-cart"></span>Add To Cart</a>
                             <figcaption>
                               <h4 class="aa-product-title"><a href="#">{{ $product->name }}</a></h4>

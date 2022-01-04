@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\View;
 use App\Mail\OrderConfirmation;
 use App\Models\Product;
 use App\Models\category;
@@ -23,12 +24,19 @@ class ProductsController extends Controller
         return view('index', compact('products'));
     }
 
+    public function product($id)
+    {
+        $product = Product::find($id);
+        $product_category = category::where('id', $product->category_id)->first();
+        return view('product', compact('product','product_category'));
+    }
+
     public function cart()
     {
         return view('cart');
     }
 
-    public function addToCart($id)
+    public function addToCart(Request $request, $id)
     {
         $product = Product::find($id);
 
@@ -42,8 +50,20 @@ class ProductsController extends Controller
 
         // if cart is empty then this the first product
         if(!$cart) {
-
+            if($request->size && $request->color != null){
             $cart = [
+                    $id => [
+                        "name" => $product->name,
+                        "quantity" => $request->quantity,
+                        "price" => $product->price,
+                        "photo" => $product->photo,
+                        "size" => $request->size,
+                        "color" => $request->color
+                    ]
+            ];
+        }
+            else{
+                $cart = [
                     $id => [
                         "name" => $product->name,
                         "quantity" => 1,
@@ -51,10 +71,10 @@ class ProductsController extends Controller
                         "photo" => $product->photo
                     ]
             ];
-
-            Session::put('cart', $cart);
-            return redirect('/cart')->with('success', 'Product added to cart successfully!');
         }
+        Session::put('cart', $cart);
+        return redirect('/cart')->with('success', 'Product added to cart successfully!');
+}
 
         // if cart not empty then check if this product exist then increment quantity
         if(isset($cart[$id])) {
@@ -68,12 +88,24 @@ class ProductsController extends Controller
         }
 
         // if item not exist in cart then add to cart with quantity = 1
-        $cart[$id] = [
-            "name" => $product->name,
-            "quantity" => 1,
-            "price" => $product->price,
-            "photo" => $product->photo
-        ];
+        if($request->size && $request->color != null){
+            $cart[$id] = [
+                "name" => $product->name,
+                "quantity" => $request->quantity,
+                "price" => $product->price,
+                "photo" => $product->photo,
+                "size" => $request->size,
+                "color" => $request->color
+            ];
+        }
+        else{
+            $cart[$id] = [
+                "name" => $product->name,
+                "quantity" => 1,
+                "price" => $product->price,
+                "photo" => $product->photo
+            ];
+        }
 
         Session::put('cart', $cart);
         return redirect('/cart')->with('success', 'Product added to cart successfully!');
