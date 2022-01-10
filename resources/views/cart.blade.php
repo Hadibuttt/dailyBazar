@@ -103,6 +103,14 @@
           </div>
 @else
 <div class="cart-view-area">
+  @if (Session::has('danger'))
+                <div class="alert alert-dismissable alert-danger">    
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                      {{ Session::get('danger') }}
+              </div>
+@endif
   <div class="cart-view-table">
       <div class="table-responsive">
         <h3 style="text-align: center;"><a href="#">Your Cart is Empty!</a></h3>

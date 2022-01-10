@@ -34,16 +34,100 @@ class ProductsController extends Controller
     public function allproducts()
     {   
         $products = Product::orderBy('id','DESC')->paginate(1);
-        return view('allproducts', compact('products'));
+        $sf = 'default';
+        $pg = '1';
+        return view('allproducts', compact('products','sf','pg'));
     }
 
     public function filterproducts(Request $request)
     {
-        $sort = $request->sort;
-        $paginate = $request->paginate;
+        $sort = $request->request->get('sort');
+        $paginate = $request->request->get('show');
 
-        $products = Product::orderBy('id','DESC')->paginate(1);
-        return view('allproducts', compact('products'));
+        switch ($sort) {
+            case "default":
+                switch ($paginate) {
+                    case '1':
+                        $products = Product::orderBy('id','DESC')->paginate($paginate);
+                        $sf = 'default';
+                        $pg = 1; 
+                        break;
+                    case '2':
+                        $products = Product::orderBy('id','DESC')->paginate($paginate);
+                        $sf = 'default';
+                        $pg = 2;
+                        break;
+                    case '3':
+                        $products = Product::orderBy('id','DESC')->paginate($paginate);
+                        $sf = 'default';
+                        $pg = 3;
+                        break;
+                    }
+                break;
+            case "name":
+                switch ($paginate) {
+                    case '1':
+                        $products = Product::orderBy('name','DESC')->paginate($paginate);
+                        $sf = 'name';
+                        $pg = 1;
+                        break;
+                    case '2':
+                        $products = Product::orderBy('name','DESC')->paginate($paginate);
+                        $sf = "ame";
+                        $pg = 2;
+                        break;
+                    case '3':
+                        $products = Product::orderBy('name','DESC')->paginate($paginate);
+                        $sf = 'name';
+                        $pg = 3;
+                        break;
+                    }
+                    break;
+            
+            case "price":
+                switch ($paginate) {
+                    case '1':
+                        $products = Product::orderBy('price','DESC')->paginate($paginate);
+                        $sf = 'price';
+                        $pg = 1;
+                        break;
+                    case '2':
+                        $products = Product::orderBy('price','DESC')->paginate($paginate);
+                        $sf = 'price';
+                        $pg = 2;
+                        break;
+                    case '3':
+                        $products = Product::orderBy('price','DESC')->paginate($paginate);
+                        $sf = 'price';
+                        $pg = 3;
+                        break;
+                    }
+                break;
+            
+            case "date":
+                switch ($paginate) {
+                    case '1':
+                        $products = Product::orderBy('created_at','DESC')->paginate($paginate);
+                        $sf = 'date';
+                        $pg = 1;
+                        break;
+                    case '2':
+                        $products = Product::orderBy('created_at','DESC')->paginate($paginate);
+                        $sf = 'date';
+                        $pg = 2;
+                        break;
+                    case '3':
+                        $products = Product::orderBy('created_at','DESC')->paginate($paginate);
+                        $sf = 'date';
+                        $pg = 3;
+                        break;
+                    }
+            break;
+
+        }
+        $products->withPath('/filter-products?sort='.$sort.'&show='.$paginate.'');
+        return view('allproducts', compact('products','sf','pg'));
+        
     }
 
     public function cart()
@@ -60,6 +144,7 @@ class ProductsController extends Controller
             abort(404);
 
         }
+        if($product->stock > 0){
 
         $cart = Session::get('cart');
 
@@ -124,6 +209,10 @@ class ProductsController extends Controller
 
         Session::put('cart', $cart);
         return redirect('/cart')->with('success', 'Product added to cart successfully!');
+        }
+        else{
+            return redirect('/cart')->with('danger', 'Product Sold Out!');
+        }
     }
 
     public function remove(Request $request)

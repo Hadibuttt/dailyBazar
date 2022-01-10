@@ -8,10 +8,10 @@
    <div class="aa-catg-head-banner-area">
      <div class="container">
       <div class="aa-catg-head-banner-content">
-        <h2>Fashion</h2>
+        <h2>Products</h2>
         <ol class="breadcrumb">
-          <li><a href="index.html">Home</a></li>         
-          <li class="active">Women</li>
+          <li><a href="/">Home</a></li>         
+          <li class="active">Products</li>
         </ol>
       </div>
      </div>
@@ -27,29 +27,28 @@
           <div class="aa-product-catg-content">
             <div class="aa-product-catg-head">
               <div class="aa-product-catg-head-left">
-                <form action="/filter-products" method="POST">
-                    @csrf
+            <form action="/filter-products" method="GET">
                 <div class="aa-sort-form">
                   <label for="">Sort by</label>
-                  <select name="sort" required="">
-                    <option value="default">Default</option>
-                    <option value="name">Name</option>
-                    <option value="price">Price</option>
-                    <option value="date">Date</option>
+                  <select name="sort" required>
+                    <option value="default" @if ($sf == "default") selected="default" @endif>Default</option>
+                    <option value="name" @if ($sf == "name") selected="name" @endif>Name</option>
+                    <option value="price" @if ($sf == "price") selected="price" @endif>Price</option>
+                    <option value="date" @if ($sf == "date") selected="date" @endif>Date</option>
                   </select>
                 </div>
                 
                 <div class="aa-show-form">
                   <label for="">Show</label>
-                  <select name="paginate" required="">
-                    <option value="12" selected="12">12</option>
-                    <option value="24">24</option>
-                    <option value="36">36</option>
+                  <select name="show" required>
+                    <option value="1" @if ($pg == 1) selected="1" @endif>1</option>
+                    <option value="2" @if ($pg == 2) selected="2" @endif>2</option>
+                    <option value="3" @if ($pg == 3) selected="3" @endif>3</option>
                   </select>
                 </div>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <button class="aa-filter-btn" type="submit">Filter</button>
-                </form>
+            </form>
               </div>
               <div class="aa-product-catg-head-right">
                 <a id="grid-catg" href="#"><span class="fa fa-th"></span></a>
@@ -63,7 +62,7 @@
             <li>
                 <figure>
                   <a class="aa-product-img" href="/product/{{$product->id}}"><img src="{{ $product->photo }}" width="250" height="300" alt="polo shirt img"></a>
-        <a class="aa-add-card-btn" href="/add-to-cart/{{$product->id}}"><span class="fa fa-shopping-cart add-to-cart"></span>Add To Cart</a>
+                  <a class="aa-add-card-btn" href="/add-to-cart/{{$product->id}}"><span class="fa fa-shopping-cart add-to-cart"></span>Add To Cart</a>
                   <figcaption>
                     <h4 class="aa-product-title"><a href="#">{{ $product->name }}</a></h4>
                     <span class="aa-product-price">${{ $product->price }}</span><span class="aa-product-price"><del>$65.50</del></span>
