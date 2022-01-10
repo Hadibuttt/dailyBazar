@@ -31,6 +31,21 @@ class ProductsController extends Controller
         return view('product', compact('product','product_category'));
     }
 
+    public function allproducts()
+    {   
+        $products = Product::orderBy('id','DESC')->paginate(1);
+        return view('allproducts', compact('products'));
+    }
+
+    public function filterproducts(Request $request)
+    {
+        $sort = $request->sort;
+        $paginate = $request->paginate;
+
+        $products = Product::orderBy('id','DESC')->paginate(1);
+        return view('allproducts', compact('products'));
+    }
+
     public function cart()
     {
         return view('cart');

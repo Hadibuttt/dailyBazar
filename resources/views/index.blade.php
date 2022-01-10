@@ -304,7 +304,7 @@
                            <span class="aa-badge aa-sold-out" href="#">Sold Out!</span>
                         </li>                        
                       </ul>
-                      <a class="aa-browse-btn" href="#">Browse all Product <span class="fa fa-long-arrow-right"></span></a>
+                      <a class="aa-browse-btn" href="/browse-products">Browse all Product <span class="fa fa-long-arrow-right"></span></a>
                     </div>
                     <!-- / men product category -->
                     <!-- start women product category -->
@@ -452,7 +452,7 @@
                            <span class="aa-badge aa-sold-out" href="#">Sold Out!</span>
                         </li>                        
                       </ul>
-                      <a class="aa-browse-btn" href="#">Browse all Product <span class="fa fa-long-arrow-right"></span></a>
+                      <a class="aa-browse-btn" href="/browse-products">Browse all Product <span class="fa fa-long-arrow-right"></span></a>
                     </div>
                     <!-- / women product category -->
                     <!-- start sports product category -->
@@ -741,7 +741,7 @@
                            <span class="aa-badge aa-sold-out" href="#">Sold Out!</span>
                         </li>                        
                       </ul>
-                      <a class="aa-browse-btn" href="#">Browse all Product <span class="fa fa-long-arrow-right"></span></a>
+                      <a class="aa-browse-btn" href="/browse-products">Browse all Product <span class="fa fa-long-arrow-right"></span></a>
                     </div>
                     <!-- / electronic product category -->
                   </div>
@@ -1007,7 +1007,7 @@
                       <span class="aa-badge aa-sale" href="#">SALE!</span>
                     </li>                                                                                   
                   </ul>
-                  <a class="aa-browse-btn" href="#">Browse all Product <span class="fa fa-long-arrow-right"></span></a>
+                  <a class="aa-browse-btn" href="/browse-products">Browse all Product <span class="fa fa-long-arrow-right"></span></a>
                 </div>
                 <!-- / popular product category -->
                 
@@ -1155,7 +1155,7 @@
                       <span class="aa-badge aa-sale" href="#">SALE!</span>
                     </li>                                                                                   
                   </ul>
-                  <a class="aa-browse-btn" href="#">Browse all Product <span class="fa fa-long-arrow-right"></span></a>
+                  <a class="aa-browse-btn" href="/browse-products">Browse all Product <span class="fa fa-long-arrow-right"></span></a>
                 </div>
                 <!-- / featured product category -->
 
@@ -1303,7 +1303,7 @@
                       <span class="aa-badge aa-sale" href="#">SALE!</span>
                     </li>                                                                                   
                   </ul>
-                   <a class="aa-browse-btn" href="#">Browse all Product <span class="fa fa-long-arrow-right"></span></a>
+                   <a class="aa-browse-btn" href="/browse-products">Browse all Product <span class="fa fa-long-arrow-right"></span></a>
                 </div>
                 <!-- / latest product category -->              
               </div>
