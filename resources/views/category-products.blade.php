@@ -4,7 +4,7 @@
  
   <!-- catg header banner section -->
   <section id="aa-catg-head-banner">
-   <img src="img/fashion/fashion-header-bg-8.jpg" alt="fashion img">
+   <img src="{{asset('img/fashion/fashion-header-bg-8.jpg')}}" alt="fashion img">
    <div class="aa-catg-head-banner-area">
      <div class="container">
       <div class="aa-catg-head-banner-content">
@@ -27,7 +27,7 @@
           <div class="aa-product-catg-content">
             <div class="aa-product-catg-head">
               <div class="aa-product-catg-head-left">
-            <form action="/filter-products" method="GET">
+            <form action="/category-filter/{{$cat->id}}" method="GET">
                 <div class="aa-sort-form">
                   <label for="">Sort by</label>
                   <select name="sort" required>
@@ -98,7 +98,8 @@
                 <h3>Category</h3>
                 <ul class="aa-catg-nav">
                   @foreach ($categories as $category)
-                    <li><a href="/category/{{$category->id}}">{{$category->name}}</a></li>
+                    <li><a @if ($category->id == $cat->id)
+                     style="border: 1px solid darkred;border-radius: 25px;width:75px;text-align:center;" @endif href="/category/{{$category->id}}">{{$category->name}}</a></li>
                   @endforeach
                 </ul>
               </div>

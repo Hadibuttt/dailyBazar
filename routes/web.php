@@ -30,6 +30,9 @@ Route::view('/verify-email', 'verify-email')->middleware('auth');
 Route::get('/cart', [App\Http\Controllers\ProductsController::class, 'cart']);
 Route::get('/product/{id}', [App\Http\Controllers\ProductsController::class, 'product']);
 Route::get('/browse-products', [App\Http\Controllers\ProductsController::class, 'allproducts']);
+Route::get('/category/{id}', [App\Http\Controllers\ProductsController::class, 'categoryfilter']);
+Route::get('/category-filter/{id}', [App\Http\Controllers\ProductsController::class, 'categoryfilterproducts']);
+
 Route::get('/filter-products', [App\Http\Controllers\ProductsController::class, 'filterproducts']);
 Route::get('/add-to-cart/{id}', [App\Http\Controllers\ProductsController::class, 'addToCart']);
 Route::get('/remove-from-cart/{id}', [App\Http\Controllers\ProductsController::class, 'remove']);

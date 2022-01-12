@@ -39,6 +39,107 @@ class ProductsController extends Controller
         return view('allproducts', compact('products','sf','pg'));
     }
 
+    public function categoryfilter($id)
+    {   
+        $cat = category::find($id);
+        $products = Product::where('category_id', $cat->id)->orderBy('id','DESC')->paginate(1);
+        $sf = 'default';
+        $pg = '1';
+        return view('category-products', compact('products','sf','pg','cat'));
+    }
+
+    public function categoryfilterproducts(Request $request, $id)
+    {
+        $cat = category::find($id);
+        $sort = $request->request->get('sort');
+        $paginate = $request->request->get('show');
+
+        switch ($sort) {
+            case "default":
+                switch ($paginate) {
+                    case '1':
+                        $products = Product::where('category_id', $cat->id)->orderBy('id','DESC')->paginate($paginate);
+                        $sf = 'default';
+                        $pg = 1; 
+                        break;
+                    case '2':
+                        $products = Product::where('category_id', $cat->id)->orderBy('id','DESC')->paginate($paginate);
+                        $sf = 'default';
+                        $pg = 2;
+                        break;
+                    case '3':
+                        $products = Product::where('category_id', $cat->id)->orderBy('id','DESC')->paginate($paginate);
+                        $sf = 'default';
+                        $pg = 3;
+                        break;
+                    }
+                break;
+            case "name":
+                switch ($paginate) {
+                    case '1':
+                        $products = Product::where('category_id', $cat->id)->orderBy('name','DESC')->paginate($paginate);
+                        $sf = 'name';
+                        $pg = 1;
+                        break;
+                    case '2':
+                        $products = Product::where('category_id', $cat->id)->orderBy('name','DESC')->paginate($paginate);
+                        $sf = "name";
+                        $pg = 2;
+                        break;
+                    case '3':
+                        $products = Product::where('category_id', $cat->id)->orderBy('name','DESC')->paginate($paginate);
+                        $sf = 'name';
+                        $pg = 3;
+                        break;
+                    }
+                    break;
+            
+            case "price":
+                switch ($paginate) {
+                    case '1':
+                        $products = Product::where('category_id', $cat->id)->orderBy('price','DESC')->paginate($paginate);
+                        $sf = 'price';
+                        $pg = 1;
+                        break;
+                    case '2':
+                        $products = Product::where('category_id', $cat->id)->orderBy('price','DESC')->paginate($paginate);
+                        $sf = 'price';
+                        $pg = 2;
+                        break;
+                    case '3':
+                        $products = Product::where('category_id', $cat->id)->orderBy('price','DESC')->paginate($paginate);
+                        $sf = 'price';
+                        $pg = 3;
+                        break;
+                    }
+                break;
+            
+            case "date":
+                switch ($paginate) {
+                    case '1':
+                        $products = Product::where('category_id', $cat->id)->orderBy('created_at','DESC')->paginate($paginate);
+                        $sf = 'date';
+                        $pg = 1;
+                        break;
+                    case '2':
+                        $products = Product::where('category_id', $cat->id)->orderBy('created_at','DESC')->paginate($paginate);
+                        $sf = 'date';
+                        $pg = 2;
+                        break;
+                    case '3':
+                        $products = Product::where('category_id', $cat->id)->orderBy('created_at','DESC')->paginate($paginate);
+                        $sf = 'date';
+                        $pg = 3;
+                        break;
+                    }
+            break;
+
+        }
+        $products->withPath('/category-filter/'.$id.'?sort='.$sort.'&show='.$paginate.'');
+        return view('category-products', compact('products','sf','pg','cat'));
+        
+    }
+
     public function filterproducts(Request $request)
     {
         $sort = $request->request->get('sort');
