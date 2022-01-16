@@ -88,7 +88,7 @@ class ProductsSeeder extends Seeder
          DB::table('products')->insert([
              'name' => 'HTC One M10',
              'slug' => 'htc-one-m10',
-            'category_id' => '2',
+            'category_id' => '3',
             'subcategory_id' => '5',
             'discounted_price' => '49.50',
              'description' => 'The device is in good cosmetic condition and will show minor scratches and/or scuff marks.',
