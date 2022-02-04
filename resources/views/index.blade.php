@@ -322,7 +322,7 @@
                             </figcaption>
                           </figure>                         
                           <div class="aa-product-hvr-content">
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>                            
+                            <a href="/add-to-wishlist/{{$product->id}}" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>                            
                           </div>
                           <!-- product badge -->
             @if ($product->stock > 0)    

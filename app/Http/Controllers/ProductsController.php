@@ -11,6 +11,7 @@ use App\Models\category;
 use App\Models\subcategory;
 use App\Models\Address;
 use App\Models\Order;
+use App\Models\Wishlist;
 use App\Models\Order_Details;
 use App\Models\Order_Items;
 use Session;
@@ -239,6 +240,66 @@ class ProductsController extends Controller
     public function cart()
     {
         return view('cart');
+    }
+
+
+    public function Wishlist()
+    {
+        $wishlist = Wishlist::where('user_id', Auth::user()->id)->orderBy('id','DESC')->get();
+        $count = Wishlist::where('user_id', Auth::user()->id)->count();
+
+        return view('wishlist', compact('wishlist','count'));
+    }
+
+    public function RemoveFromWishlist($id)
+    {
+        $wishlist = Wishlist::find($id);
+        if($wishlist){
+            $wishlist->delete();
+            $count = Wishlist::where('user_id', Auth::user()->id)->count();
+            $wishlist = Wishlist::where('user_id', Auth::user()->id)->orderBy('id','DESC')->get();
+
+            Session::flash('danger', 'Product removed from wishlist successfully!'); 
+            return redirect('/wishlist')->with([
+            'count'=>$count,
+            'wishlist' => $wishlist
+        ]);
+
+        }else{
+            abort(404);
+        }
+
+    }
+
+    public function addToWishlist(Request $request, $id)
+    {
+        $product = Product::find($id);
+        if(!$product) {
+            abort(404);
+        }
+
+        $wishitems = Wishlist::where('user_id', Auth::user()->id)->where('p_id', $id)->first();
+        
+    if(!$wishitems){
+        $wishlist = new Wishlist();
+        $wishlist->user_id = Auth::user()->id;
+        $wishlist->p_id = $id;
+        $wishlist->name = $product->name;
+        $wishlist->price = $product->price;
+        $wishlist->photo = $product->photo;
+        
+        if($product->stock > 0)
+        {
+            $wishlist->status = 'In Stock';
+        }else{
+            $wishlist->status = 'Out of Stock';
+        }
+        $wishlist->save();
+        return redirect('/wishlist')->with('success', 'Product added to wishlist successfully!');
+    }else{
+        return redirect('/wishlist')->with('danger', 'Product already added to wishlist!');
+    }
+
     }
 
     public function addToCart(Request $request, $id)

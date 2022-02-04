@@ -27,6 +27,11 @@ Route::get('/logout', function () {
 Route::get('/', [App\Http\Controllers\ProductsController::class, 'index']);
 Route::view('/verify-email', 'verify-email')->middleware('auth');
 
+Route::get('/add-to-wishlist/{id}', [App\Http\Controllers\ProductsController::class, 'addToWishlist'])->middleware('auth');
+Route::get('/wishlist', [App\Http\Controllers\ProductsController::class, 'Wishlist'])->middleware('auth');
+Route::get('/remove-from-wishlist/{id}', [App\Http\Controllers\ProductsController::class, 'RemoveFromWishlist'])->middleware('auth');
+
+
 Route::get('/cart', [App\Http\Controllers\ProductsController::class, 'cart']);
 Route::get('/product/{id}', [App\Http\Controllers\ProductsController::class, 'product']);
 Route::get('/browse-products', [App\Http\Controllers\ProductsController::class, 'allproducts']);

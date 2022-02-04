@@ -104,7 +104,7 @@
                 <ul class="aa-head-top-nav-right">
                   @if (!Auth::check())<li><a href="/account">My Account</a></li>
                   @else<li><a href="/account-info">My Account</a></li>@endif
-                  @auth<li class="hidden-xs"><a href="wishlist.html">Wishlist</a></li>@endauth
+                  @auth<li class="hidden-xs"><a href="/wishlist">Wishlist</a></li>@endauth
                   <li class="hidden-xs"><a href="/cart">My Cart</a></li>
                   @if(session('cart'))
                     <li class="hidden-xs"><a href="/checkout">Checkout</a></li>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Products')
 @section('content')
- 
+
   <!-- catg header banner section -->
   <section id="aa-catg-head-banner">
    <img src="{{asset('img/fashion/fashion-header-bg-8.jpg')}}" alt="fashion img">
