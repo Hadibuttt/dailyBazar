@@ -28,7 +28,10 @@ class ProductsController extends Controller
     {
         $product = Product::find($id);
         $product_category = category::where('id', $product->category_id)->first();
-        return view('product', compact('product','product_category'));
+        $relatedproducts = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->inRandomOrder()->take(8)->get();
+        $count = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->count();
+
+        return view('product', compact('product','product_category','relatedproducts','count'));
     }
 
     public function allproducts()
@@ -45,7 +48,8 @@ class ProductsController extends Controller
         $products = Product::where('category_id', $cat->id)->orderBy('id','DESC')->paginate(1);
         $sf = 'default';
         $pg = '1';
-        return view('category-products', compact('products','sf','pg','cat'));
+        $count = Product::where('category_id', $cat->id)->count();
+        return view('category-products', compact('products','count','sf','pg','cat'));
     }
 
     public function categoryfilterproducts(Request $request, $id)
@@ -135,8 +139,9 @@ class ProductsController extends Controller
             break;
 
         }
+        $count = Product::where('category_id', $cat->id)->count();
         $products->withPath('/category-filter/'.$id.'?sort='.$sort.'&show='.$paginate.'');
-        return view('category-products', compact('products','sf','pg','cat'));
+        return view('category-products', compact('products','sf','pg','cat','count'));
         
     }
 

@@ -203,26 +203,35 @@
                  </div>            
                </div>
              </div>
+             @if ($count > 0)
              <!-- Related product -->
              <div class="aa-product-related-item">
                <h3>Related Products</h3>
                <ul class="aa-product-catg aa-related-item-slider">
                  <!-- start single product item -->
+                 @foreach ($relatedproducts as $rproduct)
                  <li>
                    <figure>
-                     <a class="aa-product-img" href="#"><img src="{{asset('img/man/polo-shirt-2.png')}}" alt="polo shirt img"></a>
-                     <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                     <a class="aa-product-img" href="/product/{{$rproduct->id}}"><img src="{{$rproduct->photo}}" width="250" height="300" alt="{{$rproduct->name}}"></a>
+                     <a class="aa-add-card-btn" href="/add-to-cart/{{$rproduct->id}}"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                       <figcaption>
-                       <h4 class="aa-product-title"><a href="#">Polo T-Shirt</a></h4>
-                       <span class="aa-product-price">$45.50</span><span class="aa-product-price"><del>$65.50</del></span>
+                       <h4 class="aa-product-title"><a href="#">{{$rproduct->name}}</a></h4>
+                       <span class="aa-product-price">${{$rproduct->price}}</span><span class="aa-product-price"><del>${{$rproduct->discounted_price}}</del></span>
                      </figcaption>
                    </figure>                     
                    <div class="aa-product-hvr-content">
                      <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
                    </div>
                    <!-- product badge -->
-                   <span class="aa-badge aa-sale" href="#">SALE!</span>
+            @if ($rproduct->stock > 0)    
+                @if ($rproduct->in_sale == 'Yes')
+                    <span class="aa-badge aa-sale" href="#">SALE!</span>
+                @endif
+            @else
+                    <span class="aa-badge aa-sold-out" href="#">Sold Out!</span>
+            @endif
                  </li>
+                 @endforeach
                   <!-- start single product item -->
                  {{-- <li>
                    <figure>
@@ -347,7 +356,8 @@
                  </li>                                                                                    --}}
                </ul>
                
-             </div>  
+             </div>
+          @endif  
            </div>
          </div>
        </div>

@@ -55,6 +55,7 @@
                 <a id="list-catg" href="#"><span class="fa fa-list"></span></a>
               </div>
             </div>
+            @if ($count > 0)
             <div class="aa-product-catg-body">
               <ul class="aa-product-catg">
                 <!-- start single product item -->
@@ -84,6 +85,11 @@
               </ul>
                  
             </div>
+            @else
+            <br><br><br><br><br><br>
+                <h3 style="text-align: center">No Products Added!</h3>
+            @endif
+
             <div class="aa-product-catg-pagination">
               <nav>
                 {!! $products->links() !!}
