@@ -10,7 +10,7 @@
             <!-- single slide item -->
             <li>
               <div class="seq-model">
-                <img data-seq src="img/slider/1.jpg" alt="Men slide img" />
+                <img data-seq src="{{asset('img/slider/men.jpg')}}" alt="Men slide img" />
               </div>
               <div class="seq-title">
                <span data-seq>Save Up to 75% Off</span>                
@@ -22,7 +22,7 @@
             <!-- single slide item -->
             <li>
               <div class="seq-model">
-                <img data-seq src="img/slider/2.jpg" alt="Wristwatch slide img" />
+                <img data-seq src="{{asset('img/slider/watch.jpg')}}" alt="Wristwatch slide img" />
               </div>
               <div class="seq-title">
                 <span data-seq>Save Up to 40% Off</span>                
@@ -34,7 +34,7 @@
             <!-- single slide item -->
             <li>
               <div class="seq-model">
-                <img data-seq src="img/slider/3.jpg" alt="Women Jeans slide img" />
+                <img data-seq src="{{asset('img/slider/jean.jpg')}}" alt="Women Jeans slide img" />
               </div>
               <div class="seq-title">
                 <span data-seq>Save Up to 75% Off</span>                
@@ -46,7 +46,7 @@
             <!-- single slide item -->           
             <li>
               <div class="seq-model">
-                <img data-seq src="img/slider/4.jpg" alt="Shoes slide img" />
+                <img data-seq src="{{asset('img/slider/shoes.jpg')}}" alt="Shoes slide img" />
               </div>
               <div class="seq-title">
                 <span data-seq>Save Up to 75% Off</span>                
@@ -58,7 +58,7 @@
             <!-- single slide item -->  
              <li>
               <div class="seq-model">
-                <img data-seq src="img/slider/5.jpg" alt="Male Female slide img" />
+                <img data-seq src="{{asset('img/slider/collection.png')}}" alt="Male Female slide img" />
               </div>
               <div class="seq-title">
                 <span data-seq>Save Up to 50% Off</span>                
@@ -89,10 +89,10 @@
               <div class="col-md-5 no-padding">                
                 <div class="aa-promo-left">
                   <div class="aa-promo-banner">                    
-                    <img src="img/promo-banner-1.jpg" alt="img">                    
+                    <img src="{{asset('img/men.jpg')}}" alt="img">                    
                     <div class="aa-prom-content">
                       <span>75% Off</span>
-                      <h4><a href="#">For Women</a></h4>                      
+                      <h4><a href="#">For Men</a></h4>                      
                     </div>
                   </div>
                 </div>
@@ -102,16 +102,16 @@
                 <div class="aa-promo-right">
                   <div class="aa-single-promo-right">
                     <div class="aa-promo-banner">                      
-                      <img src="img/promo-banner-3.jpg" alt="img">                      
+                      <img src="{{asset('img/women.jpg')}}" alt="img">                      
                       <div class="aa-prom-content">
                         <span>Exclusive Item</span>
-                        <h4><a href="#">For Men</a></h4>                        
+                        <h4><a href="#">For Women</a></h4>                        
                       </div>
                     </div>
                   </div>
                   <div class="aa-single-promo-right">
                     <div class="aa-promo-banner">                      
-                      <img src="img/promo-banner-2.jpg" alt="img">                      
+                      <img src="{{asset('img/shoes.png')}}" alt="img">                      
                       <div class="aa-prom-content">
                         <span>Sale Off</span>
                         <h4><a href="#">On Shoes</a></h4>                        
@@ -120,7 +120,7 @@
                   </div>
                   <div class="aa-single-promo-right">
                     <div class="aa-promo-banner">                      
-                      <img src="img/promo-banner-4.jpg" alt="img">                      
+                      <img src="{{asset('img/kids.jpg')}}" alt="img">                      
                       <div class="aa-prom-content">
                         <span>New Arrivals</span>
                         <h4><a href="#">For Kids</a></h4>                        
@@ -129,7 +129,7 @@
                   </div>
                   <div class="aa-single-promo-right">
                     <div class="aa-promo-banner">                      
-                      <img src="img/promo-banner-5.jpg" alt="img">                      
+                      <img src="{{asset('img/bags.jpg')}}" alt="img">                      
                       <div class="aa-prom-content">
                         <span>25% Off</span>
                         <h4><a href="#">For Bags</a></h4>                        
@@ -1283,39 +1283,13 @@
               <!-- single slide -->
               <li>
                 <div class="aa-testimonial-single">
-                <img class="aa-testimonial-img" src="img/testimonial-img-2.jpg" alt="testimonial img">
+                <img class="aa-testimonial-img" src="img/ceo.jpg" alt="testimonial img">
                   <span class="fa fa-quote-left aa-testimonial-quote"></span>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt distinctio omnis possimus, facere, quidem qui!consectetur adipisicing elit. Sunt distinctio omnis possimus, facere, quidem qui.</p>
+                  <p>Life's too short to wear boring clothes.</p>
                   <div class="aa-testimonial-info">
-                    <p>Allison</p>
-                    <span>Designer</span>
-                    <a href="#">Dribble.com</a>
-                  </div>
-                </div>
-              </li>
-              <!-- single slide -->
-              <li>
-                <div class="aa-testimonial-single">
-                <img class="aa-testimonial-img" src="img/testimonial-img-1.jpg" alt="testimonial img">
-                  <span class="fa fa-quote-left aa-testimonial-quote"></span>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt distinctio omnis possimus, facere, quidem qui!consectetur adipisicing elit. Sunt distinctio omnis possimus, facere, quidem qui.</p>
-                  <div class="aa-testimonial-info">
-                    <p>KEVIN MEYER</p>
+                    <p>Abdul Hadi Butt</p>
                     <span>CEO</span>
-                    <a href="#">Alphabet</a>
-                  </div>
-                </div>
-              </li>
-               <!-- single slide -->
-              <li>
-                <div class="aa-testimonial-single">
-                <img class="aa-testimonial-img" src="img/testimonial-img-3.jpg" alt="testimonial img">
-                  <span class="fa fa-quote-left aa-testimonial-quote"></span>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt distinctio omnis possimus, facere, quidem qui!consectetur adipisicing elit. Sunt distinctio omnis possimus, facere, quidem qui.</p>
-                  <div class="aa-testimonial-info">
-                    <p>Luner</p>
-                    <span>COO</span>
-                    <a href="#">Kinatic Solution</a>
+                    {{-- <a href="#">Alphabet</a> --}}
                   </div>
                 </div>
               </li>
