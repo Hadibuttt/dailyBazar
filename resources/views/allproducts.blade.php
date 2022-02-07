@@ -4,7 +4,7 @@
  
   <!-- catg header banner section -->
   <section id="aa-catg-head-banner">
-   <img src="img/fashion/fashion-header-bg-8.jpg" alt="fashion img">
+   <img src="{{asset('img/fashion/account.jpg')}}" alt="fashion img">
    <div class="aa-catg-head-banner-area">
      <div class="container">
       <div class="aa-catg-head-banner-content">
@@ -69,7 +69,7 @@
                   </figcaption>
                 </figure>                         
                 <div class="aa-product-hvr-content">
-                  <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>                     
+                  <a href="/add-to-wishlist/{{$product->id}}" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>                     
                 </div>
                 <!-- product badge -->
             @if ($product->stock > 0)    
@@ -98,7 +98,7 @@
                 <h3>Category</h3>
                 <ul class="aa-catg-nav">
                   @foreach ($categories as $category)
-                    <li><a href="/category/{{$category->id}}">{{$category->name}}</a></li>
+                    <li><a href="/category/{{$category->slug}}">{{$category->name}}</a></li>
                   @endforeach
                 </ul>
               </div>

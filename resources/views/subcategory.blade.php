@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Products')
+@section('title', $subcat->name)
 @section('content')
  
   <!-- catg header banner section -->
@@ -104,7 +104,7 @@
                 <ul class="aa-catg-nav">
                   @foreach ($categories as $category)
                     <li><a @if ($category->id == $cats) 
-                      style="border: 1px solid darkred;border-radius: 25px;width:75px;text-align:center;" @endif href="/category/{{$category->id}}">{{$category->name}}</a></li>
+                      style="border: 1px solid darkred;border-radius: 25px;width:75px;text-align:center;" @endif href="/category/{{$category->slug}}">{{$category->name}}</a></li>
                   @endforeach
                 </ul>
               </div>

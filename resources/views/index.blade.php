@@ -92,7 +92,7 @@
                     <img src="{{asset('img/men.jpg')}}" alt="img">                    
                     <div class="aa-prom-content">
                       <span>75% Off</span>
-                      <h4><a href="#">For Men</a></h4>                      
+                      <h4><a href="/category/men">For Men</a></h4>                      
                     </div>
                   </div>
                 </div>
@@ -105,7 +105,7 @@
                       <img src="{{asset('img/women.jpg')}}" alt="img">                      
                       <div class="aa-prom-content">
                         <span>Exclusive Item</span>
-                        <h4><a href="#">For Women</a></h4>                        
+                        <h4><a href="/category/women">For Women</a></h4>                        
                       </div>
                     </div>
                   </div>
@@ -114,7 +114,7 @@
                       <img src="{{asset('img/shoes.png')}}" alt="img">                      
                       <div class="aa-prom-content">
                         <span>Sale Off</span>
-                        <h4><a href="#">On Shoes</a></h4>                        
+                        <h4><a href="/category/shoes">On Shoes</a></h4>                        
                       </div>
                     </div>
                   </div>
@@ -123,7 +123,7 @@
                       <img src="{{asset('img/kids.jpg')}}" alt="img">                      
                       <div class="aa-prom-content">
                         <span>New Arrivals</span>
-                        <h4><a href="#">For Kids</a></h4>                        
+                        <h4><a href="/category/kids">For Kids</a></h4>                        
                       </div>
                     </div>
                   </div>
@@ -132,7 +132,7 @@
                       <img src="{{asset('img/bags.jpg')}}" alt="img">                      
                       <div class="aa-prom-content">
                         <span>25% Off</span>
-                        <h4><a href="#">For Bags</a></h4>                        
+                        <h4><a href="/category/bags">For Bags</a></h4>                        
                       </div>
                     </div>
                   </div>
@@ -1288,7 +1288,7 @@
                   <p>Life's too short to wear boring clothes.</p>
                   <div class="aa-testimonial-info">
                     <p>Abdul Hadi Butt</p>
-                    <span>CEO</span>
+                    <span>Founder</span>
                     {{-- <a href="#">Alphabet</a> --}}
                   </div>
                 </div>

@@ -152,9 +152,12 @@ class ProductsController extends Controller
         return view('allproducts', compact('products','sf','pg'));
     }
 
-    public function categoryfilter($id)
+    public function categoryfilter($slug)
     {   
-        $cat = category::find($id);
+        $cat = category::where('slug', $slug)->first();
+        if(!$cat){
+            abort(404);
+        }
         $products = Product::where('category_id', $cat->id)->orderBy('id','DESC')->paginate(1);
         $sf = 'default';
         $pg = '1';
@@ -162,9 +165,9 @@ class ProductsController extends Controller
         return view('category-products', compact('products','count','sf','pg','cat'));
     }
 
-    public function categoryfilterproducts(Request $request, $id)
+    public function categoryfilterproducts(Request $request, $slug)
     {
-        $cat = category::find($id);
+        $cat = category::where('slug', $slug)->first();
         $sort = $request->request->get('sort');
         $paginate = $request->request->get('show');
 
@@ -250,7 +253,7 @@ class ProductsController extends Controller
 
         }
         $count = Product::where('category_id', $cat->id)->count();
-        $products->withPath('/category-filter/'.$id.'?sort='.$sort.'&show='.$paginate.'');
+        $products->withPath('/category-filter/'.$slug.'?sort='.$sort.'&show='.$paginate.'');
         return view('category-products', compact('products','sf','pg','cat','count'));
         
     }

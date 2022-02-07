@@ -35,8 +35,8 @@ Route::get('/remove-from-wishlist/{id}', [App\Http\Controllers\ProductsControlle
 Route::get('/cart', [App\Http\Controllers\ProductsController::class, 'cart']);
 Route::get('/product/{id}', [App\Http\Controllers\ProductsController::class, 'product']);
 Route::get('/browse-products', [App\Http\Controllers\ProductsController::class, 'allproducts']);
-Route::get('/category/{id}', [App\Http\Controllers\ProductsController::class, 'categoryfilter']);
-Route::get('/category-filter/{id}', [App\Http\Controllers\ProductsController::class, 'categoryfilterproducts']);
+Route::get('/category/{slug}', [App\Http\Controllers\ProductsController::class, 'categoryfilter']);
+Route::get('/category-filter/{slug}', [App\Http\Controllers\ProductsController::class, 'categoryfilterproducts']);
 
 
 Route::get('/collection/{slug}', [App\Http\Controllers\ProductsController::class, 'subcategory']);
