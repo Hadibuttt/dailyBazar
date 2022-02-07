@@ -25,6 +25,115 @@ class ProductsController extends Controller
         return view('index', compact('products'));
     }
 
+    public function subcategory($slug)
+    {
+        $subcat = subcategory::where('slug',$slug)->first();
+        if(!$subcat){
+            abort(404);
+        }
+        $products = Product::where('subcategory_id', $subcat->id)->orderBy('id','DESC')->paginate(1);
+        $cats = Product::where('subcategory_id', $subcat->id)->value('category_id');
+        $sf = 'default';
+        $pg = '1';
+        $count = Product::where('subcategory_id', $subcat->id)->count();
+        
+        return view('subcategory', compact('products','sf','pg','count','subcat','cats'));
+    }
+
+    public function subfilterproducts(Request $request,$slug)
+    {
+        $subcat = subcategory::where('slug',$slug)->first();
+        $cats = Product::where('subcategory_id', $subcat->id)->value('category_id');
+        $sort = $request->request->get('sort');
+        $paginate = $request->request->get('show');
+
+        switch ($sort) {
+            case "default":
+                switch ($paginate) {
+                    case '1':
+                        $products = Product::where('subcategory_id', $subcat->id)->orderBy('id','DESC')->paginate($paginate);
+                        $sf = 'default';
+                        $pg = 1; 
+                        break;
+                    case '2':
+                        $products = Product::where('subcategory_id', $subcat->id)->orderBy('id','DESC')->paginate($paginate);
+                        $sf = 'default';
+                        $pg = 2;
+                        break;
+                    case '3':
+                        $products = Product::where('subcategory_id', $subcat->id)->orderBy('id','DESC')->paginate($paginate);
+                        $sf = 'default';
+                        $pg = 3;
+                        break;
+                    }
+                break;
+            case "name":
+                switch ($paginate) {
+                    case '1':
+                        $products = Product::where('subcategory_id', $subcat->id)->orderBy('name','DESC')->paginate($paginate);
+                        $sf = 'name';
+                        $pg = 1;
+                        break;
+                    case '2':
+                        $products = Product::where('subcategory_id', $subcat->id)->orderBy('name','DESC')->paginate($paginate);
+                        $sf = "ame";
+                        $pg = 2;
+                        break;
+                    case '3':
+                        $products = Product::where('subcategory_id', $subcat->id)->orderBy('name','DESC')->paginate($paginate);
+                        $sf = 'name';
+                        $pg = 3;
+                        break;
+                    }
+                    break;
+            
+            case "price":
+                switch ($paginate) {
+                    case '1':
+                        $products = Product::where('subcategory_id', $subcat->id)->orderBy('price','DESC')->paginate($paginate);
+                        $sf = 'price';
+                        $pg = 1;
+                        break;
+                    case '2':
+                        $products = Product::where('subcategory_id', $subcat->id)->orderBy('price','DESC')->paginate($paginate);
+                        $sf = 'price';
+                        $pg = 2;
+                        break;
+                    case '3':
+                        $products = Product::where('subcategory_id', $subcat->id)->orderBy('price','DESC')->paginate($paginate);
+                        $sf = 'price';
+                        $pg = 3;
+                        break;
+                    }
+                break;
+            
+            case "date":
+                switch ($paginate) {
+                    case '1':
+                        $products = Product::where('subcategory_id', $subcat->id)->orderBy('created_at','DESC')->paginate($paginate);
+                        $sf = 'date';
+                        $pg = 1;
+                        break;
+                    case '2':
+                        $products = Product::where('subcategory_id', $subcat->id)->orderBy('created_at','DESC')->paginate($paginate);
+                        $sf = 'date';
+                        $pg = 2;
+                        break;
+                    case '3':
+                        $products = Product::where('subcategory_id', $subcat->id)->orderBy('created_at','DESC')->paginate($paginate);
+                        $sf = 'date';
+                        $pg = 3;
+                        break;
+                    }
+            break;
+
+        }
+        $count = Product::where('subcategory_id', $subcat->id)->count();
+        $products->withPath('/filter-collection/'.$slug.'?sort='.$sort.'&show='.$paginate.'');
+        return view('subcategory', compact('products','sf','pg','subcat','count','cats'));
+        
+    }
+
     public function product($id)
     {
         $product = Product::find($id);

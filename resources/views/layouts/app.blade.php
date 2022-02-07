@@ -191,11 +191,6 @@
       </div>            
 </div>
 @endif
-
-
-
-
-
               <!-- / cart box -->
               <!-- search box -->
               <div class="aa-search-box">
@@ -237,7 +232,7 @@
                     <ul class="dropdown-menu">
                     @foreach ($subcategories as $subcategory)
                       @if ($category->id == $subcategory->category_id)                      
-                    <li><a href="#">{{$subcategory->name}}</a></li>
+                    <li><a href="/collection/{{$subcategory->slug}}">{{$subcategory->name}}</a></li>
                       @endif
                     @endforeach
                     </ul>
