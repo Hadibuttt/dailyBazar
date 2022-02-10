@@ -15,6 +15,7 @@ use App\Models\Wishlist;
 use App\Models\Order_Details;
 use App\Models\Order_Items;
 use Session;
+use DB;
 use Auth;
 
 class ProductsController extends Controller
@@ -39,6 +40,120 @@ class ProductsController extends Controller
         
         return view('subcategory', compact('products','sf','pg','count','subcat','cats'));
     }
+
+    public function search(Request $request)
+    {
+        $search = $request->request->get('q');
+        $sf = 'default';
+        $pg = '1';
+        
+        if($search == ""){
+            $count = -1;
+            return view('search', compact('search','sf','pg','count'));
+        }else{
+            $products = Product::where('name', 'like', "%$search%")->orderBy('name')->paginate(1);
+            $count = Product::where('name', 'like', "%$search%")->count();
+            $products->withPath('/search?q='.$search.'');
+
+            return view('search', compact('search','sf','pg','count','products'));
+        }
+    }
+
+
+    public function filtersearch(Request $request, $q)
+    {
+        $search = $q;
+        $sort = $request->request->get('sort');
+        $paginate = $request->request->get('show');
+        
+        switch ($sort) {
+            case "default":
+                switch ($paginate) {
+                    case '1':
+                        $products = Product::where('name', 'like', "%$search%")->orderBy('id','DESC')->paginate($paginate);
+                        $sf = 'default';
+                        $pg = 1; 
+                        break;
+                    case '2':
+                        $products = Product::where('name', 'like', "%$search%")->orderBy('id','DESC')->paginate($paginate);
+                        $sf = 'default';
+                        $pg = 2;
+                        break;
+                    case '3':
+                        $products = Product::where('name', 'like', "%$search%")->orderBy('id','DESC')->paginate($paginate);
+                        $sf = 'default';
+                        $pg = 3;
+                        break;
+                    }
+                break;
+            case "name":
+                switch ($paginate) {
+                    case '1':
+                        $products = Product::where('name', 'like', "%$search%")->orderBy('name','DESC')->paginate($paginate);
+                        $sf = 'name';
+                        $pg = 1;
+                        break;
+                    case '2':
+                        $products = Product::where('name', 'like', "%$search%")->orderBy('name','DESC')->paginate($paginate);
+                        $sf = "name";
+                        $pg = 2;
+                        break;
+                    case '3':
+                        $products = Product::where('name', 'like', "%$search%")->orderBy('name','DESC')->paginate($paginate);
+                        $sf = 'name';
+                        $pg = 3;
+                        break;
+                    }
+                    break;
+            
+            case "price":
+                switch ($paginate) {
+                    case '1':
+                        $products = Product::where('name', 'like', "%$search%")->orderBy('price','DESC')->paginate($paginate);
+                        $sf = 'price';
+                        $pg = 1;
+                        break;
+                    case '2':
+                        $products = Product::where('name', 'like', "%$search%")->orderBy('price','DESC')->paginate($paginate);
+                        $sf = 'price';
+                        $pg = 2;
+                        break;
+                    case '3':
+                        $products = Product::where('name', 'like', "%$search%")->orderBy('price','DESC')->paginate($paginate);
+                        $sf = 'price';
+                        $pg = 3;
+                        break;
+                    }
+                break;
+            
+            case "date":
+                switch ($paginate) {
+                    case '1':
+                        $products = Product::where('name', 'like', "%$search%")->orderBy('created_at','DESC')->paginate($paginate);
+                        $sf = 'date';
+                        $pg = 1;
+                        break;
+                    case '2':
+                        $products = Product::where('name', 'like', "%$search%")->orderBy('created_at','DESC')->paginate($paginate);
+                        $sf = 'date';
+                        $pg = 2;
+                        break;
+                    case '3':
+                        $products = Product::where('name', 'like', "%$search%")->orderBy('created_at','DESC')->paginate($paginate);
+                        $sf = 'date';
+                        $pg = 3;
+                        break;
+                    }
+            break;
+
+        }
+        $count = Product::where('name', 'like', "%$search%")->count();
+        $products->withPath('/search-filter/'.$q.'?sort='.$sort.'&show='.$paginate.'');
+        return view('search', compact('products','sf','pg','count','search'));
+        
+    }
+
+
 
     public function subfilterproducts(Request $request,$slug)
     {

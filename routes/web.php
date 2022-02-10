@@ -38,6 +38,10 @@ Route::get('/browse-products', [App\Http\Controllers\ProductsController::class, 
 Route::get('/category/{slug}', [App\Http\Controllers\ProductsController::class, 'categoryfilter']);
 Route::get('/category-filter/{slug}', [App\Http\Controllers\ProductsController::class, 'categoryfilterproducts']);
 
+Route::get('/search', [App\Http\Controllers\ProductsController::class, 'search']);
+Route::get('/search-filter/{q}', [App\Http\Controllers\ProductsController::class, 'filtersearch']);
+
+
 
 Route::get('/collection/{slug}', [App\Http\Controllers\ProductsController::class, 'subcategory']);
 Route::get('/filter-collection/{slug}', [App\Http\Controllers\ProductsController::class, 'subfilterproducts']);
