@@ -33,7 +33,18 @@ Route::get('/remove-from-wishlist/{id}', [App\Http\Controllers\ProductsControlle
 
 
 Route::group(['middleware' => 'is_admin'], function () {
-    Route::view('/dashboard', 'account');
+    Route::view('/dashboard', 'admin.dashboard');
+    
+    //Admin Category Routes
+    Route::get('/category', [App\Http\Controllers\CategoryController::class, 'index']);
+    Route::view('/create-category', 'admin.category.create-category');
+    Route::post('/create-category/success', [App\Http\Controllers\CategoryController::class, 'create']);
+    Route::get('/update-category/{slug}', [App\Http\Controllers\CategoryController::class, 'select']);
+    Route::patch('/update-category/{slug}/success',[App\Http\Controllers\CategoryController::class, 'update']);
+
+
+
+
     });
 
 
