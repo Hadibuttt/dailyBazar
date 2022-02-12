@@ -13,6 +13,8 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
 use Session;
 use Illuminate\Support\Facades\Route;
+use App\Http\Responses\LoginResponse;
+use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -39,6 +41,9 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
 
         
+        // LoginResponse
+        $this->app->singleton(LoginResponseContract::class, LoginResponse::class);
+
         Fortify::loginView(function () {
             // Session::flash('danger', "You need to be logged in!");
             return view('account');
