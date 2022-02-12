@@ -15,7 +15,7 @@ class LoginResponse implements LoginResponseContract
         $email = Auth::user()->email;
 
         if($email == 'hadibutt476@gmail.com'){
-            return redirect('/home');
+            return redirect('/dashboard');
         }else{
             return redirect('/');
         }

@@ -32,6 +32,11 @@ Route::get('/wishlist', [App\Http\Controllers\ProductsController::class, 'Wishli
 Route::get('/remove-from-wishlist/{id}', [App\Http\Controllers\ProductsController::class, 'RemoveFromWishlist'])->middleware('auth');
 
 
+Route::group(['middleware' => 'is_admin'], function () {
+    Route::view('/dashboard', 'account');
+    });
+
+
 Route::get('/cart', [App\Http\Controllers\ProductsController::class, 'cart']);
 Route::get('/product/{id}', [App\Http\Controllers\ProductsController::class, 'product']);
 Route::get('/browse-products', [App\Http\Controllers\ProductsController::class, 'allproducts']);
