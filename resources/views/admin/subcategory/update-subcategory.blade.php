@@ -1,6 +1,7 @@
 @extends('layouts.admin')
-@section('title', 'Update Category')
+@section('title', 'Update Subcategory')
 @section('content')
+
 
 <link rel="stylesheet" type="text/css" href="https://cdn.shopify.com/shopifycloud/web/assets/v1/latest/vendors~Admin~internal~section-flow~section-flow-summary~section-flow-template-installer~section-flo~67560caa-da74327255a921063014b93a350cde95232ab12445903cd4c054dd790b472f56.css" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdn.shopify.com/shopifycloud/web/assets/v1/latest/vendors~Admin~internal~section-apps~section-apps-app-details~section-flow~section-flow-connector~sec~886ec812-d399c7a88b9def638f0e6090adbf93c63487fd48f111f883b928fd01a9f7724f.css" crossorigin="anonymous">
@@ -54,6 +55,7 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdn.shopify.com/shopifycloud/web/assets/v1/latest/collectiondetails-71584bbfe4dd1124eef8d617852e1b6a92060e0da88c48aeef2d8d5dd010deb8.css">
 
+
 <div class="Polaris-Frame__ContextualSaveBar_14m7v Polaris-Frame-CSSAnimation--startFade_1gu4x Polaris-Frame-CSSAnimation--endFade_1qzoi">
 
 </div>
@@ -63,15 +65,15 @@
             <div class="Polaris-Page-Header_z4uwg Polaris-Page-Header--isSingleRow_172ur Polaris-Page-Header--hasNavigation_gfpa8 Polaris-Page-Header--newDesignLanguage_1rik8 Polaris-Page-Header--mediumTitle_bfol6">
                 <div class="Polaris-Page-Header__Row_375v7 Polaris-Page-Header__RowCondensed_1gexu">
                     <div class="Polaris-Page-Header__BreadcrumbWrapper_1tgwk Polaris-Page-Header--newDesignLanguage_1rik8">
-                        <nav role="navigation"><a data-polaris-unstyled="true" class="Polaris-Breadcrumbs__Breadcrumb_llsun Polaris-Breadcrumbs--newDesignLanguage_1rik8" href="/category"><span class="Polaris-Breadcrumbs__ContentWrapper_1yvfo"><span class="Polaris-Breadcrumbs__Icon_yj27d"><span class="Polaris-Icon_yj27d Polaris-Icon--newDesignLanguage_1rik8"><svg viewBox="0 0 20 20" class="Polaris-Icon__Svg_375hu" focusable="false" aria-hidden="true">
+                        <nav role="navigation"><a data-polaris-unstyled="true" class="Polaris-Breadcrumbs__Breadcrumb_llsun Polaris-Breadcrumbs--newDesignLanguage_1rik8" href="/subcategory"><span class="Polaris-Breadcrumbs__ContentWrapper_1yvfo"><span class="Polaris-Breadcrumbs__Icon_yj27d"><span class="Polaris-Icon_yj27d Polaris-Icon--newDesignLanguage_1rik8"><svg viewBox="0 0 20 20" class="Polaris-Icon__Svg_375hu" focusable="false" aria-hidden="true">
                                                 <path d="M17 9H5.414l3.293-3.293a.999.999 0 1 0-1.414-1.414l-5 5a.999.999 0 0 0 0 1.414l5 5a.997.997 0 0 0 1.414 0 .999.999 0 0 0 0-1.414L5.414 11H17a1 1 0 1 0 0-2z"></path>
-                                            </svg></span></span><span class="Polaris-VisuallyHidden_yrtt5">Category</span></span></a></nav>
+                                            </svg></span></span><span class="Polaris-VisuallyHidden_yrtt5">Collections</span></span></a></nav>
                     </div>
                     <div class="Polaris-Page-Header__TitleWrapper_bejfn">
                         <div>
                             <div class="Polaris-Header-Title__TitleAndSubtitleWrapper_40sxf">
                                 <div class="Polaris-Header-Title_2qj8j">
-                                    <h1 class="Polaris-Header-Title--newDesignLanguageTitle_1wh8d">Update Category</h1>
+                                    <h1 class="Polaris-Header-Title--newDesignLanguageTitle_1wh8d">Update Subcategory</h1>
                                 </div>
                             </div>
                         </div>
@@ -79,7 +81,7 @@
                 </div>
             </div>
             <div class="Polaris-Page__Content_xd1mk">
-                <form method="POST" action="/update-category/{{$cat->slug}}/success" enctype="multipart/form-data">
+                <form method="post" action="/update-subcategory/{{$subcat->slug}}/success" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
                     <div class="Polaris-Layout_sl20u Polaris-Layout--newDesignLanguage_1rik8">
@@ -96,7 +98,7 @@
                                                     <div class="Polaris-Connected__Item_yiyol Polaris-Connected__Item--primary_rmh5m">
                                                         <div class="Polaris-TextField_1spwi Polaris-TextField--newDesignLanguage_1rik8">
                                                             
-                                                            <input name="name" id="collectionTitleTextField" placeholder="e.g. Summer collection, Under $100, Staff picks" class="Polaris-TextField__Input_30ock" aria-labelledby="collectionTitleTextFieldLabel" aria-invalid="false" aria-multiline="false" value="{{$cat->name}}">
+                                                            <input name="name" id="collectionTitleTextField" placeholder="e.g. Summer collection, Under $100, Staff picks" class="Polaris-TextField__Input_30ock" aria-labelledby="collectionTitleTextFieldLabel" aria-invalid="false" aria-multiline="false" value="{{$subcat->name}}">
 
                                                             <div class="Polaris-TextField__Backdrop_1x2i2"></div>
                                                         </div>
@@ -104,24 +106,61 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="Polaris-Card_yis1o Polaris-Card--newDesignLanguage_1rik8">
+                                <div class="Polaris-Card__Section_1b1h1">
+                                    <div class="Polaris-Card__SectionHeader_1aytf">
+                                        <h3 aria-label="Conditions" class="Polaris-Subheading_syouu">Select Category</h3>
+                                    </div>
+                                    <div class="Polaris-TextContainer_szg8b">
+                                        <div class="Polaris-Stack_32wu2 Polaris-Stack--vertical_uiuuj">
+                                            <div class="Polaris-Stack__Item_yiyol">
+                                                <div class="Polaris-Stack_32wu2 Polaris-Stack--alignmentCenter_1rtaw">
+                                                </div>
+                                            </div>
+                                            <div class="Polaris-Stack__Item_yiyol">
+                                                <div class="Polaris-Stack_32wu2 Polaris-Stack--vertical_uiuuj Polaris-Stack--distributionFillEvenly_aehjo Polaris-Stack--alignmentFill_m3d4l">
+                                                    <div class="Polaris-Stack__Item_yiyol">
+                                                        <div class="Polaris-TextContainer_szg8b">
+                                                            <div class="_39kZN">
+                                                                <div class="KDsCD">
+                                                                    
+                                                                    <div>
+                                                                        <div class="Polaris-Labelled--hidden_riqie">
+                                                                           <select name="category_id" style="height: 40px; width: 100%;padding: 6px;border-radius: 5px;">
+        @foreach ($categories as $category)
+    <option @if ($subcat->category_id == $category->id) selected @endif value="{{$category->id}}" >
+        {{$category->name}}</option>
+        @endforeach
+                                                                           </select>
+                                                                        </div>
+                                                                    </div>
+            
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             
-                            <div class="Polaris-Card_yis1o Polaris-Card--newDesignLanguage_1rik8">
-                               
                         </div>
                         <div class="Polaris-Layout__Section_1b1h1 Polaris-Layout__Section--secondary_1sx8i">
                             <div class="Polaris-Card_yis1o Polaris-Card--subdued_17vaa Polaris-Card--newDesignLanguage_1rik8">
                                 <header class="_1UFNz">
                                     <div class="Polaris-Stack_32wu2 Polaris-Stack--alignmentBaseline_aupj5">
                                         <div class="Polaris-Stack__Item_yiyol Polaris-Stack__Item--fill_vpuzt">
-                                            <h2 class="Polaris-Heading_1brcv">Category image</h2>
+                                            <h2 class="Polaris-Heading_1brcv">Subcategory Image</h2>
                                         </div>
                                     </div>
                                 </header>
-                                 <div class="Polaris-Card__Section_1b1h1">
+                                <div class="Polaris-Card__Section_1b1h1">
                                     <div class="Polaris-Labelled--hidden_riqie">
                                         <div class="Polaris-Labelled__LabelWrapper_bf6ys">
                                             <div class="Polaris-Label_2vd36"><label id="PolarisDropZone2Label" for="PolarisDropZone2" class="Polaris-Label__Text_yj3uv">Upload file</label></div>
@@ -135,9 +174,7 @@
                                                             <div class="Polaris-Stack__Item_yiyol">
                                                                 <div class="Polaris-DropZone-FileUpload__Button_r99lw Polaris-DropZone-FileUpload--newDesignLanguage_1rik8"><button type="button" style="border: none;background: none;"><label style="margin-bottom: 0px;">
                                                                     
-                                                                    <input type="file" accept="image/*" name="image" required id="file1"  onchange="loadFile(event)" style="display: none;">
-                                                                    
-                                                                    Add Media</label></button></div>
+                                                                    <input type="file" required accept="image/*" name="image" id="file1"  onchange="loadFile(event)" style="display: none;">Add Media</label></button></div>
                                                             </div>
                                                             <div class="Polaris-Stack__Item_yiyol">
                                                                 <p class="Polaris-Caption_1b1go"><span class="Polaris-TextStyle--variationSubdued_1segu"><p id="output"></p></span></p>
@@ -162,11 +199,10 @@
                                 </div>
                             </div>
                         </div>
-                           
                         <div class="Polaris-Layout__Section_1b1h1">
                             <div class="Polaris-PageActions_fcnua">
                                 <div class="Polaris-Stack_32wu2 Polaris-Stack--spacingTight_1o4d6 Polaris-Stack--distributionTrailing_z5d5z">
-                                    <div class="Polaris-Stack__Item_yiyol"><button class="Polaris-Button_r99lw Polaris-Button--newDesignLanguage_1rik8 Polaris-Button--primary_7k9zs" type="submit"><span class="Polaris-Button__Content_xd1mk"><span class="Polaris-Button__Text_yj3uv">Update</span></span></button></div>
+                                    <div class="Polaris-Stack__Item_yiyol"><button class="Polaris-Button_r99lw Polaris-Button--newDesignLanguage_1rik8 Polaris-Button--primary_7k9zs" href="" type="submit"><span class="Polaris-Button__Content_xd1mk"><span class="Polaris-Button__Text_yj3uv">Update</span></span></button></div>
                                 </div>
                             </div>
                         </div>
@@ -373,5 +409,6 @@
         document.getElementById('Account_div').style.visibility = "hidden";
     }
 </script>
+
 
 @endsection

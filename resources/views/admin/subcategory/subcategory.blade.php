@@ -113,7 +113,7 @@
                                                         <h1 class="Polaris-Header-Title--newDesignLanguageTitle_1wh8d">Subcategory</h1>
                                                          <div class="Polaris-Page-Header__PrimaryActionWrapper_w8or9" style="position: absolute;top: 10px;right: 0px;"><a data-polaris-unstyled="true" class="Polaris-Button_r99lw Polaris-Button--newDesignLanguage_1rik8 Polaris-Button--primary_7k9zs" 
                                                         href="/create-subcategory">
-                                                            <span class="Polaris-Button__Content_xd1mk">    <span class="Polaris-Button__Text_yj3uv">Create Sub-Category</span></span></a></div>
+                                                            <span class="Polaris-Button__Content_xd1mk">    <span class="Polaris-Button__Text_yj3uv">Create Subcategory</span></span></a></div>
                                                         
                                                     </div>
                                                 </div>

@@ -46,7 +46,8 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('/subcategory', [App\Http\Controllers\SubcategoryController::class, 'index']);
     Route::view('/create-subcategory', 'admin.subcategory.create-subcategory');
     Route::post('/create-subcategory/success', [App\Http\Controllers\SubcategoryController::class, 'create']);
-
+    Route::get('/update-subcategory/{slug}', [App\Http\Controllers\SubcategoryController::class, 'select']);
+    Route::patch('/update-subcategory/{slug}/success',[App\Http\Controllers\SubcategoryController::class, 'update']);
 
 
 

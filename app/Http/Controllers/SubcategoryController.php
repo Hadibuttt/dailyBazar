@@ -14,6 +14,12 @@ class SubcategoryController extends Controller
         return view('admin.subcategory.subcategory', compact('subcategories'));
     }
 
+    public function select($slug)
+    {
+        $subcat = subcategory::where('slug',$slug)->first();
+        return view('admin.subcategory.update-subcategory', compact('subcat'));
+    }
+
     public function create(Request $request)
     {
         $subcategory = new subcategory();
@@ -29,5 +35,22 @@ class SubcategoryController extends Controller
 
         return redirect('/subcategory');
     }
+
+    public function update(Request $request, $slug)
+    {
+        //Image Upload  
+        $name = time().$request->image->getClientOriginalName();
+        $image= $request->image->move(public_path().'/img/subcategory-img/', $name);
+
+        subcategory::where('slug',$slug)->update([
+            "name" => $request->name,
+            "category_id" => $request->category_id,
+            "slug" => Str::slug($request->name),
+            "image" => $name
+        ]);
+
+        return redirect('/subcategory');
+    }
+
 
 }
