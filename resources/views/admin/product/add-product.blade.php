@@ -88,7 +88,7 @@ da74327255a921063014b93a350cde95232ab12445903cd4c054dd790b472f56.css" crossorigi
 <div class="Polaris-Connected__Item_yiyol Polaris-Connected__Item--primary_rmh5m">
 <div class="Polaris-TextField_1spwi Polaris-TextField--hasValue_1mx8d Polaris-TextField--newDesignLanguage_1rik8">
     
-    <input name="name" type="text" id="PolarisTextField1" value="3M MicroTouch™ Chassis 1123988" placeholder="Short sleeve t-shirt" class="Polaris-TextField__Input_30ock" aria-labelledby="PolarisTextField1Label" aria-invalid="false" aria-multiline="false">
+    <input name="name" type="text" id="PolarisTextField1" required value="" placeholder="Short sleeve t-shirt" class="Polaris-TextField__Input_30ock" aria-labelledby="PolarisTextField1Label" aria-invalid="false" aria-multiline="false">
 
     <div class="Polaris-TextField__Backdrop_1x2i2"></div>
 </div>
@@ -102,7 +102,7 @@ da74327255a921063014b93a350cde95232ab12445903cd4c054dd790b472f56.css" crossorigi
 <div class="Polaris-Labelled__LabelWrapper_bf6ys">
 <div class="Polaris-Label_2vd36"><label id="PolarisTextField16Label" for="PolarisTextField16" class="Polaris-Label__Text_yj3uv">Description</label></div>
 </div>
-<textarea name="description" id="article-ckeditor" placeholder="" class="Polaris-TextField__Input_30ock ckeditor" aria-describedby="PolarisTextField16HelpText" aria-labelledby="PolarisTextField16Label" aria-invalid="false" aria-multiline="true" style="height: 108px;"></textarea>
+<textarea required name="description" id="article-ckeditor" placeholder="" class="Polaris-TextField__Input_30ock ckeditor" aria-describedby="PolarisTextField16HelpText" aria-labelledby="PolarisTextField16Label" aria-invalid="false" aria-multiline="true" style="height: 108px;"></textarea>
 <div class="Polaris-Connected_wopc9 Polaris-Connected--newDesignLanguage_1rik8">
 <div class="Polaris-Connected__Item_yiyol Polaris-Connected__Item--primary_rmh5m">
 <div class="Polaris-TextField_1spwi Polaris-TextField--multiline_1jgfe Polaris-TextField--newDesignLanguage_1rik8">
@@ -215,18 +215,13 @@ da74327255a921063014b93a350cde95232ab12445903cd4c054dd790b472f56.css" crossorigi
                 </div>
                 <div class="_15Gq9">
                     
+                    <div class="HM1EI" id="Display1" style="overflow: hidden;"><button type="button" class="_1q_T1"><span class="QfaYE"><label><input type="file"  accept="image/*" name="image" required id="file1"  onchange="loadFile(event)" style="display: none;">Add Media</label></span><span class="_20LrM">or drop files to upload</span><p id="output"></p></button></div>
                     
-                           
-                         
-                   
-                   
-                    <div class="HM1EI" id="Display1" style="overflow: hidden;"><button type="button" class="_1q_T1"><span class="QfaYE"><label><input type="file"  accept="image/*" name="image" id="file1"  onchange="loadFile(event)" style="display: none;">Add Media</label></span><span class="_20LrM">or drop files to upload</span><p id="output"></p></button></div>
+                    <div class="HM1EI"style="overflow: hidden;"><button type="button" class="_1q_T1"><span class="QfaYE"><label><input type="file" name="image1" required accept="image/*" id="file2"  onchange="loadFile1(event)" style="display: none;">Add Media</label></span><span class="_20LrM">or drop files to upload<br><p id="output1"></p></span></button></div>
                     
-                    <div class="HM1EI"style="overflow: hidden;"><button type="button" class="_1q_T1"><span class="QfaYE"><label><input type="file" name="image1" accept="image/*" id="file2"  onchange="loadFile1(event)" style="display: none;">Add Media</label></span><span class="_20LrM">or drop files to upload<br><p id="output1"></p></span></button></div>
+                    <div class="HM1EI"style="overflow: hidden;"><button type="button" class="_1q_T1"><span class="QfaYE"><label><input type="file" name="image2" required accept="image/*" id="file3"  onchange="loadFile2(event)" style="display: none;">Add Media</label></span><span class="_20LrM">or drop files to upload<br><p id="output2"></p></span></button></div>
                     
-                    <div class="HM1EI"style="overflow: hidden;"><button type="button" class="_1q_T1"><span class="QfaYE"><label><input type="file" name="image2" accept="image/*" id="file3"  onchange="loadFile2(event)" style="display: none;">Add Media</label></span><span class="_20LrM">or drop files to upload<br><p id="output2"></p></span></button></div>
-                    
-                    <div class="HM1EI"style="overflow: hidden;"><button type="button" class="_1q_T1"><span class="QfaYE"><label><input type="file" name="image3" accept="image/*" id="file4"  onchange="loadFile3(event)" style="display: none;">Add Media</label></span><span class="_20LrM">or drop files to upload<br><p id="output3"></p></span></button></div>
+                    <div class="HM1EI"style="overflow: hidden;"><button type="button" class="_1q_T1"><span class="QfaYE"><label><input type="file" name="image3" required accept="image/*" id="file4"  onchange="loadFile3(event)" style="display: none;">Add Media</label></span><span class="_20LrM">or drop files to upload<br><p id="output3"></p></span></button></div>
                     
                     <div class="HM1EI"style="overflow: hidden;"><button type="button" class="_1q_T1"><span class="QfaYE"><label>Add Media</label></span><span class="_20LrM">or drop files to upload<br><p id="output4"></p></span></button></div>
                 </div>
@@ -264,7 +259,7 @@ da74327255a921063014b93a350cde95232ab12445903cd4c054dd790b472f56.css" crossorigi
                             <div class="Polaris-Connected__Item_yiyol Polaris-Connected__Item--primary_rmh5m">
                                 <div class="Polaris-TextField_1spwi Polaris-TextField--newDesignLanguage_1rik8">
                                     
-                                    <input name="price" type="text" id="InventoryCardSku" class="Polaris-TextField__Input_30ock" aria-labelledby="InventoryCardSkuLabel" aria-invalid="false" aria-multiline="false" value="">
+                                    <input name="price" required type="text" id="InventoryCardSku" class="Polaris-TextField__Input_30ock" aria-labelledby="InventoryCardSkuLabel" aria-invalid="false" aria-multiline="false" value="">
 
                                     <div class="Polaris-TextField__Backdrop_1x2i2"></div>
                                 </div>
@@ -281,7 +276,7 @@ da74327255a921063014b93a350cde95232ab12445903cd4c054dd790b472f56.css" crossorigi
                             <div class="Polaris-Connected__Item_yiyol Polaris-Connected__Item--primary_rmh5m">
                                 <div class="Polaris-TextField_1spwi Polaris-TextField--newDesignLanguage_1rik8">
                                     
-                                    <input name="dprice" type="text" id="InventoryCardBarcode" class="Polaris-TextField__Input_30ock" aria-labelledby="InventoryCardBarcodeLabel" aria-invalid="false" aria-multiline="false" value="">
+                                    <input name="dprice" required type="text" id="InventoryCardBarcode" class="Polaris-TextField__Input_30ock" aria-labelledby="InventoryCardBarcodeLabel" aria-invalid="false" aria-multiline="false" value="">
 
                                     <div class="Polaris-TextField__Backdrop_1x2i2"></div>
                                 </div>
@@ -302,7 +297,7 @@ da74327255a921063014b93a350cde95232ab12445903cd4c054dd790b472f56.css" crossorigi
                             <div class="Polaris-Connected__Item_yiyol Polaris-Connected__Item--primary_rmh5m">
                                 <div class="Polaris-TextField_1spwi Polaris-TextField--newDesignLanguage_1rik8">
                                     
-                                    <input name="in_sale" placeholder="Yes/No" type="text" id="InventoryCardSku" class="Polaris-TextField__Input_30ock" aria-labelledby="InventoryCardSkuLabel" aria-invalid="false" aria-multiline="false" value="">
+                                    <input name="in_sale" required placeholder="Yes/No" type="text" id="InventoryCardSku" class="Polaris-TextField__Input_30ock" aria-labelledby="InventoryCardSkuLabel" aria-invalid="false" aria-multiline="false" value="">
 
                                     <div class="Polaris-TextField__Backdrop_1x2i2"></div>
                                 </div>
@@ -320,7 +315,7 @@ da74327255a921063014b93a350cde95232ab12445903cd4c054dd790b472f56.css" crossorigi
                             <div class="Polaris-Connected__Item_yiyol Polaris-Connected__Item--primary_rmh5m">
                                 <div class="Polaris-TextField_1spwi Polaris-TextField--newDesignLanguage_1rik8">
                                     
-                                    <input name="is_featured" placeholder="Yes/No" type="text" id="InventoryCardSku" class="Polaris-TextField__Input_30ock" aria-labelledby="InventoryCardSkuLabel" aria-invalid="false" aria-multiline="false" value="">
+                                    <input name="is_featured" required placeholder="Yes/No" type="text" id="InventoryCardSku" class="Polaris-TextField__Input_30ock" aria-labelledby="InventoryCardSkuLabel" aria-invalid="false" aria-multiline="false" value="">
 
                                     <div class="Polaris-TextField__Backdrop_1x2i2"></div>
                                 </div>
@@ -362,7 +357,7 @@ da74327255a921063014b93a350cde95232ab12445903cd4c054dd790b472f56.css" crossorigi
   
   <div class="Polaris-Connected_wopc9 Polaris-Connected--newDesignLanguage_1rik8">
       <div class="Polaris-Connected__Item_yiyol Polaris-Connected__Item--primary_rmh5m">
-        <select name="category" id="category" class="category" style="width: 100%; height: 40px;font-size: 16px;padding-left: 10px;font-weight: 100; border: 1px solid #C9CCCF; border-radius: 5px;color: dimgrey;">
+        <select name="category_id" required id="category" class="category" style="width: 100%; height: 40px;font-size: 16px;padding-left: 10px;font-weight: 100; border: 1px solid #C9CCCF; border-radius: 5px;color: dimgrey;">
                               <option>Select Category</option>                          
                               @foreach ($categories as $category)
                                 <option value="{{$category->id}}">{{$category->name}}</option>
@@ -428,7 +423,7 @@ da74327255a921063014b93a350cde95232ab12445903cd4c054dd790b472f56.css" crossorigi
 <div class="">
     
   
-    <select name="subcategory" id="subcategory" class="subcategory" style="width: 100%; height: 40px;font-size: 16px;padding-left: 10px;font-weight: 100; border: 1px solid #C9CCCF; border-radius: 5px;color: dimgrey;">
+    <select name="subcategory_id" required id="subcategory" class="subcategory" style="width: 100%; height: 40px;font-size: 16px;padding-left: 10px;font-weight: 100; border: 1px solid #C9CCCF; border-radius: 5px;color: dimgrey;">
       
                             <option>Select Subcategory</option>
                             
@@ -461,7 +456,7 @@ da74327255a921063014b93a350cde95232ab12445903cd4c054dd790b472f56.css" crossorigi
     <div class="Polaris-Connected__Item_yiyol Polaris-Connected__Item--primary_rmh5m">
         <div class="Polaris-TextField_1spwi Polaris-TextField--newDesignLanguage_1rik8">
             
-            <input name="stock" type="text" id="PolarisTextField5" placeholder="Enter Stock Number" autocomplete="off" class="Polaris-TextField__Input_30ock" aria-labelledby="PolarisTextField5Label" aria-invalid="false" aria-multiline="false" value="" aria-autocomplete="list" role="combobox" autocapitalize="off" aria-expanded="false" aria-controls="Autocomplete4-disclosure" tabindex="0" aria-owns="Polarispopover15">
+            <input name="stock" required type="text" id="PolarisTextField5" placeholder="Enter Stock Number" autocomplete="off" class="Polaris-TextField__Input_30ock" aria-labelledby="PolarisTextField5Label" aria-invalid="false" aria-multiline="false" value="" aria-autocomplete="list" role="combobox" autocapitalize="off" aria-expanded="false" aria-controls="Autocomplete4-disclosure" tabindex="0" aria-owns="Polarispopover15">
     
             <div class="Polaris-TextField__Backdrop_1x2i2"></div>
         </div>

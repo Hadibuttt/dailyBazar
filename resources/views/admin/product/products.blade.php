@@ -890,7 +890,7 @@
                                                                                                             <path d="M8.315 13.859l-3.182-3.417a.506.506 0 0 1 0-.684l.643-.683a.437.437 0 0 1 .642 0l2.22 2.393 4.942-5.327a.436.436 0 0 1 .643 0l.643.684a.504.504 0 0 1 0 .683l-5.91 6.35a.437.437 0 0 1-.642 0"></path>
                                                                                                         </svg></span></span></span></span><span class="Polaris-Choice__Label_2vd36">Select: 3M MicroTouch™ Chassis 1123988</span></label></span></div>
                                                                         </div>
-                                                                        <div class="h7HU2" testid="Media"><span class="Polaris-Thumbnail_15hj1 Polaris-Thumbnail--sizeMedium_5f35p"><img src="{{$product->photo}}" alt="3M MicroTouch™ Chassis 1123988"></span></div>
+                                                                        <div class="h7HU2" testid="Media"><span class="Polaris-Thumbnail_15hj1 Polaris-Thumbnail--sizeMedium_5f35p"><img src="{{asset('img/product-img/'.$product->photo.'')}}" alt="3M MicroTouch™ Chassis 1123988"></span></div>
                                                                     </div>
                                                                     
                                                                         
