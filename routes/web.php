@@ -49,7 +49,14 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('/update-subcategory/{slug}', [App\Http\Controllers\SubcategoryController::class, 'select']);
     Route::patch('/update-subcategory/{slug}/success',[App\Http\Controllers\SubcategoryController::class, 'update']);
 
+    //Admin Product Routes
+    Route::get('/products', [App\Http\Controllers\AdminProductController::class, 'index']);
+    Route::view('/add-product', 'admin.product.add-product');
+    Route::post('/add-product/success', [App\Http\Controllers\AdminProductController::class, 'create']);
 
+
+    //Ajax Routes
+    Route::post('/getsubcategory', [App\Http\Controllers\AjaxController::class, 'getsubcategory'] )->name('getsubcategory');
 
     });
 
