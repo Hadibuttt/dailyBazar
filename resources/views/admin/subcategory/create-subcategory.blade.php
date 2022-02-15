@@ -73,7 +73,7 @@
                         <div>
                             <div class="Polaris-Header-Title__TitleAndSubtitleWrapper_40sxf">
                                 <div class="Polaris-Header-Title_2qj8j">
-                                    <h1 class="Polaris-Header-Title--newDesignLanguageTitle_1wh8d">Create Sub-Category</h1>
+                                    <h1 class="Polaris-Header-Title--newDesignLanguageTitle_1wh8d">Create Subcategory</h1>
                                 </div>
                             </div>
                         </div>
