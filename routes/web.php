@@ -53,7 +53,9 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('/products', [App\Http\Controllers\AdminProductController::class, 'index']);
     Route::view('/add-product', 'admin.product.add-product');
     Route::post('/add-product/success', [App\Http\Controllers\AdminProductController::class, 'create']);
-
+    Route::get('/update-product/{slug}', [App\Http\Controllers\AdminProductController::class, 'select']);
+    Route::patch('/update-product/{slug}/success',[App\Http\Controllers\AdminProductController::class, 'update']);
+    Route::get('/delete/{slug}',[App\Http\Controllers\AdminProductController::class, 'destroy']);
 
     //Ajax Routes
     Route::post('/getsubcategory', [App\Http\Controllers\AjaxController::class, 'getsubcategory'] )->name('getsubcategory');
