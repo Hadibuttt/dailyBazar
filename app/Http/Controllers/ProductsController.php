@@ -22,8 +22,16 @@ class ProductsController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
-        return view('index', compact('products'));
+        $mens = Product::where('category_id', 1)->inRandomOrder()->take(8)->get();
+        $womens = Product::where('category_id', 2)->inRandomOrder()->take(8)->get();
+        $sports =  Product::where('category_id', 4)->inRandomOrder()->take(8)->get();
+        $digitals =  Product::where('category_id', 5)->inRandomOrder()->take(8)->get();
+
+        $populars = Product::where('in_sale', 'No')->inRandomOrder()->take(8)->get();
+        $featureds = Product::where('is_featured', 'Yes')->inRandomOrder()->take(8)->get();
+        $latests = Product::orderBy('id', 'DESC')->take(8)->get();
+
+        return view('index', compact('mens','womens','sports','digitals','populars','featureds','latests'));
     }
 
     public function subcategory($slug)
