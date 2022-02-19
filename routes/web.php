@@ -65,7 +65,7 @@ Route::group(['middleware' => 'is_admin'], function () {
 
 Route::get('/cart', [App\Http\Controllers\ProductsController::class, 'cart']);
 Route::get('/product/{id}', [App\Http\Controllers\ProductsController::class, 'product']);
-Route::get('/browse-products', [App\Http\Controllers\ProductsController::class, 'allproducts']);
+Route::get('/browse-products/{slug}', [App\Http\Controllers\ProductsController::class, 'allproducts']);
 Route::get('/category/{slug}', [App\Http\Controllers\ProductsController::class, 'categoryfilter']);
 Route::get('/category-filter/{slug}', [App\Http\Controllers\ProductsController::class, 'categoryfilterproducts']);
 
@@ -78,7 +78,7 @@ Route::get('/collection/{slug}', [App\Http\Controllers\ProductsController::class
 Route::get('/filter-collection/{slug}', [App\Http\Controllers\ProductsController::class, 'subfilterproducts']);
 
 
-Route::get('/filter-products', [App\Http\Controllers\ProductsController::class, 'filterproducts']);
+Route::get('/filter-products/{slug}', [App\Http\Controllers\ProductsController::class, 'filterproducts']);
 Route::get('/add-to-cart/{id}', [App\Http\Controllers\ProductsController::class, 'addToCart']);
 Route::get('/remove-from-cart/{id}', [App\Http\Controllers\ProductsController::class, 'remove']);
 Route::patch('/update-cart', [App\Http\Controllers\ProductsController::class, 'update']);

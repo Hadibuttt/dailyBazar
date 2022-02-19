@@ -1,7 +1,9 @@
 @extends('layouts.app')
-@section('title', 'Products')
+@section('title', $title)
 @section('content')
  
+<?php  $filter = request('filter') ?>
+
   <!-- catg header banner section -->
   <section id="aa-catg-head-banner">
    <img src="{{asset('img/fashion/account.jpg')}}" alt="fashion img">
@@ -27,7 +29,7 @@
           <div class="aa-product-catg-content">
             <div class="aa-product-catg-head">
               <div class="aa-product-catg-head-left">
-            <form action="/filter-products" method="GET">
+            <form action="/filter-products/{{$f}}" method="GET">
                 <div class="aa-sort-form">
                   <label for="">Sort by</label>
                   <select name="sort" required>
@@ -41,9 +43,9 @@
                 <div class="aa-show-form">
                   <label for="">Show</label>
                   <select name="show" required>
-                    <option value="1" @if ($pg == 1) selected="1" @endif>1</option>
-                    <option value="2" @if ($pg == 2) selected="2" @endif>2</option>
-                    <option value="3" @if ($pg == 3) selected="3" @endif>3</option>
+                    <option value="8" @if ($pg == 8) selected="8" @endif>8</option>
+                    <option value="16" @if ($pg == 16) selected="16" @endif>16</option>
+                    <option value="24" @if ($pg == 24) selected="24" @endif>24</option>
                   </select>
                 </div>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -58,28 +60,32 @@
             <div class="aa-product-catg-body">
               <ul class="aa-product-catg">
                 <!-- start single product item -->
-            @foreach ($products as $product)
+            @foreach ($products as $men)
+            <!-- start single product item -->
             <li>
-                <figure>
-                  <a class="aa-product-img" href="/product/{{$product->id}}"><img src="{{ $product->photo }}" width="250" height="300" alt="polo shirt img"></a>
-                  <a class="aa-add-card-btn" href="/add-to-cart/{{$product->id}}"><span class="fa fa-shopping-cart add-to-cart"></span>Add To Cart</a>
+              <figure>
+                <a class="aa-product-img" href="/product/{{$men->id}}"><img src="{{asset('img/product-img/main/'.$men->photo.'')}}" alt="{{$men->name}} image"></a>
+                <a class="aa-add-card-btn"href="/add-to-cart/{{$men->id}}"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                   <figcaption>
-                    <h4 class="aa-product-title"><a href="#">{{ $product->name }}</a></h4>
-                    <span class="aa-product-price">${{ $product->price }}</span><span class="aa-product-price"><del>$65.50</del></span>
-                  </figcaption>
-                </figure>                         
-                <div class="aa-product-hvr-content">
-                  <a href="/add-to-wishlist/{{$product->id}}" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>                     
-                </div>
-                <!-- product badge -->
-            @if ($product->stock > 0)    
-                @if ($product->in_sale == 'Yes')
-                    <span class="aa-badge aa-sale" href="#">SALE!</span>
-                @endif
-            @else
-                    <span class="aa-badge aa-sold-out" href="#">Sold Out!</span>
-            @endif
-              </li>
+                  <h4 class="aa-product-title"><a href="/product/{{$men->id}}">{{$men->name}}</a></h4>
+                  <span class="aa-product-price">${{$men->price}}</span>
+                  @if ($men->in_sale == 'Yes')<span class="aa-product-price"><del>${{$men->discounted_price}}</del></span>@endif
+                </figcaption>
+              </figure>                        
+              <div class="aa-product-hvr-content">
+                <a href="/add-to-wishlist/{{$men->id}}" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>                          
+              </div>
+              <!-- product badge -->
+@if ($men->stock > 0)    
+    @if ($men->in_sale == 'Yes')
+        <span class="aa-badge aa-sale" href="#">SALE!</span>
+    @else
+        <span class="aa-badge aa-hot" href="#">HOT!</span>
+    @endif
+@else
+        <span class="aa-badge aa-sold-out" href="#">Sold Out!</span>
+@endif
+            </li>
             @endforeach
               </ul>
                  

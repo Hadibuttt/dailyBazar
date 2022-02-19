@@ -267,12 +267,35 @@ class ProductsController extends Controller
         return view('product', compact('product','product_category','relatedproducts','count'));
     }
 
-    public function allproducts()
-    {   
-        $products = Product::orderBy('id','DESC')->paginate(1);
+    public function allproducts($filter)
+    {
         $sf = 'default';
-        $pg = '1';
-        return view('allproducts', compact('products','sf','pg'));
+        $pg = '8';
+        $f = $filter;
+
+        switch ($filter) {
+            case 'popular':
+                $products = Product::where('in_sale', 'No')->inRandomOrder()->paginate(8);
+                $title = 'Popular Products';
+                return view('allproducts', compact('products','sf','pg','title','f'));
+                break;
+            
+            case 'featured':
+                $products = Product::where('is_featured', 'Yes')->inRandomOrder()->paginate(8);
+                $title = 'Featured Products';
+                return view('allproducts', compact('products','sf','pg','title','f'));
+                break;
+
+            case 'latest':
+                $products = Product::orderBy('id', 'DESC')->paginate(8);
+                $title = 'Latest Products';
+                return view('allproducts', compact('products','sf','pg','title','f'));
+                break;            
+                
+            default:
+                abort(404);
+                break;
+        }
     }
 
     public function categoryfilter($slug)
@@ -381,94 +404,435 @@ class ProductsController extends Controller
         
     }
 
-    public function filterproducts(Request $request)
+    public function filterproducts(Request $request, $filter)
     {
         $sort = $request->request->get('sort');
         $paginate = $request->request->get('show');
+        $f = $filter;
+        
+    switch ($filter) {
+            case 'popular':
+                switch ($sort) {
+                    case 'default':
+                        switch ($paginate) {
+                            case '8':
+                                $products = Product::where('in_sale', 'No')->inRandomOrder()->paginate($paginate);
+                                $sf = 'default';
+                                $title = 'Popular Products';
+                                $pg = 8;    
+                                break;
+                    
+                            case '16':
+                                $products = Product::where('in_sale', 'No')->inRandomOrder()->paginate($paginate);
+                                $sf = 'default';
+                                $title = 'Popular Products';
+                                $pg = 16;    
+                                break;    
 
-        switch ($sort) {
-            case "default":
+                            case '24':
+                                $products = Product::where('in_sale', 'No')->inRandomOrder()->paginate($paginate);
+                                $sf = 'default';
+                                $title = 'Popular Products';
+                                $pg = 24;    
+                                break;
+                    }
+                break;
+
+                case 'date':
+                    switch ($paginate) {
+                        case '8':
+                            $products = Product::where('in_sale', 'No')->orderBy('created_at','DESC')->paginate($paginate);
+                            $sf = 'date';
+                            $title = 'Popular Products';
+                            $pg = 8;    
+                            break;
+                
+                        case '16':
+                            $products = Product::where('in_sale', 'No')->orderBy('created_at','DESC')->paginate($paginate);
+                            $sf = 'date';
+                            $title = 'Popular Products';
+                            $pg = 16;    
+                            break;    
+
+                        case '24':
+                            $products = Product::where('in_sale', 'No')->orderBy('created_at','DESC')->paginate($paginate);
+                            $sf = 'date';
+                            $title = 'Popular Products';
+                            $pg = 24;    
+                            break;
+                }
+            break;
+                         
+
+            case 'name':
                 switch ($paginate) {
-                    case '1':
-                        $products = Product::orderBy('id','DESC')->paginate($paginate);
-                        $sf = 'default';
-                        $pg = 1; 
+                    case '8':
+                        $products = Product::where('in_sale', 'No')->orderBy('name','DESC')->paginate($paginate);
+                        $sf = 'name';
+                        $title = 'Popular Products';
+                        $pg = 8;    
                         break;
-                    case '2':
-                        $products = Product::orderBy('id','DESC')->paginate($paginate);
-                        $sf = 'default';
-                        $pg = 2;
-                        break;
-                    case '3':
-                        $products = Product::orderBy('id','DESC')->paginate($paginate);
-                        $sf = 'default';
-                        $pg = 3;
+                    
+                    case '16':
+                        $products = Product::where('in_sale', 'No')->orderBy('name','DESC')->paginate($paginate);
+                        $sf = 'name';
+                        $title = 'Popular Products';
+                        $pg = 16;    
+                        break;    
+        
+                    case '24':
+                        $products = Product::where('in_sale', 'No')->orderBy('name','DESC')->paginate($paginate);
+                        $sf = 'name';
+                        $title = 'Popular Products';
+                        $pg = 24;    
                         break;
                     }
                 break;
-            case "name":
+
+                
+                
+            
+
+
+            case 'price':
                 switch ($paginate) {
-                    case '1':
-                        $products = Product::orderBy('name','DESC')->paginate($paginate);
-                        $sf = 'name';
-                        $pg = 1;
+                    case '8':
+                        $products = Product::where('in_sale', 'No')->orderBy('price','DESC')->paginate($paginate);
+                        $sf = 'price';
+                        $title = 'Popular Products';
+                        $pg = 8;    
                         break;
-                    case '2':
-                        $products = Product::orderBy('name','DESC')->paginate($paginate);
-                        $sf = "ame";
-                        $pg = 2;
-                        break;
-                    case '3':
-                        $products = Product::orderBy('name','DESC')->paginate($paginate);
-                        $sf = 'name';
-                        $pg = 3;
+                    
+                    case '16':
+                        $products = Product::where('in_sale', 'No')->orderBy('price','DESC')->paginate($paginate);
+                        $sf = 'price';
+                        $title = 'Popular Products';
+                        $pg = 16;    
+                        break;    
+        
+                    case '24':
+                        $products = Product::where('in_sale', 'No')->orderBy('price','DESC')->paginate($paginate);
+                        $sf = 'price';
+                        $title = 'Popular Products';
+                        $pg = 24;    
                         break;
                     }
                     break;
-            
-            case "price":
-                switch ($paginate) {
-                    case '1':
-                        $products = Product::orderBy('price','DESC')->paginate($paginate);
-                        $sf = 'price';
-                        $pg = 1;
-                        break;
-                    case '2':
-                        $products = Product::orderBy('price','DESC')->paginate($paginate);
-                        $sf = 'price';
-                        $pg = 2;
-                        break;
-                    case '3':
-                        $products = Product::orderBy('price','DESC')->paginate($paginate);
-                        $sf = 'price';
-                        $pg = 3;
-                        break;
-                    }
+                
+        }break;
+        
+        
+        
+        case 'featured':
+            switch ($sort) {
+                case 'default':
+                    
+                    switch ($paginate) {
+                        case '8':
+                            $products = Product::where('is_featured', 'Yes')->inRandomOrder()->paginate($paginate);
+                            $sf = 'default';
+                            $title = 'Featured Products';
+                            $pg = 8;    
+                            break;
+                        
+                        case '16':
+                            $products = Product::where('is_featured', 'Yes')->inRandomOrder()->paginate($paginate);
+                            $sf = 'default';
+                            $title = 'Featured Products';
+                            $pg = 16;    
+                            break;    
+    
+                        case '24':
+                            $products = Product::where('is_featured', 'Yes')->inRandomOrder()->paginate($paginate);
+                            $sf = 'default';
+                            $title = 'Featured Products';
+                            $pg = 24;    
+                            break;
+                        }
                 break;
-            
-            case "date":
-                switch ($paginate) {
-                    case '1':
-                        $products = Product::orderBy('created_at','DESC')->paginate($paginate);
-                        $sf = 'date';
-                        $pg = 1;
-                        break;
-                    case '2':
-                        $products = Product::orderBy('created_at','DESC')->paginate($paginate);
-                        $sf = 'date';
-                        $pg = 2;
-                        break;
-                    case '3':
-                        $products = Product::orderBy('created_at','DESC')->paginate($paginate);
-                        $sf = 'date';
-                        $pg = 3;
-                        break;
-                    }
-            break;
+                    
+                case 'date':
+                    switch ($paginate) {
+                        case '8':
+                            $products = Product::where('is_featured', 'Yes')->orderBy('created_at','DESC')->paginate($paginate);
+                            $sf = 'date';
+                            $title = 'Featured Products';
+                            $pg = 8;    
+                            break;
+                
+                        case '16':
+                            $products = Product::where('is_featured', 'Yes')->orderBy('created_at','DESC')->paginate($paginate);
+                            $sf = 'date';
+                            $title = 'Featured Products';
+                            $pg = 16;    
+                            break;    
 
+                        case '24':
+                            $products = Product::where('is_featured', 'Yes')->orderBy('created_at','DESC')->paginate($paginate);
+                            $sf = 'date';
+                            $title = 'Featured Products';
+                            $pg = 24;    
+                            break;
+                }
+            break;        
+                        
+    
+                case 'name':
+                    switch ($paginate) {
+                        case '8':
+                            $products = Product::where('is_featured', 'Yes')->orderBy('name','DESC')->paginate($paginate);
+                            $sf = 'name';
+                            $title = 'Featured Products';
+                            $pg = 8;    
+                            break;
+                        
+                        case '16':
+                            $products = Product::where('is_featured', 'Yes')->orderBy('name','DESC')->paginate($paginate);
+                            $sf = 'name';
+                            $title = 'Featured Products';
+                            $pg = 16;    
+                            break;    
+            
+                        case '24':
+                            $products = Product::where('is_featured', 'Yes')->orderBy('name','DESC')->paginate($paginate);
+                            $sf = 'name';
+                            $title = 'Featured Products';
+                            $pg = 24;    
+                            break;
+                        }
+                        break;
+                        
+                
+                
+    
+    
+                case 'price':
+                    switch ($paginate) {
+                        case '8':
+                            $products = Product::where('is_featured', 'Yes')->orderBy('price','DESC')->paginate($paginate);
+                            $sf = 'price';
+                            $title = 'Featured Products';
+                            $pg = 8;    
+                            break;
+                        
+                        case '16':
+                            $products = Product::where('is_featured', 'Yes')->orderBy('price','DESC')->paginate($paginate);
+                            $sf = 'price';
+                            $title = 'Featured Products';
+                            $pg = 16;    
+                            break;    
+            
+                        case '24':
+                            $products = Product::where('is_featured', 'Yes')->orderBy('price','DESC')->paginate($paginate);
+                            $sf = 'price';
+                            $title = 'Featured Products';
+                            $pg = 24;    
+                            break;
+                        }
+                        break;   
+            }break;
+            
+            
+            
+
+            case 'latest':
+                switch ($sort) {
+                    case 'default':
+                        
+                        switch ($paginate) {
+                            case '8':
+                                $products = Product::orderBy('id','DESC')->inRandomOrder()->paginate($paginate);
+                                $sf = 'default';
+                                $title = 'Latest Products';
+                                $pg = 8;    
+                                break;
+                            
+                            case '16':
+                                $products = Product::orderBy('id','DESC')->inRandomOrder()->paginate($paginate);
+                                $sf = 'default';
+                                $title = 'Latest Products';
+                                $pg = 16;    
+                                break;    
+        
+                            case '24':
+                                $products = Product::orderBy('id','DESC')->inRandomOrder()->paginate($paginate);
+                                $sf = 'default';
+                                $title = 'Latest Products';
+                                $pg = 24;    
+                                break;
+                            }
+                            break;
+                        
+                        
+                            case 'date':
+                                switch ($paginate) {
+                                    case '8':
+                                        $products = Product::where('in_sale', 'No')->orderBy('created_at','DESC')->paginate($paginate);
+                                        $sf = 'date';
+                                        $title = 'Latest Products';
+                                        $pg = 8;    
+                                        break;
+                            
+                                    case '16':
+                                        $products = Product::where('in_sale', 'No')->orderBy('created_at','DESC')->paginate($paginate);
+                                        $sf = 'date';
+                                        $title = 'Latest Products';
+                                        $pg = 16;    
+                                        break;    
+            
+                                    case '24':
+                                        $products = Product::where('in_sale', 'No')->orderBy('created_at','DESC')->paginate($paginate);
+                                        $sf = 'date';
+                                        $title = 'Latest Products';
+                                        $pg = 24;    
+                                        break;
+                            }
+                        break;        
+        
+                    case 'name':
+                        switch ($paginate) {
+                            case '8':
+                                $products = Product::orderBy('id','DESC')->orderBy('name','DESC')->paginate($paginate);
+                                $sf = 'name';
+                                $title = 'Latest Products';
+                                $pg = 8;    
+                                break;
+                            
+                            case '16':
+                                $products = Product::orderBy('id','DESC')->orderBy('name','DESC')->paginate($paginate);
+                                $sf = 'name';
+                                $title = 'Latest Products';
+                                $pg = 16;    
+                                break;    
+                
+                            case '24':
+                                $products = Product::orderBy('id','DESC')->orderBy('name','DESC')->paginate($paginate);
+                                $sf = 'name';
+                                $title = 'Latest Products';
+                                $pg = 24;    
+                                break;
+                            }
+                            break;
+                    
+        
+        
+                    case 'price':
+                        switch ($paginate) {
+                            case '8':
+                                $products = Product::orderBy('id','DESC')->orderBy('price','DESC')->paginate($paginate);
+                                $sf = 'price';
+                                $title = 'Latest Products';
+                                $pg = 8;    
+                                break;
+                            
+                            case '16':
+                                $products = Product::orderBy('id','DESC')->orderBy('price','DESC')->paginate($paginate);
+                                $sf = 'price';
+                                $title = 'Latest Products';
+                                $pg = 16;    
+                                break;    
+                
+                            case '24':
+                                $products = Product::orderBy('id','DESC')->orderBy('price','DESC')->paginate($paginate);
+                                $sf = 'price';
+                                $title = 'Latest Products';
+                                $pg = 24;    
+                                break;
+                            }
+                    break;
+                }
+            break;               
         }
-        $products->withPath('/filter-products?sort='.$sort.'&show='.$paginate.'');
-        return view('allproducts', compact('products','sf','pg'));
+
+        $products->withPath('/filter-products/'.$f.'?sort='.$sort.'&show='.$paginate.'');
+        return view('allproducts', compact('products','sf','pg','title','f'));
+
+
+
+
+        // switch ($sort) {
+        //     case "default":
+        //         switch ($paginate) {
+        //             case '1':
+        //                 $products = Product::orderBy('id','DESC')->paginate($paginate);
+        //                 $sf = 'default';
+        //                 $pg = 1; 
+        //                 break;
+        //             case '2':
+        //                 $products = Product::orderBy('id','DESC')->paginate($paginate);
+        //                 $sf = 'default';
+        //                 $pg = 2;
+        //                 break;
+        //             case '3':
+        //                 $products = Product::orderBy('id','DESC')->paginate($paginate);
+        //                 $sf = 'default';
+        //                 $pg = 3;
+        //                 break;
+        //             }
+        //         break;
+        //     case "name":
+        //         switch ($paginate) {
+        //             case '1':
+        //                 $products = Product::orderBy('name','DESC')->paginate($paginate);
+        //                 $sf = 'name';
+        //                 $pg = 1;
+        //                 break;
+        //             case '2':
+        //                 $products = Product::orderBy('name','DESC')->paginate($paginate);
+        //                 $sf = "ame";
+        //                 $pg = 2;
+        //                 break;
+        //             case '3':
+        //                 $products = Product::orderBy('name','DESC')->paginate($paginate);
+        //                 $sf = 'name';
+        //                 $pg = 3;
+        //                 break;
+        //             }
+        //             break;
+            
+        //     case "price":
+        //         switch ($paginate) {
+        //             case '1':
+        //                 $products = Product::orderBy('price','DESC')->paginate($paginate);
+        //                 $sf = 'price';
+        //                 $pg = 1;
+        //                 break;
+        //             case '2':
+        //                 $products = Product::orderBy('price','DESC')->paginate($paginate);
+        //                 $sf = 'price';
+        //                 $pg = 2;
+        //                 break;
+        //             case '3':
+        //                 $products = Product::orderBy('price','DESC')->paginate($paginate);
+        //                 $sf = 'price';
+        //                 $pg = 3;
+        //                 break;
+        //             }
+        //         break;
+            
+        //     case "date":
+        //         switch ($paginate) {
+        //             case '1':
+        //                 $products = Product::orderBy('created_at','DESC')->paginate($paginate);
+        //                 $sf = 'date';
+        //                 $pg = 1;
+        //                 break;
+        //             case '2':
+        //                 $products = Product::orderBy('created_at','DESC')->paginate($paginate);
+        //                 $sf = 'date';
+        //                 $pg = 2;
+        //                 break;
+        //             case '3':
+        //                 $products = Product::orderBy('created_at','DESC')->paginate($paginate);
+        //                 $sf = 'date';
+        //                 $pg = 3;
+        //                 break;
+        //             }
+        //     break;
+
+        // }
+        // $products->withPath('/filter-products?sort='.$sort.'&show='.$paginate.'');
+        // return view('allproducts', compact('products','sf','pg'));
         
     }
 

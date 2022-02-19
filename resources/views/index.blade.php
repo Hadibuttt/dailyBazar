@@ -367,7 +367,7 @@
                         </li>
                         @endforeach      
                   </ul>
-                  <a class="aa-browse-btn" href="/browse-products?filter=popular">Browse all Product <span class="fa fa-long-arrow-right"></span></a>
+                  <a class="aa-browse-btn" href="/browse-products/popular">Browse all Product <span class="fa fa-long-arrow-right"></span></a>
                 </div>
                 <!-- / popular product category -->
                 
@@ -400,7 +400,7 @@
                   </li>
                   @endforeach                                                                                   
                   </ul>
-                  <a class="aa-browse-btn" href="/browse-products?filter=featured">Browse all Product <span class="fa fa-long-arrow-right"></span></a>
+                  <a class="aa-browse-btn" href="/browse-products/featured">Browse all Product <span class="fa fa-long-arrow-right"></span></a>
                 </div>
                 <!-- / featured product category -->
 
@@ -434,7 +434,7 @@
                   </li>
                   @endforeach                                                                                
                   </ul>
-                   <a class="aa-browse-btn" href="/browse-products?filter=latest">Browse all Product <span class="fa fa-long-arrow-right"></span></a>
+                   <a class="aa-browse-btn" href="/browse-products/latest">Browse all Product <span class="fa fa-long-arrow-right"></span></a>
                 </div>
                 <!-- / latest product category -->              
               </div>
