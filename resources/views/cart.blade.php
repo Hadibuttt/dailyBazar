@@ -59,7 +59,7 @@
                             <?php $total += $details['price'] * $details['quantity'] ?>
                        <tr>
                     <td><a class="remove" href="/remove-from-cart/{{ $id }}"><fa class="fa fa-close"></fa></a></td>
-                    <td><a href="#"><img src="{{ $details['photo'] }}" width="100" height="100" alt="img"></a></td>
+                    <td><a href="#"><img src="{{asset('img/product-img/main/'.$details['photo'].'')}}" width="100" height="100" alt="img"></a></td>
                          <td><a class="aa-cart-title" href="#">{{ $details['name'] }}</a></td>
                          <td>{{ $details['price'] }}</td>
                          <td><input class="aa-cart-quantity" name="quantity" type="number" value="{{ $details['quantity'] }}"></td>

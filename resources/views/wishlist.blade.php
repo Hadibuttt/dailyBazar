@@ -61,7 +61,7 @@
                 @foreach ($wishlist as $wproduct)
                        <tr>
                          <td><a class="remove" href="/remove-from-wishlist/{{$wproduct->id}}"><fa class="fa fa-close"></fa></a></td>
-                         <td><a href="/product/{{$wproduct->p_id}}"><img src="{{$wproduct->photo}}" alt="img"></a></td>
+                         <td><a href="/product/{{$wproduct->p_id}}"><img src="{{asset('img/product-img/main/'.$wproduct->photo.'')}}" alt="img"></a></td>
                          <td><a class="aa-cart-title" href="/product/{{$wproduct->p_id}}">{{$wproduct->name}}</a></td>
                          <td>${{$wproduct->price}}</td>
                          <td>{{$wproduct->status}}</td>

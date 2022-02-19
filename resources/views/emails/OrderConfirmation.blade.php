@@ -99,7 +99,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td rowspan="4" style="padding-right: 10px; padding-bottom: 10px;">
-                                                        <img style="height: 80px;" src="{{$item->product_image}}" alt="Product Image" />
+                                                        <img style="height: 80px;" src="{{asset('img/product-img/main/'.$item->product_image.'')}}" alt="Product Image" />
                                                     </td>
                                                     <td colspan="2" style="font-size: 14px; font-weight: bold; color: #666666; padding-bottom: 5px;">
                                                         {{$item->product_title}}
@@ -184,7 +184,7 @@
                                                 
                                                 <tr>
                                                     <td colspan="2" style="width: 100%; text-align: center; font-style: italic; font-size: 13px; font-weight: 600; color: #666666; padding: 15px 0; border-top: 1px solid #eeeeee;">
-                                                        <b style="font-size: 14px;">dailyBazaar © 2021 - All Rights Reserved</b>
+                                                        <b style="font-size: 14px;">dailyBazaar © <?php echo date("Y"); ?> - All Rights Reserved</b>
                                                     </td>
                                                 </tr>
                                             </tbody>

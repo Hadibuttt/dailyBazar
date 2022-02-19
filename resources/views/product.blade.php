@@ -4,7 +4,7 @@
 
 <!-- catg header banner section -->
 <section id="aa-catg-head-banner">
-    <img src="{{asset('img/fashion/fashion-header-bg-8.jpg')}}" alt="fashion img">
+    <img src="{{asset('img/fashion/account.jpg')}}" alt="fashion img">
     <div class="aa-catg-head-banner-area">
       <div class="container">
        <div class="aa-catg-head-banner-content">
@@ -33,17 +33,17 @@
                    <div class="aa-product-view-slider">                                
                      <div id="demo-1" class="simpleLens-gallery-container">
                        <div class="simpleLens-container">
-                         <div class="simpleLens-big-image-container"><a data-lens-image="{{asset('img/view-slider/large/polo-shirt-4.png')}}" class="simpleLens-lens-image"><img src="{{$product->photo}}" class="simpleLens-big-image"></a></div>
+                         <div class="simpleLens-big-image-container"><a data-lens-image="{{asset('img/product-img/main/'.$product->photo.'')}}" class="simpleLens-lens-image"><img src="{{asset('img/product-img/main/'.$product->photo.'')}}" class="simpleLens-big-image"></a></div>
                        </div>
                        <div class="simpleLens-thumbnails-container">
-                           <a data-big-image="{{$product->photo}}" data-lens-image="{{$product->photo}}" class="simpleLens-thumbnail-wrapper" href="#">
-                             <img width="44px" height="55px" src="{{$product->photo}}">
+                           <a data-big-image="{{asset('img/product-img/image1/'.$productImages->image_1.'')}}" data-lens-image="{{asset('img/product-img/image1/'.$productImages->image_1.'')}}" class="simpleLens-thumbnail-wrapper" href="#">
+                             <img width="44px" height="55px" src="{{asset('img/product-img/image1/'.$productImages->image_1.'')}}">
                            </a>                                    
-                           <a data-big-image="{{$product->photo}}" data-lens-image="{{$product->photo}}" class="simpleLens-thumbnail-wrapper" href="#">
-                             <img width="44px" height="55px" src="{{$product->photo}}">
+                           <a data-big-image="{{asset('img/product-img/image2/'.$productImages->image_2.'')}}" data-lens-image="{{asset('img/product-img/image2/'.$productImages->image_2.'')}}" class="simpleLens-thumbnail-wrapper" href="#">
+                             <img width="44px" height="55px" src="{{asset('img/product-img/image2/'.$productImages->image_2.'')}}">
                            </a>
-                           <a data-big-image="{{$product->photo}}" data-lens-image="{{asset('img/view-slider/large/polo-shirt-4.png')}}" class="simpleLens-thumbnail-wrapper" href="#">
-                             <img width="44px" height="55px" src="{{$product->photo}}">
+                           <a data-big-image="{{asset('img/product-img/image3/'.$productImages->image_3.'')}}" data-lens-image="{{asset('img/product-img/image3/'.$productImages->image_3.'')}}" class="simpleLens-thumbnail-wrapper" href="#">
+                             <img width="44px" height="55px" src="{{asset('img/product-img/image3/'.$productImages->image_3.'')}}">
                            </a>
                        </div>
                      </div>
@@ -63,7 +63,7 @@
                         <span>Out of stock</span></p>
                        @endif
                      </div>
-                     <p>{{$product->description}}</p>
+                     <p>{!!$product->description!!}</p>
     @if ($product_category->name == 'Men' || $product_category->name == 'Kids' || $product_category->name == 'Women')
                      <h4>Size</h4>
                      <div >
@@ -95,14 +95,14 @@
                            <option value="5">5</option>
                          </select>
                        <p class="aa-prod-category">
-                         Category: <a href="#">{{$product_category->name}}</a>
+                         Category: <a href="/category/{{$product_category->slug}}">{{$product_category->name}}</a>
                        </p>
                      </div>
                 <div class="aa-prod-view-bottom">
         <button style="background-color:white;" class="aa-add-to-cart-btn" type="submit">Add To Cart</button>
                        {{-- <a  href="#">Add To Cart</a> --}}
                     </form>
-                       <a class="aa-add-to-cart-btn" href="#">Wishlist</a>
+                       <a class="aa-add-to-cart-btn" href="/add-to-wishlist/{{$product->id}}">Wishlist</a>
                      </div>
                    </div>
                  </div>
@@ -117,16 +117,7 @@
                <!-- Tab panes -->
                <div class="tab-content">
                  <div class="tab-pane fade in active" id="description">
-                   <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                   <ul>
-                     <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, culpa!</li>
-                     <li>Lorem ipsum dolor sit amet.</li>
-                     <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
-                     <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor qui eius esse!</li>
-                     <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam, modi!</li>
-                   </ul>
-                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, iusto earum voluptates autem esse molestiae ipsam, atque quam amet similique ducimus aliquid voluptate perferendis, distinctio!</p>
-                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis ea, voluptas! Aliquam facere quas cumque rerum dolore impedit, dicta ducimus repellat dignissimos, fugiat, minima quaerat necessitatibus? Optio adipisci ab, obcaecati, porro unde accusantium facilis repudiandae.</p>
+                   <p>{!!$product->description!!}</p>
                  </div>
                  <div class="tab-pane fade " id="review">
                   <div class="aa-product-review-area">
@@ -212,7 +203,7 @@
                  @foreach ($relatedproducts as $rproduct)
                  <li>
                    <figure>
-                     <a class="aa-product-img" href="/product/{{$rproduct->id}}"><img src="{{$rproduct->photo}}" width="250" height="300" alt="{{$rproduct->name}}"></a>
+                     <a class="aa-product-img" href="/product/{{$rproduct->id}}"><img src="{{asset('img/product-img/main/'.$rproduct->photo.'')}}" width="250" height="300" alt="{{$rproduct->name}}"></a>
                      <a class="aa-add-card-btn" href="/add-to-cart/{{$rproduct->id}}"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                       <figcaption>
                        <h4 class="aa-product-title"><a href="#">{{$rproduct->name}}</a></h4>
@@ -223,13 +214,15 @@
                      <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
                    </div>
                    <!-- product badge -->
-            @if ($rproduct->stock > 0)    
-                @if ($rproduct->in_sale == 'Yes')
-                    <span class="aa-badge aa-sale" href="#">SALE!</span>
-                @endif
-            @else
-                    <span class="aa-badge aa-sold-out" href="#">Sold Out!</span>
-            @endif
+              @if ($rproduct->stock > 0)    
+                   @if ($rproduct->in_sale == 'Yes')
+                       <span class="aa-badge aa-sale" href="#">SALE!</span>
+                   @else
+                     <span class="aa-badge aa-hot" href="#">HOT!</span>
+                   @endif
+               @else
+                       <span class="aa-badge aa-sold-out" href="#">Sold Out!</span>
+               @endif
                  </li>
                  @endforeach
                </ul>      

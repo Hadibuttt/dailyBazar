@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\View;
 use App\Mail\OrderConfirmation;
 use App\Models\Product;
+use App\Models\ProductImages;
 use App\Models\category;
 use App\Models\subcategory;
 use App\Models\Address;
@@ -264,7 +265,9 @@ class ProductsController extends Controller
         $relatedproducts = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->inRandomOrder()->take(8)->get();
         $count = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->count();
 
-        return view('product', compact('product','product_category','relatedproducts','count'));
+        $productImages = ProductImages::where('product_id',$id)->first();
+
+        return view('product', compact('product','product_category','relatedproducts','count','productImages'));
     }
 
     public function allproducts($filter)

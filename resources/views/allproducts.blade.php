@@ -2,8 +2,6 @@
 @section('title', $title)
 @section('content')
  
-<?php  $filter = request('filter') ?>
-
   <!-- catg header banner section -->
   <section id="aa-catg-head-banner">
    <img src="{{asset('img/fashion/account.jpg')}}" alt="fashion img">

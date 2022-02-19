@@ -154,7 +154,7 @@
 <div class="aa-cartbox-summary">
   <ul>
     <li>
-      <a class="aa-cartbox-img" href="#"><img src="{{ $details['photo'] }}" width="100" height="100" alt="img"></a>
+      <a class="aa-cartbox-img" href="#"><img src="{{asset('img/product-img/main/'.$details['photo'].'')}}" width="100" height="100" alt="img"></a>
       <div class="aa-cartbox-info">
         <h4><a href="#">{{ $details['name'] }}</a></h4>
         <p>{{ $details['quantity'] }} x ${{ $details['price'] }}</p>
