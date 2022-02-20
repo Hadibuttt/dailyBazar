@@ -200,8 +200,8 @@
                   </div>
                   <h4>Payment Method</h4>
                   <div class="aa-payment-method">                    
-                    <label for="cashdelivery"><input type="radio" value="cod" name="paymethod" required="" id="cod"> Cash on Delivery </label>
-                    <label for="paypal"><input type="radio" value="paypal" id="paypal" name="paymethod" required=""> Via Paypal </label>
+                    <label for="cashdelivery"><input type="radio" value="COD" name="paymethod" required="" id="cod"> Cash on Delivery </label>
+                    <label for="paypal"><input type="radio" value="Paypal" id="paypal" name="paymethod" required=""> Via Paypal </label>
                     <img src="https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg" border="0" alt="PayPal Acceptance Mark">    
                     <input type="submit" value="Place Order" class="aa-browse-btn">                
                     <input type="hidden" name="user_id" value="{{Auth::user()->id}}">                

@@ -959,7 +959,7 @@ class ProductsController extends Controller
                 //Create Address
                 Address::create($validatedData);
                 
-                if($request->paymethod == 'cod'){
+                if($request->paymethod == 'COD'){
                 //Order Details Validated Data
                 $validatedDetails = $request->validate([
                     'name' => 'string|min:3',
@@ -975,7 +975,9 @@ class ProductsController extends Controller
                 //Order
                 $order = new Order;
                 $order->user_id = $request->user_id;
-                $order->status = '0';
+                $order->paymethod = $request->paymethod;
+                $order->paystatus = 0;
+                // $order->status = '0';
                 $order->save();
 
                 //Order Details
@@ -1027,7 +1029,7 @@ class ProductsController extends Controller
         }
             else{
 
-                if($request->paymethod == 'cod'){
+                if($request->paymethod == 'COD'){
                 //Order Details Validated Data
                 $validatedDetails = $request->validate([
                     'name' => 'string|min:3',
@@ -1043,7 +1045,9 @@ class ProductsController extends Controller
                 //Order
                 $order = new Order;
                 $order->user_id = $request->user_id;
-                $order->status = '0';
+                $order->paymethod = $request->paymethod;
+                $order->paystatus = 0;
+                // $order->status = '0';
                 $order->save();
 
                 //Order Details

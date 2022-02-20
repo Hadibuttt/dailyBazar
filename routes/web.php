@@ -57,6 +57,11 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::patch('/update-product/{slug}/success',[App\Http\Controllers\AdminProductController::class, 'update']);
     Route::get('/delete/{slug}',[App\Http\Controllers\AdminProductController::class, 'destroy']);
 
+    //Admin Order Routes
+    Route::get('/order', [App\Http\Controllers\OrderController::class, 'index']);
+    Route::get('/order/{id}', [App\Http\Controllers\OrderController::class, 'show']);
+
+
     //Ajax Routes
     Route::post('/getsubcategory', [App\Http\Controllers\AjaxController::class, 'getsubcategory'] )->name('getsubcategory');
 
