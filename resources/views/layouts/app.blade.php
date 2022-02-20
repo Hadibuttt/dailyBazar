@@ -185,7 +185,7 @@
       <div class="aa-cartbox-summary">
         <ul>
           <li>
-              <h4><a>Cart is Empty!</a></h4>
+              <h4>Cart is Empty!</h4>
           </li>
         </ul>
       </div>            

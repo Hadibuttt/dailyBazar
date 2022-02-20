@@ -41,9 +41,9 @@
                 <div class="aa-show-form">
                   <label for="">Show</label>
                   <select name="show" required>
-                    <option value="1" @if ($pg == 1) selected="1" @endif>1</option>
-                    <option value="2" @if ($pg == 2) selected="2" @endif>2</option>
-                    <option value="3" @if ($pg == 3) selected="3" @endif>3</option>
+                    <option value="8" @if ($pg == 8) selected="8" @endif>8</option>
+                    <option value="16" @if ($pg == 16) selected="16" @endif>16</option>
+                    <option value="24" @if ($pg == 24) selected="24" @endif>24</option>
                   </select>
                 </div>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -62,7 +62,7 @@
             @foreach ($products as $product)
             <li>
                 <figure>
-                  <a class="aa-product-img" href="/product/{{$product->id}}"><img src="{{ $product->photo }}" width="250" height="300" alt="polo shirt img"></a>
+                  <a class="aa-product-img" href="/product/{{$product->id}}"><img src="{{asset('img/product-img/main/'.$product->photo.'')}}" width="250" height="300" alt="{{$product->name}} img"></a>
                   <a class="aa-add-card-btn" href="/add-to-cart/{{$product->id}}"><span class="fa fa-shopping-cart add-to-cart"></span>Add To Cart</a>
                   <figcaption>
                     <h4 class="aa-product-title"><a href="#">{{ $product->name }}</a></h4>
@@ -73,9 +73,11 @@
                   <a href="/add-to-wishlist/{{$product->id}}" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>                     
                 </div>
                 <!-- product badge -->
-            @if ($product->stock > 0)    
+                @if ($product->stock > 0)    
                 @if ($product->in_sale == 'Yes')
                     <span class="aa-badge aa-sale" href="#">SALE!</span>
+                @else
+                  <span class="aa-badge aa-hot" href="#">HOT!</span>
                 @endif
             @else
                     <span class="aa-badge aa-sold-out" href="#">Sold Out!</span>
