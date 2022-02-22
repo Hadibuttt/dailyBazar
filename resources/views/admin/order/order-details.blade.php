@@ -78,7 +78,6 @@
     }
 
 </style>
-<title data-react-html="true">OrderAbout</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="referrer" content="never">
@@ -183,7 +182,7 @@
 <div class="Polaris-Page-Header_z4uwg Polaris-Page-Header--hasNavigation_gfpa8 Polaris-Page-Header--hasActionMenu_1wx04 Polaris-Page-Header--mobileView_i07vm Polaris-Page-Header--newDesignLanguage_1rik8 Polaris-Page-Header--mediumTitle_bfol6">
 <div class="Polaris-Page-Header__Row_375v7 Polaris-Page-Header__RowCondensed_1gexu">
 <div class="Polaris-Page-Header__BreadcrumbWrapper_1tgwk Polaris-Page-Header--newDesignLanguage_1rik8">
-<nav role="navigation"><a data-polaris-unstyled="true" class="Polaris-Breadcrumbs__Breadcrumb_llsun Polaris-Breadcrumbs--newDesignLanguage_1rik8" href="/admin/orders?selectedView=all"><span class="Polaris-Breadcrumbs__ContentWrapper_1yvfo"><span class="Polaris-Breadcrumbs__Icon_yj27d"><span class="Polaris-Icon_yj27d Polaris-Icon--newDesignLanguage_1rik8"><svg viewBox="0 0 20 20" class="Polaris-Icon__Svg_375hu" focusable="false" aria-hidden="true">
+<nav role="navigation"><a data-polaris-unstyled="true" class="Polaris-Breadcrumbs__Breadcrumb_llsun Polaris-Breadcrumbs--newDesignLanguage_1rik8" href="/order"><span class="Polaris-Breadcrumbs__ContentWrapper_1yvfo"><span class="Polaris-Breadcrumbs__Icon_yj27d"><span class="Polaris-Icon_yj27d Polaris-Icon--newDesignLanguage_1rik8"><svg viewBox="0 0 20 20" class="Polaris-Icon__Svg_375hu" focusable="false" aria-hidden="true">
 <path d="M17 9H5.414l3.293-3.293a.999.999 0 1 0-1.414-1.414l-5 5a.999.999 0 0 0 0 1.414l5 5a.997.997 0 0 0 1.414 0 .999.999 0 0 0 0-1.414L5.414 11H17a1 1 0 1 0 0-2z"></path>
 </svg></span></span><span class="Polaris-VisuallyHidden_yrtt5">Orders</span></span></a></nav>
 </div>
@@ -192,7 +191,7 @@
 <div class="Polaris-Header-Title__TitleAndSubtitleWrapper_40sxf">
 <div class="Polaris-Header-Title__TitleWithMetadataWrapper_pdqv7 Polaris-Header-Title--newDesignLanguage_1rik8">
 <div class="Polaris-Header-Title_2qj8j">
-<h1 class="Polaris-Header-Title--newDesignLanguageTitle_1wh8d">#1074</h1>
+<h1 class="Polaris-Header-Title--newDesignLanguageTitle_1wh8d">#{{$order->id}}</h1>
 
 </div><div class="Polaris-ActionMenu-Actions__ActionsLayout_w56ri Polaris-ActionMenu-Actions--newDesignLanguage_1rik8">
 <div class="Polaris-ButtonGroup_yy85z Polaris-ButtonGroup--extraTight_1xh3x">
@@ -209,7 +208,7 @@
 </div>
 <div class="Polaris-Page-Header__Row_375v7">
 <div class="Polaris-Page-Header__LeftAlign_1d6sz">
-<div class="Polaris-Page-Header__AdditionalMetaData_1isxr"><span class="Polaris-TextStyle--variationSubdued_1segu">December 6, 2020 at <span class="_2Gbfr">3:46 pm</span> from Draft Orders</span></div>
+<div class="Polaris-Page-Header__AdditionalMetaData_1isxr"><span class="Polaris-TextStyle--variationSubdued_1segu">Created at <?php echo date("F j, Y, g:i a", strtotime($order->created_at));  ?></span></div>
 </div>
 <div class="Polaris-Page-Header__RightAlign_1ok1p">
 <div class="Polaris-Page-Header__AdditionalNavigationWrapper_1kkex"></div>
@@ -230,32 +229,40 @@
 <path d="M8.5 17a8.36 8.36 0 118.35-8.36A8.35 8.35 0 018.5 17zm0-15a6.69 6.69 0 106.68 6.68A6.68 6.68 0 008.5 1.91z"></path>
 <path class="halo-success_svg__cls-2" d="M7.66 11.09a.82.82 0 01-.59-.24L5.4 9.18A.84.84 0 015.45 8a.82.82 0 011.13 0l1.08 1.08 2.75-2.75a.83.83 0 011.18 1.18l-3.34 3.34a.82.82 0 01-.59.24z"></path>
 </svg></span></span>
+
+@php $qty = 0;  @endphp
+@foreach ($items as $item)
+    @if ($order->id == $item->order_id)
+        <?php $qty++; ?>
+    @endif
+@endforeach   
+
 <div class="_1UHYc">
-<h2 class="Polaris-Heading_1brcv">Fulfilled (2)</h2>
-<p class="_3EYSM">#1074-F2</p>
+<h2 class="Polaris-Heading_1brcv">Items ({{$qty}})</h2>
 </div>
-<div class="_3BwLE">d-326 sector 63</div>
 </div>
 </div>
 <div class="">
 <div class="Polaris-Card__Section_1b1h1">
 <div class="Polaris-Card__Subsection_197ob">
 <ul class="_1107R">
+<?php $subtotal = 0; ?>
+@foreach ($items as $item)
+@php $subtotal = $subtotal + ($item->product_price * $item->product_quantity); @endphp
 <li class="_1XtKD">
 <div class="_2ysro _1LZu7">
 <div class="sdK5R">
 <div class="_2dXGy">
-<div class="_2E0xL"><span class="Polaris-Badge_2qgie">1</span></div><span class="Polaris-Thumbnail_15hj1 Polaris-Thumbnail--sizeSmall_7647q"><img src="https://cdn.shopify.com/s/files/1/2850/4238/products/8_252F2_252Fe_252F3_252F82e3b0c3120ecc7327e092a214738900212437ae_11134796_6865_1260b6af-8ca7-4434-a2cd-c17827262ab9_160x160.jpg?v=1606386331" alt=""></span>
+<div class="_2E0xL"><span class="Polaris-Badge_2qgie">{{$item->product_quantity}}</span></div><span class="Polaris-Thumbnail_15hj1 Polaris-Thumbnail--sizeSmall_7647q"><img src="{{asset('img/product-img/main/'.$item->product_image.'')}}" alt=""></span>
 </div>
 </div>
 <div class="_18dua">
 <div class="_3pTEV">
 <div class="_1Hwi_">
-<div><a data-polaris-unstyled="true" class="Polaris-Link_yj5sy" href="/admin/products/4799732285489/variants/32541055942705">Approx APPMP4018GBW MP3 player &amp; recorder 11134796</a></div>
-<div><span class="Polaris-TextStyle--variationSubdued_1segu">SKU: 11134796</span></div>
+<div><a data-polaris-unstyled="true" class="Polaris-Link_yj5sy">{{$item->product_title}}</a></div>
 </div>
-<div class="_15gHI">€230.00 × 1</div>
-<div class="_2cNEq">€230.00</div>
+<div class="_15gHI">${{$item->product_price}} × {{$item->product_quantity}}</div>
+<div class="_2cNEq">${{$item->product_price * $item->product_quantity}}</div>
 </div>
 <div>
 <ul class="Polaris-List_yj3nl"></ul>
@@ -263,29 +270,8 @@
 </div>
 </div>
 </li>
-<li class="_1XtKD">
-<div class="_2ysro _1LZu7">
-<div class="sdK5R">
-<div class="_2dXGy">
-<div class="_2E0xL"><span class="Polaris-Badge_2qgie">1</span></div><span class="Polaris-Thumbnail_15hj1 Polaris-Thumbnail--sizeSmall_7647q"><img src="https://cdn.shopify.com/s/files/1/2850/4238/products/4_252Ff_252Fc_252F7_252F4fc7c41b2418b082c0e5c1c3c7c156e25fbb47b6_15743_12312165_8610_160x160.jpg?v=1606219303" alt="asdasda"></span>
-</div>
-</div>
-<div class="_18dua">
-<div class="_3pTEV">
-<div class="_1Hwi_">
-<div><a data-polaris-unstyled="true" class="Polaris-Link_yj5sy" href="">A4Tech PK-835MJ 12312165</a></div>
-<div><span class="Polaris-TextStyle--variationSubdued_1segu">Mavi / XL / mt1</span></div>
-<div><span class="Polaris-TextStyle--variationSubdued_1segu">SKU: 12312165</span></div>
-</div>
-<div class="_15gHI">€230.00 × 1</div>
-<div class="_2cNEq">€230.00</div>
-</div>
-<div>
-<ul class="Polaris-List_yj3nl"></ul>
-</div>
-</div>
-</div>
-</li>
+@endforeach
+
 </ul>
 </div>
 </div>
@@ -322,8 +308,8 @@
 <div class="_3zI3E">
 <div class="_3umNZ">
 <div class="_1BtPd">
-<p><span class="Polaris-TextStyle--variationSubdued_1segu">2 items</span></p>
-<div class="uQ1bp"><span class="">€460.00</span></div>
+<p><span class="Polaris-TextStyle--variationSubdued_1segu">{{$qty}} items</span></p>
+<div class="uQ1bp"><span class="">${{$subtotal}}</span></div>
 </div>
 </div>
 </div>
@@ -332,8 +318,8 @@
 <div class="_3zI3E">
 <div class="_3umNZ">
 <div class="_1BtPd">
-<p><span class="Polaris-TextStyle--variationSubdued_1segu">IGST 18%</span></p>
-<div class="uQ1bp"><span class="">€82.80</span></div>
+<p><span class="Polaris-TextStyle--variationSubdued_1segu">IGST 10%</span></p>
+<div class="uQ1bp"><span class="">${{$subtotal/10}}</span></div>
 </div>
 </div>
 </div>
@@ -343,7 +329,7 @@
 <div class="_3umNZ">
 <div class="_1BtPd">
 <p><span class="Polaris-TextStyle--variationSubdued_1segu"></span></p>
-<div class="uQ1bp"><span class="Polaris-TextStyle--variationStrong_rpyvj">€542.80</span></div>
+<div class="uQ1bp"><span class="Polaris-TextStyle--variationStrong_rpyvj">${{$subtotal + ($subtotal/10)}}</span></div>
 </div>
 </div>
 </div>
@@ -357,7 +343,7 @@
 <div class="_3umNZ">
 <div class="_1BtPd">
 <p><span class="Polaris-TextStyle--variationSubdued_1segu"></span></p>
-<div class="uQ1bp"><span class="">€542.80</span></div>
+<div class="uQ1bp"><span class="">${{$total}}</span></div>
 </div>
 </div>
 </div>
@@ -457,7 +443,6 @@
 </div>
 </div>
 </div>
-<div class="_11mGF" id="TimelineEditor1HelpText">Only you and other staff can see comments</div>
 </div>
 </div>
 </div>
@@ -509,7 +494,7 @@
 <div class="qUtBd _3ohI1">
 <div class="pUfF9">
 <div class="_1WAyL _2253w"></div>
-<p class="_2f2zg">You unarchived this order.</p>
+<p class="_2f2zg">Order created at <?php echo date("F j, Y, g:i a", strtotime($order->created_at));  ?></p>
 <p class="_3NuG1">6:26 AM</p>
 </div>
 </div>
@@ -517,108 +502,8 @@
 </ul>
 </div>
 </div>
-<div class="_2AMGd">
-<div class="_1Dy_7">
-<div class="_3JpYM mK7Dg">
-<h3 aria-label="December 7" class="Polaris-Subheading_syouu">December 7</h3>
-</div>
-<ul class="_1A02w">
-<li class="_2uqdv">
-<div class="qUtBd _3ohI1">
-<div class="pUfF9">
-<div class="_1WAyL"></div>
-<p class="_2f2zg">This order was archived.</p>
-<p class="_3NuG1">4:51 AM</p>
-</div>
-</div>
-</li>
-<li class="_2uqdv">
-<div class="_3Gh76">
-<div class="bBN3t _3UEGX">
-<div class="pcrSk _2UaKP"></div>
-<div class="_1SlAd"><button class="_1r-F9" type="button"><span class="">You fulfilled 2 items from d-326 sector 63.</span>
-<div class="_1oXo0 _182xi"><span class="Polaris-Icon_yj27d Polaris-Icon--colorBase_nqlaq Polaris-Icon--isColored_uhqnf Polaris-Icon--newDesignLanguage_1rik8"><svg viewBox="0 0 20 20" class="Polaris-Icon__Svg_375hu" focusable="false" aria-hidden="true">
-<path d="M5 8l5 5 5-5H5z"></path>
-</svg></span></div>
-</button>
-<p class="_3X8e9">4:51 AM</p>
-</div>
-</div>
-</div>
-</li>
-<li class="_2uqdv">
-<div class="_3Gh76">
-<div class="bBN3t _3UEGX">
-<div class="pcrSk _2UaKP"></div>
-<div class="_1SlAd"><button class="_1r-F9" type="button"><span class="">You added a shipping address to this order.</span>
-<div class="_1oXo0 _182xi"><span class="Polaris-Icon_yj27d Polaris-Icon--colorBase_nqlaq Polaris-Icon--isColored_uhqnf Polaris-Icon--newDesignLanguage_1rik8"><svg viewBox="0 0 20 20" class="Polaris-Icon__Svg_375hu" focusable="false" aria-hidden="true">
-<path d="M5 8l5 5 5-5H5z"></path>
-</svg></span></div>
-</button>
-<p class="_3X8e9">4:50 AM</p>
-</div>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="_2AMGd">
-<div class="_1Dy_7">
-<div class="_3JpYM mK7Dg">
-<h3 aria-label="December 6" class="Polaris-Subheading_syouu">December 6</h3>
-</div>
-<ul class="_1A02w">
-<li class="_2uqdv">
-<div class="_3Gh76">
-<div class="bBN3t _3UEGX">
-<div class="pcrSk _2UaKP"></div>
-<div class="_1SlAd"><button class="_1r-F9" type="button"><span class="">A €542,80 EUR payment was processed on Cash on Delivery (COD).</span>
-<div class="_1oXo0 _182xi"><span class="Polaris-Icon_yj27d Polaris-Icon--colorBase_nqlaq Polaris-Icon--isColored_uhqnf Polaris-Icon--newDesignLanguage_1rik8"><svg viewBox="0 0 20 20" class="Polaris-Icon__Svg_375hu" focusable="false" aria-hidden="true">
-<path d="M5 8l5 5 5-5H5z"></path>
-</svg></span></div>
-</button>
-<p class="_3X8e9">3:47 PM</p>
-</div>
-</div>
-</div>
-</li>
-<li class="_2uqdv">
-<div class="qUtBd _3ohI1">
-<div class="pUfF9">
-<div class="_1WAyL _2253w"></div>
-<p class="_2f2zg">You added the email asas to this order.</p>
-<p class="_3NuG1">3:46 PM</p>
-</div>
-</div>
-</li>
-<li class="_2uqdv"></li>
-<li class="_2uqdv">
-<div class="_3Gh76">
-<div class="bBN3t _3UEGX">
-<div class="pcrSk"></div>
-<div class="_1SlAd"><button class="_1r-F9" type="button"><span class="">A €542,80 EUR payment is pending on Cash on Delivery (COD).</span>
-<div class="_1oXo0 _182xi"><span class="Polaris-Icon_yj27d Polaris-Icon--colorBase_nqlaq Polaris-Icon--isColored_uhqnf Polaris-Icon--newDesignLanguage_1rik8"><svg viewBox="0 0 20 20" class="Polaris-Icon__Svg_375hu" focusable="false" aria-hidden="true">
-<path d="M5 8l5 5 5-5H5z"></path>
-</svg></span></div>
-</button>
-<p class="_3X8e9">3:46 PM</p>
-</div>
-</div>
-</div>
-</li>
-<li class="_2uqdv">
-<div class="qUtBd _3ohI1">
-<div class="pUfF9">
-<div class="_1WAyL _2253w"></div>
-<p class="_2f2zg">You created this order from draft order <a href="https://akeneo-shop.myshopify.com/admin/draft_orders/582511263793">#D72</a>.</p>
-<p class="_3NuG1">3:46 PM</p>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</div>
+
+
 </div>
 </div>
 <div class="_1OP6w"></div>
@@ -639,7 +524,9 @@
 </div>
 </div>
 <div class="Polaris-Card__Section_1b1h1">
-<div class="zlQnq"><span class="Polaris-TextStyle--variationSubdued_1segu">No notes from customer</span></div>
+<div class="zlQnq"><span class="Polaris-TextStyle--variationSubdued_1segu">@if (!$detail->notes)
+    No notes from customer
+@else {{$detail->notes}} @endif</span></div>
 </div>
 </div>
 </div>
@@ -648,7 +535,7 @@
 <h2 class="Polaris-Heading_1brcv">Customer</h2>
 </div>
 <div>
-<div class="Polaris-Card__Section_1b1h1"><span class="Polaris-TextStyle--variationSubdued_1segu">No customer</span></div>
+<div class="Polaris-Card__Section_1b1h1"><span class="Polaris-TextStyle--variationSubdued_1segu">{{$customer->name}}</span></div>
 <div class="Polaris-Card__Section_1b1h1">
 <div class="Polaris-Card__SectionHeader_1aytf">
 <div class="Polaris-Stack_32wu2 Polaris-Stack--alignmentBaseline_aupj5">
@@ -665,7 +552,7 @@
 <div class="Polaris-Stack_32wu2 Polaris-Stack--noWrap_vecks">
 <div class="Polaris-Stack__Item_yiyol Polaris-Stack__Item--fill_vpuzt">
 <div class="Polaris-TextContainer_szg8b Polaris-TextContainer--spacingTight_1o4d6">
-<p><button type="button" class="Polaris-Link_yj5sy">obaidak123@gmail.com</button></p>
+<p><button type="button" class="Polaris-Link_yj5sy">{{$detail->email}}</button></p>
 </div>
 </div>
 <div class="Polaris-Stack__Item_yiyol"><span>
@@ -693,7 +580,7 @@
 <div class="Polaris-Stack_32wu2 Polaris-Stack--noWrap_vecks">
 <div class="Polaris-Stack__Item_yiyol Polaris-Stack__Item--fill_vpuzt">
 <div class="Polaris-TextContainer_szg8b Polaris-TextContainer--spacingTight_1o4d6">
-<p>asdas dasdasd<br>dasdas<br>a<br>s<br>34300 istanbul <br>Turkey<br><span>+905555555555</span></p>
+<p>{{$detail->address}}, {{$detail->district}}, {{$detail->city}}, {{$detail->country}}<br><span>{{$detail->phone}}</span></p>
 </div>
 </div>
 <div class="Polaris-Stack__Item_yiyol"><span>
@@ -705,57 +592,10 @@
 </div>
 </div>
 </div>
-<div class="Polaris-Card__Section_1b1h1">
-<div class="Polaris-Card__SectionHeader_1aytf">
-<h3 aria-label="Billing address" class="Polaris-Subheading_syouu">Billing address</h3>
-</div><span class="Polaris-TextStyle--variationSubdued_1segu">No billing address provided</span>
+
 </div>
 </div>
-</div>
-<!--
-<div class="_2O_bg">
-<div class="Polaris-Card_yis1o Polaris-Card--newDesignLanguage_1rik8">
-<div class="Polaris-Card__Header_z4uwg">
-<h2 class="Polaris-Heading_1brcv">Conversion summary</h2>
-</div>
-<div class="Polaris-Card__Section_1b1h1">There aren‘t any conversion details available for this order. <a target="_blank" href="https://help.shopify.com/en/manual/orders/conversion-summary#no-conversion-summary-available" rel="noopener noreferrer" data-polaris-unstyled="true" class="Polaris-Link_yj5sy">Learn more<span class="Polaris-Link__IconLockup_i2iua"><span class="Polaris-Link__IconLayout_1wnv2"><span class="Polaris-Icon_yj27d Polaris-Icon--newDesignLanguage_1rik8" aria-label="(opens a new window)"><svg viewBox="0 0 20 20" class="Polaris-Icon__Svg_375hu" focusable="false" aria-hidden="true">
-<path d="M14 13v1a1 1 0 0 1-1 1H6c-.575 0-1-.484-1-1V7a1 1 0 0 1 1-1h1c1.037 0 1.04 1.5 0 1.5-.178.005-.353 0-.5 0v6h6V13c0-1 1.5-1 1.5 0zm-3.75-7.25A.75.75 0 0 1 11 5h4v4a.75.75 0 0 1-1.5 0V7.56l-3.22 3.22a.75.75 0 1 1-1.06-1.06l3.22-3.22H11a.75.75 0 0 1-.75-.75z"></path>
-</svg></span></span></span></a></div>
-</div>
-</div>
--->
-<!--
-<div class="_2O_bg">
-<div class="Polaris-Card_yis1o Polaris-Card--newDesignLanguage_1rik8">
-<div class="Polaris-Card__Header_z4uwg">
-<h2 class="Polaris-Heading_1brcv">Fraud analysis</h2>
-</div>
-<div class="Polaris-Card__Section_1b1h1">
-<div class="Polaris-TextContainer_szg8b">
-<ol class="_2AOeR">
-<li class="_2J_mI">
-<div class="_1RpE0">
-<div class="_3BRSX IQYHd"></div>
-</div>
-<div class="_24LCp">The payment method used isn't available</div>
-</li>
-<li class="_2J_mI">
-<div class="_1RpE0">
-<div class="_3BRSX IQYHd"></div>
-</div>
-<div class="_24LCp">There was 1 payment attempt</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="Polaris-Card__Section_1b1h1">
-<div class="Polaris-Stack_32wu2 Polaris-Stack--distributionCenter_60gbr">
-<div class="Polaris-Stack__Item_yiyol"><button type="button" class="Polaris-Link_yj5sy">View full analysis</button></div>
-</div>
-</div>
-</div>
-</div>
--->
+
 <div class="_2O_bg">
 <div>
 <div class="Polaris-Card_yis1o Polaris-Card--subdued_17vaa Polaris-Card--newDesignLanguage_1rik8">

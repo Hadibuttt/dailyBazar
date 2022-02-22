@@ -23,12 +23,18 @@ class OrderController extends Controller
 
     public function show($id)
     {
-        $orders = Order::where('id',$id)->get();
-        $order_details = Order_Details::where('order_id',$id)->get();
-        $order_items = Order_Items::where('order_id',$id)->get();
-        $users = User::all();
+        $order = Order::where('id',$id)->first();
 
-        return view('admin.order.order-details', compact('orders','order_details','order_items','users'));
+        if(!$order){
+            abort(404);
+        }
+
+        $detail = Order_Details::where('order_id',$id)->first();
+        $items = Order_Items::where('order_id',$id)->get();
+        $total = Order_Items::where('order_id',$id)->orderBy('id','DESC')->value('total');
+        $customer = User::find($order->user_id);
+
+        return view('admin.order.order-details', compact('order','detail','items','total','customer'));
     }
 
 
