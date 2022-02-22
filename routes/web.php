@@ -61,6 +61,8 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('/order', [App\Http\Controllers\OrderController::class, 'index']);
     Route::get('/order/{id}', [App\Http\Controllers\OrderController::class, 'show']);
 
+    //Admin Customer Routes
+    Route::get('/customers', [App\Http\Controllers\CustomerController::class, 'index']);
 
     //Ajax Routes
     Route::post('/getsubcategory', [App\Http\Controllers\AjaxController::class, 'getsubcategory'] )->name('getsubcategory');
