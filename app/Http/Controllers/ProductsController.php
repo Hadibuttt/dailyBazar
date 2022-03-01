@@ -1024,7 +1024,7 @@ class ProductsController extends Controller
                 return redirect('/checkout');
             }
             else{
-                return redirect('/paypal');
+                return redirect('/payfast');
             }
         }
             else{
@@ -1092,7 +1092,7 @@ class ProductsController extends Controller
                 return redirect('/checkout');
             }
             else{
-                return redirect('/paypal');
+                return redirect('/payfast');
             }
         }
     }
