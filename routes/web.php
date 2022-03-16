@@ -93,5 +93,6 @@ Route::patch('/update-cart', [App\Http\Controllers\ProductsController::class, 'u
 
 Route::group(['middleware' => 'verified','auth'], function () {
     Route::get('/checkout', [App\Http\Controllers\ProductsController::class, 'checkout']);
+    Route::post('/payfast-response', [App\Http\Controllers\ProductsController::class, 'processResponse']);
     Route::post('/checkout/success', [App\Http\Controllers\ProductsController::class, 'checkout_success']);    
     });
