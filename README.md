@@ -25,6 +25,11 @@
 ## Screenshot:
 ![2](https://user-images.githubusercontent.com/58470182/159131008-fc53bed5-e520-45c5-8afe-eb2339b45f10.PNG)
 
+## Configure Access to dailyKhaata:
+ Follow the instructions for modifying configuration:
+- You can change the login response in app\Http\Responses\LoginResponse.php (Redirects authenticated user to dailyKhaata)
+- You can also change admin middleware response in app\Http\Middleware\IsAdmin.php (Ensures that only provided email can access dailyKhaata) 
+
 ## Usage:
 - Clone this repository on your Local Machine
 - Make sure you've Composer, Laravel (V7.1+), PHP, Xaamp(Local Host) installed
@@ -39,4 +44,3 @@
 3. `php artisan serve`
 
 :rocket: Application would be running on http://127.0.0.1:8000/
-:open_hands: Pull Requests are welcomed
