@@ -1,6 +1,3 @@
-# dailyBazaar 
-E-commerce solution allowing users to buy products over the internet rather than at a brick-and-mortar location.
-
 ## dailyBazaar:
  Providing the following features to the users: 
 - User Friendly Responsive UI
