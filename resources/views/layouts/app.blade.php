@@ -25,7 +25,10 @@
     <link href="{{asset('css/sequence-theme.modern-slide-in.css')}}" rel="stylesheet" media="all">
 
     <!-- Main style sheet -->
-    <link href="{{asset('css/style.css')}}" rel="stylesheet">    
+    <link href="{{asset('css/style.css')}}" rel="stylesheet">
+    
+    <!-- Fav Icon -->
+    <link rel="shortcut icon" href="{{asset('img/favicon.png')}}" type="image/x-icon">
 
     <!-- Google Font -->
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
@@ -72,7 +75,6 @@
                       <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                      <li><a href="#"><img src="{{asset('img/flag/french.jpg')}}" alt="">FRENCH</a></li>
                       <li><a href="#"><img src="{{asset('img/flag/english.jpg')}}" alt="">ENGLISH</a></li>
                     </ul>
                   </div>
@@ -87,8 +89,7 @@
                       <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                      <li><a href="#"><i class="fa fa-euro"></i>EURO</a></li>
-                      <li><a href="#"><i class="fa fa-jpy"></i>YEN</a></li>
+                      <li><a href="#"><i class="fa fa-usd"></i>USD</a></li>
                     </ul>
                   </div>
                 </div>
@@ -322,7 +323,7 @@
                   <address>
                     <p> 25 Astor Pl, NY 10003, USA</p>
                     <p><span class="fa fa-phone"></span>+1 212-982-4589</p>
-                    <p><span class="fa fa-envelope"></span>dailyshop@gmail.com</p>
+                    <p><span class="fa fa-envelope"></span>dailybazaar@gmail.com</p>
                   </address>
                   <div class="aa-footer-social">
                     <a href="#"><span class="fa fa-facebook"></span></a>
@@ -345,7 +346,7 @@
       <div class="row">
       <div class="col-md-12">
         <div class="aa-footer-bottom-area">
-          <p>Designed by <a href="http://www.markups.io/">MarkUps.io</a></p>
+          <p>Designed by <a href="https://hadibuttt.github.io/">Hadilicious</a></p>
           <div class="aa-footer-payment">
             <span class="fa fa-cc-mastercard"></span>
             <span class="fa fa-cc-visa"></span>
@@ -411,4 +412,3 @@
 
 </body>
 </html>
-  

@@ -1082,7 +1082,24 @@ class ProductsController extends Controller
                 return redirect('/checkout');
             }
             else{
-                return redirect('/payfast');
+                    $merchant_id = env('MERCHANT_ID');        
+                    $secured_key = env('SECURED_KEY');
+                    $email = $request->email;
+                    $phone = $request->phone;
+
+                    $total = 0;
+                    $tax = 0;
+                    foreach (session('cart') as $id => $details) {
+                        $total += $details['price'] * $details['quantity'];
+                        $tax = $total/10;
+                        $total = $total+$tax;
+                    }
+
+                    $PKR = 179.20 * $total;
+
+                    $token = $this->getAccessToken($merchant_id, $secured_key);
+                    return view('payfast-form',compact('token','merchant_id','PKR','email','phone'));
+                // return redirect('/payfast');
             }
         }
             else{
