@@ -1078,8 +1078,8 @@ class ProductsController extends Controller
                 
                 
                 Mail::to($request->email)->send(new OrderConfirmation($order_items,$order_details,$total));
-
-                return redirect('/checkout');
+               session()->forget('cart');
+               return redirect('/cart')->with('success', 'Order confirmation email has been sent to your email address!');
             }
             else{
                     $merchant_id = env('MERCHANT_ID');        
@@ -1164,7 +1164,9 @@ class ProductsController extends Controller
                 
                 
                 Mail::to($request->email)->send(new OrderConfirmation($order_items,$order_details,$total));
-                return redirect('/checkout');
+                session()->forget('cart');
+                return redirect('/cart')->with('success', 'Order confirmation email has been sent to your email address!');
+                
             }
             else{
                     $merchant_id = env('MERCHANT_ID');        

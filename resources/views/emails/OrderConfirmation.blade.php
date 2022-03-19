@@ -30,7 +30,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td style="padding-bottom: 10px;">
-                                                        <a href="https://htmlcodex.com"><img src="{{asset('img/logo.png')}}" alt="PapaChina" /></a>
+                                                        <a href="https://dailybaazar.000webhostapp.com/"><img src="{{asset('img/logo.png')}}" alt="dailyBazaar" /></a>
                                                     </td>
                                                 </tr>
                                                 <tr>
