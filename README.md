@@ -10,7 +10,7 @@
 - Search Products/Categories/Subcategories
 - Filter Products on search
 - Order via COD/PayFast (Payment Gateway)
-- Suubscribe to Newsletter
+- Subscribe to Newsletter
 
 ## Screenshot:
 ![5](https://user-images.githubusercontent.com/58470182/159130611-d561fab1-e031-4f97-ab3f-e495056abdb8.png)
